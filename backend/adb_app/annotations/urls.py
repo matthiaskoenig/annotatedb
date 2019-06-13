@@ -1,5 +1,4 @@
 from rest_framework.routers import DefaultRouter
-from rest_framework_swagger.views import get_swagger_view
 
 from .views import CollectionViewSet, EvidenceViewSet, AnnotationViewSet, MappingViewSet
 
@@ -10,4 +9,3 @@ router.register("annotations", AnnotationViewSet, base_name="annotations")
 router.register("mappings", MappingViewSet, base_name="mappings")
 
 
-schema_view = get_swagger_view(title="ADB API")
