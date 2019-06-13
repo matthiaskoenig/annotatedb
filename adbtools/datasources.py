@@ -26,22 +26,31 @@ PSEUDO
 
 
 """
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'adb_app.settings'
+from dotenv import load_dotenv
+load_dotenv(dotenv_path="../.env.local", verbose=True)
 
+import django
+django.setup()
 
 import json
+from pprint import pprint
+from adb_app import settings
+
+from adb_app.annotations.models import Collection
 
 
-# -----------------------------------------------------------------------------
-# identifiers.org collection
-# -----------------------------------------------------------------------------
 def load_miriam():
     """ Loads miriam registry file.
+
+    identifiers.org collection
 
     :return:
     """
     f_miriam = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
-        'resources', 'IdentifiersOrg-Registry.json'
+        '..', 'resources', 'miriam', 'identifiers_org_collections.json'
     )
 
     with open(f_miriam) as fp:
@@ -50,4 +59,23 @@ def load_miriam():
     return d
 
 
-MIRIAM_COLLECTION = load_miriam()
+def upload_miriam_collections():
+    collections = []
+    miriam_collections = load_miriam()
+    for key, item in miriam_collections.items():
+        print(key)
+        collections.append(
+            Collection(
+                namespace=item['namespace'],
+                miriam=True,
+                idpattern=item['pattern'],
+                urlpattern="https://identifiers.org/{id}"
+            )
+        )
+    Collection.objects.bulk_create(
+        collections
+    )
+
+
+if __name__ == "__main__":
+    upload_miriam_collections()
