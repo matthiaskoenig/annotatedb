@@ -7,27 +7,25 @@ It's mission is to provide mapped annotation resources which simplify annotation
 
 ## Installation
 
-### virtualenv
-Create virtual environment with `virtualenv` & `virtualenvwrapper`.
-```
-mkvirtualenv annotatedb --python=python3.6
-```
-If this is not working use
-```
-which python3.6
-```
-to find the path to python and use it in the command above.
-
-```
+To setup the development server for local development (backend & frontend):
+```bash
+# clone or pull the latest code
 git clone https://github.com/matthiaskoenig/annotatedb.git
 cd annotatedb
-workon annotatedb
-(annotatedb) pip install -e . --upgrade
+git pull
 
-# Install jupyter kernel (for notebook execution)
-(annotatedb) pip install jupyterlab --upgrade
-(annotatedb) python -m ipykernel install --user --name=pancreas
+# set environment variables
+set -a && source .env.local
+ 
+# create/rebuild all docker containers
+./docker-purge.sh
 ```
+
+Development server is available accesible from
+```
+http://localhost:9000/
+```
+
 
 ## Data sources
 ### Bigg 

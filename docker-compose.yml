@@ -1,33 +1,52 @@
-version: '2'
+# -----------------------------------------------------------------------------
+# DOCKER COMPOSE DEVELOPMENT
+# -----------------------------------------------------------------------------
+version: '3'
+
+volumes:
+  django_static:
+    driver: local
+  django_media:
+    driver: local
+  postgres_data:
+    driver: local
+  elasticsearch_data:
+    driver: local
+    
 services:
-  db:
-    build: db
-    #entrypoint: ["pg_restore", "-c", "-d", "bigg", "/src/bigg_database.dump"]
-    #command: ["pg_restore", "-c", "-d", "bigg", "/src/bigg_database.dump"]
 
-    environment:
-      - DEBUG=false
-
-      - DB_USER=postgres
-      - DB_PASS=
-      - DB_NAME=
-      - DB_TEMPLATE=
-
-      - DB_EXTENSION=
-
-      - REPLICATION_MODE=
-      - REPLICATION_USER=
-      - REPLICATION_PASS=
-      - REPLICATION_SSLMODE=
-  web:
-    build: web
-    environment:
-      - PROCESSES=6
-    entrypoint: ["/src/wait-for-it.sh", "db:5432", "-t", "120", "--", "/src/init.sh"]
+  postgres:
+    restart: always
+    image: postgres:11.2
     ports:
-      - "127.0.0.1:8910:8910"
-    depends_on:
-      - db
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  elasticsearch:
+    restart: always
+    image: elasticsearch:6.7.1
+    ports:
+      - "9124:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
+  backend:
+    restart: always
+    build: ./backend
+    volumes:
+      - ./backend:/code
+      - django_static:/static
+      - django_media:/media
+    env_file: .env.local
+    expose:
+      - "9000"
+    ports:
+      - "9000:9000"
     links:
-      - db:db
- 
+      - postgres:postgres
+      - elasticsearch:elasticsearch
+    depends_on:
+     - postgres
+     - elasticsearch
+    command: bash -c "/usr/local/bin/python manage.py runserver 0.0.0.0:9000"
