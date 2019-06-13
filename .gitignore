@@ -1,0 +1,7 @@
+*.pyc
+
+# TODO: manage via large files
+resources
+releases
+
+.idea
