@@ -1,10 +1,16 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1406979.svg)](https://doi.org/10.5281/zenodo.1406979)
+[![GitHub version](https://badge.fury.io/gh/matthiaskoenig%2Fannotatedb.svg)](https://badge.fury.io/gh/matthiaskoenig%2Fannotatedb)
+
 <h1><img alt="AnnotateDB logo" src="./images/annotatedb_logo.png" height="100" /> AnnotateDB</h1>
+<b><a href="https://orcid.org/0000-0003-1725-179X" title="https://orcid.org/0000-0003-1725-179X"><img src="./docs/images/orcid.png" height="15" width="15"/></a> Matthias König</b>
+and
+<b><a href="https://orcid.org/0000-0002-4588-4925" title="0000-0002-4588-4925"><img src="./docs/images/orcid.png" height="15"/></a> Jan Grzegorzewski</b>
 
 
 `AnnotateDB` (pronounced `annotated bee`) is a database for mapping of annotations found in computational models in biology.
 It's mission is to provide mapped annotation resources which simplify annotation of computational models and mapping of entities in such models.
 
-A major source of information is the [http://bigg.ucsd.edu/](BiGG Database).
+A major source of information is the (http://bigg.ucsd.edu/)(BiGG Database).
 
 The database consists of the following main tables:
 - `collection`: A data source or miriam collection for annotation or xref information
@@ -12,11 +18,22 @@ The database consists of the following main tables:
 - `mapping`: Mapping between annotations, from source annotation to target annotation. The kind of mapping is defined by the qualifier. E.g. the qualifier `BQM_IS` encodes that the source annotation `is` the target annotation.
 - `evidence`: Evidence for the given mapping between annotations.
 
-<img alt="Database schema" src="./images/schema_v0.0.1.png" width="500"/>
+<img alt="Database schema" src="./images/schema_v0.0.1.png" width="400"/>
+
+## Data sources
+
+### Bigg
+Bigg models are included based on database dump from:
+https://github.com/SBRG/bigg_models_data/releases 
 
 
-## Setup
-AnnotateDB is distributed as docker containers.
+### Miriam collections (database collections)
+Information on the collections is based on identifiers.org collection retrieved 
+with `sbmlutils`.
+
+## Installation
+### Setup the development server
+AnnotateDB is distributed as `docker` containers and `docker-compose` files. 
 
 To setup the development server for local development (backend & frontend):
 ```bash
@@ -30,37 +47,13 @@ set -a && source .env.local
 # create/rebuild all docker containers
 ./docker-purge.sh
 ```
-
-The django development server is then accessible via
+The django development server is accessible via
 ```
 http://localhost:9000/
 ```
 
-
-
-## Data sources
-### Bigg 
-https://github.com/psalvy/bigg-docker
-```
-git clone https://github.com/psalvy/bigg-docker.git
-```
-# get a database dump
-https://github.com/SBRG/bigg_models_data/releases
-
-
-### Miriam collections (database collections)
-- created with sbmlutils
-
-
-## TODO
-- python package for installation
-- create database interaction layer (sqlalquemy? django?)
-- store data collections in database
-- upload bigg synonms mapping into database
-- provide example code for identifier mapping
-    - query bigg synonyms (gene, metabolite, reaction)
-    - query based on general annotation
-- create schema documentation and make a release
+### Setup the database
+Information to come.
 
 ---
-&copy; Matthias König.
+&copy; Matthias König and Jan Grzegorzewski
