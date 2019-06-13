@@ -35,6 +35,12 @@ mapping was inferred
 Some of these features are still in development, but will be available soon.
 Please see the [issue tracker](https://github.com/matthiaskoenig/annotatedb) for more information.
 
+### REST webservice
+`AnnotateDB` can be queried via REST endpoints
+
+<img alt="AnnotateDB logo" src="./docs/images/rest.png" width="400" />
+
+
 ### License
 * Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
 * Documentation: [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
