@@ -15,11 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .annotations.urls import router
+from django.conf.urls import url
+
+from .annotations.urls import router, schema_view
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r"api/v1/", include(router.urls)),
+    url(r"api", schema_view, name="api"),
+
 
 ]
