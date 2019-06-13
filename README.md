@@ -12,7 +12,7 @@ The database consists of the following main tables:
 - `mapping`: Mapping between annotations, from source annotation to target annotation. The kind of mapping is defined by the qualifier. E.g. the qualifier `BQM_IS` encodes that the source annotation `is` the target annotation.
 - `evidence`: Evidence for the given mapping between annotations.
 
-<img alt="Database schema" src="./images/schema_v0.0.1.png" />
+<img alt="Database schema" src="./images/schema_v0.0.1.png" width="500"/>
 
 
 ## Setup
