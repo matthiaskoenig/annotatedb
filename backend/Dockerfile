@@ -13,5 +13,5 @@ WORKDIR /code
 # install pkdb_app
 RUN pip install -e .
 
-EXPOSE 8000
+EXPOSE 9000
 CMD newrelic-admin run-program gunicorn --bind 0.0.0.0:$PORT --access-logfile - adb_app.wsgi:application
