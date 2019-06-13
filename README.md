@@ -2,14 +2,16 @@
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 [![GitHub version](https://badge.fury.io/gh/matthiaskoenig%2Fannotatedb.svg)](https://badge.fury.io/gh/matthiaskoenig%2Fannotatedb)
 
-<h1><img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="100" /> AnnotateDB</h1>
 <b><a href="https://orcid.org/0000-0003-1725-179X" title="https://orcid.org/0000-0003-1725-179X"><img src="./docs/images/orcid.png" height="15" width="15"/></a> Matthias König</b>
 and
 <b><a href="https://orcid.org/0000-0002-4588-4925" title="0000-0002-4588-4925"><img src="./docs/images/orcid.png" height="15"/></a> Jan Grzegorzewski</b>
 
+<h1><img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="100" /> AnnotateDB</h1>
 
 `AnnotateDB` (pronounced `annotated bee`) is a database for mapping of annotations found in computational models in biology.
-It's mission is to provide mapped annotation resources which simplify annotation of computational models and mapping of entities in such models.
+**Our mission** is to provide mapped annotation resources which simplify annotation of computational models and mapping of entities in such models.
+**Our vision** is to provide a single integrated knowledge resource which simplifies mapping between commonly occurring 
+annotations in biological models and data.
 
 
 The database contains the following main tables:
