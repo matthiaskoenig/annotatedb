@@ -22,8 +22,8 @@ class Collection(models.Model):
 
 class Evidence(models.Model):
     """ Annotation evidence. """
-    DATABASE = 'DB'
-    INFERENCE = 'INF'
+    DATABASE = 'database'
+    INFERENCE = 'inference'
     EVIDENCE_CHOICES = [
         (DATABASE, 'database'),
         (INFERENCE, 'inference'),
@@ -58,14 +58,18 @@ class Annotation(models.Model):
     def __str__(self):
         return str(self.collection) + "/" + self.term
 
+    @property
+    def resource(self):
+        return self.collection.urlpattern + self.term
+
 
 class Mapping(models.Model):
     """ Annotation Mapping. """
     IS = 'IS'
     IS_VERSION_OF = 'IS_VERSION_OF'
     QUALIFIER_CHOICES = [
-        (IS, 'is'),
-        (IS_VERSION_OF, 'is_version_of'),
+        (IS, 'IS'),
+        (IS_VERSION_OF, 'IS_VERSION_OF'),
     ]
     source = models.ForeignKey(Annotation, on_delete=models.CASCADE, related_name="mapping_source")
     qualifier = models.CharField(max_length=20, choices=QUALIFIER_CHOICES)
