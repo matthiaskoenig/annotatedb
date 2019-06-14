@@ -38,3 +38,8 @@ Use the web services to upload the data.
   "term": "SBO:000023",
   "collection": "sbo"
 }
+{
+  "term": "SBO:000024",
+  "collection": "sbo"
+}
+# TODO: store additional information?
