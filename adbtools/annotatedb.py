@@ -18,6 +18,8 @@ curl -X POST -H "Content-Type: application/json" -d '{"username": "admin", "pass
 '''
 
 API_URL_BASE = "http://localhost:9000/"
+REST_URL_BASE = API_URL_BASE + "api/v1/"
+
 USER = "admin"
 PASSWORD = "adb_admin"
 
@@ -48,7 +50,9 @@ HEADERS = get_authentication_headers(
 )
 
 
-def _process_response(response, url):
+def _request(method, url, **kwargs):
+    response = requests.request(method=method, url=url, **kwargs)
+
     if response.status_code in [200, 201]:
         return json.loads(response.content.decode('utf-8'))
     else:
@@ -61,9 +65,7 @@ def _process_response(response, url):
 # ------------------------------------------------------------
 # ORM mapping
 # ------------------------------------------------------------
-
-
-class Collection:
+class Collection(object):
     __slots__ = ('namespace', 'miriam', 'name', 'idpattern', 'urlpattern')
 
     def __getitem__(self, key):
@@ -72,41 +74,73 @@ class Collection:
     def __setitem__(self, key, value):
         setattr(self, key, value)
 
-    def to_json(self):
-        pass
-
-    def from_json(self):
-        pass
-
     @staticmethod
-    def post(data_dict, headers):
-        print('post:', data_dict)
-        api_url = '{}api/v1/collections/'.format(API_URL_BASE)
-        response = requests.post(api_url, headers=headers, json=data_dict)
-        _process_response(response, api_url)
+    def post(data_dict):
+        return _request(method="post",
+                        url='{}collections/'.format(REST_URL_BASE),
+                        headers=HEADERS,
+                        json=data_dict)
 
     @staticmethod
     def get(namespace):
-        api_url = 'api/v1/{}collections/{}/'.format(API_URL_BASE, namespace)
-        response = requests.get(api_url, headers=HEADERS, format=json)
-        return _process_response(response, api_url)
+        return _request(
+            method="get",
+            url='{}collections/{}/'.format(REST_URL_BASE, namespace)
+        )
 
     @staticmethod
-    def get():
-        api_url = 'api/v1/{}collections/'.format(API_URL_BASE)
-        response = requests.get(api_url, headers=HEADERS, format=json)
-        return _process_response(response, api_url)
+    def get_all():
+        # FIXME: get complete list
+        return _request(
+            method="get",
+            url='{}collections/'.format(REST_URL_BASE)
+        )
 
 
+class Evidence(object):
+    __slots__ = ('namespace', 'miriam', 'name', 'idpattern', 'urlpattern')
+
+    def __getitem__(self, key):
+        return getattr(self, key)
+
+    def __setitem__(self, key, value):
+        setattr(self, key, value)
+
+    @staticmethod
+    def post(data_dict):
+        return _request(method="post",
+                        url='{}collections/'.format(REST_URL_BASE),
+                        headers=HEADERS,
+                        json=data_dict)
+
+    @staticmethod
+    def get(namespace):
+        return _request(
+            method="get",
+            url='{}collections/{}/'.format(REST_URL_BASE, namespace)
+        )
+
+    @staticmethod
+    def get_all():
+        # FIXME: get complete list
+        return _request(
+            method="get",
+            url='{}collections/'.format(REST_URL_BASE)
+        )
 
 
 
 if __name__ == "__main__":
 
+    # upload collections
     for collection in COLLECTIONS:
-        Collection.post(data_dict=collection, headers=HEADERS)
+        Collection.post(data_dict=collection)
 
+    c_sbo = Collection.get('sbo')
+    print(c_sbo)
 
+    c_all = Collection.get_all()
+    print(c_all)
 
 
 
