@@ -1,5 +1,0 @@
-"""
-Store bigg data
-"""
-
-

@@ -9,8 +9,8 @@ class Collection(models.Model):
     namespace = models.CharField(max_length=40, unique=True)
     miriam = models.BooleanField()
     name = models.CharField(max_length=200, unique=True)
-    idpattern = models.CharField(max_length=40)
-    urlpattern = models.CharField(max_length=40)
+    idpattern = models.CharField(max_length=200)
+    urlpattern = models.CharField(max_length=300)
 
     class Meta:
         pass
