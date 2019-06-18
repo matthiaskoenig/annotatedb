@@ -13,12 +13,15 @@ class CollectionAdmin(admin.ModelAdmin):
 class EvidenceAdmin(admin.ModelAdmin):
     fields = ('pk', 'source', 'version', 'evidence')
     list_display = ('pk', 'source', 'version', 'evidence')
+    list_filter = ('source', 'evidence')
 
 
 @admin.register(Annotation)
 class AnnotationAdmin(admin.ModelAdmin):
     fields = ('pk', 'term', 'collection')
     list_display = ('pk', 'term', 'collection', 'resource')
+    search_fields = ('term',)
+    list_filter = ('collection',)
 
 
 @admin.register(Mapping)
