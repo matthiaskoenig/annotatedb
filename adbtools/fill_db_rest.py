@@ -70,7 +70,7 @@ def post_bigg_annotations():
 
     # post all annotations and mappings
     # bigg -> other resource
-    
+
 
 
 

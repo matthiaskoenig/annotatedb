@@ -12,7 +12,10 @@ volumes:
     driver: local
   elasticsearch_data:
     driver: local
-    
+  bigg_data:
+    driver: local
+
+
 services:
 
   postgres:
@@ -22,6 +25,15 @@ services:
       - "5434:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  bigg:
+    restart: always
+    image: postgres:11.2
+    ports:
+      - "5435:5432"
+    volumes:
+      - bigg_data:/var/lib/postgresql/data
+
 
   elasticsearch:
     restart: always
