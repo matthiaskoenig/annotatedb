@@ -65,9 +65,8 @@ def _request(method, url, **kwargs):
 # ------------------------------------------------------------
 # ORM mapping
 # ------------------------------------------------------------
-class Collection(object):
-    __slots__ = ('namespace', 'miriam', 'name', 'idpattern', 'urlpattern')
 
+class Base(object):
     def __getitem__(self, key):
         return getattr(self, key)
 
@@ -75,59 +74,77 @@ class Collection(object):
         setattr(self, key, value)
 
     @staticmethod
-    def post(data_dict):
+    def post(infix, data_dict):
         return _request(method="post",
-                        url='{}collections/'.format(REST_URL_BASE),
+                        url='{}{}/'.format(REST_URL_BASE, infix),
                         headers=HEADERS,
                         json=data_dict)
 
     @staticmethod
-    def get(namespace):
+    def get(infix, key):
         return _request(
             method="get",
-            url='{}collections/{}/'.format(REST_URL_BASE, namespace)
+            url='{}{}/{}/'.format(REST_URL_BASE, infix, key)
         )
 
     @staticmethod
-    def get_all():
+    def get_all(infix):
         # FIXME: get complete list
         return _request(
             method="get",
-            url='{}collections/'.format(REST_URL_BASE)
+            url='{}{}/'.format(REST_URL_BASE, infix)
         )
 
 
-class Evidence(object):
+class Collection(Base):
     __slots__ = ('namespace', 'miriam', 'name', 'idpattern', 'urlpattern')
+    __infix = 'collections'
 
-    def __getitem__(self, key):
-        return getattr(self, key)
+    @classmethod
+    def post(cls, data_dict):
+        return Base.post(infix=cls.__infix, data_dict=data_dict)
 
-    def __setitem__(self, key, value):
-        setattr(self, key, value)
+    @classmethod
+    def get(cls, key):
+        return Base.get(infix=cls.__infix, key=key)
 
-    @staticmethod
-    def post(data_dict):
-        return _request(method="post",
-                        url='{}collections/'.format(REST_URL_BASE),
-                        headers=HEADERS,
-                        json=data_dict)
+    @classmethod
+    def get_all(cls):
+        return Base.get_all(infix=cls.__infix)
 
-    @staticmethod
-    def get(namespace):
-        return _request(
-            method="get",
-            url='{}collections/{}/'.format(REST_URL_BASE, namespace)
-        )
 
-    @staticmethod
-    def get_all():
-        # FIXME: get complete list
-        return _request(
-            method="get",
-            url='{}collections/'.format(REST_URL_BASE)
-        )
+class Evidence(Base):
+    __slots__ = ('source', 'version', 'evidence')
+    __infix = 'evidences'
 
+    @classmethod
+    def post(cls, data_dict):
+        return Base.post(infix=cls.__infix, data_dict=data_dict)
+
+    @classmethod
+    def get(cls, key):
+        return Base.get(infix=cls.__infix, key=key)
+
+    @classmethod
+    def get_all(cls):
+        return Base.get_all(infix=cls.__infix)
+
+
+class Annotation(Base):
+    __slots__ = ('term', 'collection')
+    __infix = 'annotations'
+
+    @classmethod
+    def post(cls, data_dict):
+        return Base.post(infix=cls.__infix, data_dict=data_dict)
+
+    @classmethod
+    def get(cls, key):
+        return Base.get(infix=cls.__infix, key=key)
+
+    @classmethod
+    def get_all(cls):
+        return Base.get_all(infix=cls.__infix)
 
 
 if __name__ == "__main__":
@@ -136,11 +153,28 @@ if __name__ == "__main__":
     for collection in COLLECTIONS:
         Collection.post(data_dict=collection)
 
+    for evidence in EVIDENCES:
+        Evidence.post(data_dict=evidence)
+
+    for annotation in ANNOTATIONS:
+        Annotation.post(data_dict=annotation)
+
+
+
     c_sbo = Collection.get('sbo')
     print(c_sbo)
-
     c_all = Collection.get_all()
     print(c_all)
+
+    e1 = Evidence.get('1')
+    print(e1)
+    e_all = Evidence.get_all()
+    print(e_all)
+
+    a1 = Annotation.get('1')
+    print(a1)
+    a_all = Annotation.get_all()
+    print(a_all)
 
 
 
