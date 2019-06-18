@@ -4,6 +4,7 @@
 resources
 releases
 
+__pycache__
 
 # ----------------------------
 # environments

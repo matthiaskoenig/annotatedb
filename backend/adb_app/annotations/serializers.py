@@ -3,14 +3,27 @@ from .models import Collection, Evidence, Annotation, Mapping
 
 
 class CollectionSerializer(serializers.ModelSerializer):
+    """ Returns the existing collections."""
     class Meta:
         model = Collection
-        fields = ["namespace","miriam","name","idpattern","urlpattern"]
+        fields = [
+            "namespace",
+            "miriam",
+            "name",
+            "idpattern",
+            "urlpattern"
+        ]
+
 
 class EvidenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Evidence
-        fields = ["source","version","evidence"]
+        fields = [
+            "source",
+            "version",
+            "evidence"
+        ]
+
 
 class AnnotationSerializer(serializers.ModelSerializer):
     collection = serializers.SlugRelatedField(
@@ -19,7 +32,10 @@ class AnnotationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Annotation
-        fields = ["term","collection"]
+        fields = [
+            "term",
+            "collection"
+        ]
 
 
 class MappingSerializer(serializers.ModelSerializer):
@@ -37,4 +53,9 @@ class MappingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Mapping
-        fields = ["source","qualifier","target","evidence"]
+        fields = [
+            "source",
+            "qualifier",
+            "target",
+            "evidence"
+        ]
