@@ -17,3 +17,6 @@ __pycache__
 # ----------------------------
 */migrations/
 backend/adb_app/annotations/migrations/00*.py
+
+# bigg database
+bigg/bigg-v1.5.dump
