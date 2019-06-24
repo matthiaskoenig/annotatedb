@@ -30,6 +30,7 @@ class AnnotationSerializer(serializers.ModelSerializer):
         slug_field="namespace",
         queryset=Collection.objects.all())
 
+
     class Meta:
         model = Annotation
         fields = [

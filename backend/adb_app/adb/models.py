@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.core.exceptions import ValidationError
+import re
 
 class Collection(models.Model):
     """ Collection.
@@ -14,7 +15,6 @@ class Collection(models.Model):
 
     class Meta:
         pass
-        # db_table = "collection"
 
     def __str__(self):
         return self.namespace
@@ -34,7 +34,6 @@ class Evidence(models.Model):
     evidence = models.CharField(max_length=40, choices=EVIDENCE_CHOICES)
 
     class Meta:
-        # db_table = "evidence"
         unique_together = [['source', 'version']]
 
 
@@ -45,6 +44,21 @@ class Annotation(models.Model):
     """
     term = models.CharField(max_length=100)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
+
+    def clean(self, *args, **kwargs):
+        # add custom validation here
+        pattern = self.collection.idpattern
+        p = re.compile(pattern)
+        m = p.match(self.term)
+        if not m:
+            raise ValidationError(
+                f"Annotation term `{self.term}` does not follow pattern "
+                f"`{pattern}`for collection `{self.collection}.`")
+        super().clean(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
     class Meta:
         # db_table = "annotation"
@@ -78,4 +92,3 @@ class Mapping(models.Model):
 
     class Meta:
         pass
-        #db_table = "mapping"
