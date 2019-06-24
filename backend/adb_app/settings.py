@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'django_elasticsearch_dsl_drf',
 
     # adb
-    "adb_app.annotations",
+    "adb_app.adb",
 ]
 
 MIDDLEWARE = [

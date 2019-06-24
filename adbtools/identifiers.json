@@ -30102,6 +30102,45 @@
         ],
         "sampleId": "GCST000035",
         "namespaceEmbeddedInLui": false
+      },
+      {
+        "id": 1942,
+        "prefix": "erm",
+        "mirId": "MIR:00000763",
+        "name": "European Registry of Materials",
+        "pattern": "^ERM[0-9]{8}$",
+        "description": "The European Registry of Materials is a simple registry with the sole purpose to mint material identifiers to be used by research projects throughout the life cycle of their project.",
+        "created": "2019-06-19T15:38:51.382+0000",
+        "modified": "2019-06-19T15:38:51.382+0000",
+        "resources": [
+          {
+            "id": 1943,
+            "mirId": "MIR:00000711",
+            "urlPattern": "https://nanocommons.github.io/identifiers/registry#{$id}",
+            "name": "European Registry of Materials",
+            "description": "The European Registry of Materials is a simple registry with the sole purpose to mint material identifiers to be used by research projects throughout the life cycle of their project.",
+            "official": true,
+            "providerCode": "erm",
+            "sampleId": "ERM00000044",
+            "resourceHomeUrl": "https://nanocommons.github.io/identifiers/",
+            "institution": {
+              "id": 1941,
+              "name": "NanoCommons",
+              "homeUrl": "https://www.nanocommons.eu/",
+              "description": "The H2020 Infrastructures project, NanoCommons, addresses this gap by creating a community framework and infrastructure for reproducible science, and in particular for in silico workflows for nanomaterials safety assessment and beyond.",
+              "location": {
+                "countryCode": "GB",
+                "countryName": "United Kingdom"
+              }
+            },
+            "location": {
+              "countryCode": "US",
+              "countryName": "United States"
+            }
+          }
+        ],
+        "sampleId": "ERM00000044",
+        "namespaceEmbeddedInLui": false
       }
     ]
   }

@@ -80,6 +80,22 @@ The django development server is accessible via
 ```
 http://localhost:9000/
 ```
+The postgres database via
+```
+localhost:5434/
+
+DB:postgres
+USER:postgres
+PASSWORD: none
+```
+
+
+To run the scripts create a virtualenv via
+```
+cd backend
+mkvirtualenv adb --python=python3.6
+(adb) pip install -e .
+```
 
 ### Setup the database
 Information to come. Soon we will provide the docker scripts to work with the database locally.

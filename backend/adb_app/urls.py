@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 
-from .annotations.urls import router
+from .adb.urls import router
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,

@@ -4,7 +4,9 @@ import requests
 
 from adbtools.annotatedb import Collection, Evidence, Annotation
 
+
 BIGG_SQLITE3 = '../bigg/bigg-v1.5.sqlite3'
+
 
 def get_identifiers_collections():
     response = requests.get("https://registry.api.identifiers.org/resolutionApi/getResolverDataset")
@@ -34,7 +36,7 @@ def post_identifiers_collections():
         )
 
 
-def post_bigg_annotations():
+def post_bigg_evidence():
     """
     Additional bigg collections
 
@@ -73,7 +75,7 @@ def post_bigg_annotations():
     # bigg -> other resource
 
 
-def bigg_annotations():
+def post_bigg_annotations():
     db = sqlite3.connect('../bigg/bigg-v1.5.sqlite3')
     c = db.cursor()
 
@@ -101,10 +103,10 @@ def bigg_annotations():
             'bigg_id': row[1],
             'type': 'reaction'
         }
-        #Annotation.post(data_dict={
-        #    'collection': 'bigg.reaction',
-        #    'term': row[1],
-        #})
+        Annotation.post(data_dict={
+            'collection': 'bigg.reaction',
+            'term': row[1],
+        })
 
     print(reaction_ids)
 
@@ -118,10 +120,10 @@ def bigg_annotations():
             'bigg_id': row[1],
             'type': 'compartment'
         }
-        #Annotation.post(data_dict={
-        #    'collection': 'bigg.compartment',
-        #    'term': row[1],
-        #})
+        Annotation.post(data_dict={
+            'collection': 'bigg.compartment',
+            'term': row[1],
+        })
     print(compartment_ids)
 
     # metabolite/component ids
@@ -134,20 +136,12 @@ def bigg_annotations():
             'bigg_id': row[1],
             'type': 'component'
         }
-        #Annotation.post(data_dict={
-        #    'collection': 'bigg.metabolite',
-        #    'term': row[1],
-        #})
+        Annotation.post(data_dict={
+            'collection': 'bigg.metabolite',
+            'term': row[1],
+        })
 
     print(component_ids)
-
-    # c.execute('''SELECT id, ome_id, synonym, type, data_source_id FROM synonym''')
-
-    '''
-    all_rows = c.fetchall()
-    for row in all_rows:
-        print('{0} : {1}, {2}'.format(row[0], row[1], row[2]))
-    '''
 
     db.close()
     return reaction_ids, compartment_ids, component_ids
@@ -238,7 +232,6 @@ def bigg_mappings():
 
 
 if __name__ == "__main__":
-    # post_identifiers_collections()
-    # post_bigg_annotations()
-    # connect_bigg_sqlite3()
-    bigg_mappings()
+    #post_identifiers_collections()
+    post_bigg_evidence()
+    # bigg_mappings()

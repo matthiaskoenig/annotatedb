@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from adb_app.annotations.models import Annotation, Mapping, Evidence, Collection
+from adb_app.adb.models import Annotation, Mapping, Evidence, Collection
 
 
 @admin.register(Collection)
