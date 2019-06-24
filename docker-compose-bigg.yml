@@ -1,0 +1,33 @@
+# -----------------------------------------------------------------------------
+# DOCKER COMPOSE DEVELOPMENT
+# -----------------------------------------------------------------------------
+version: '3'
+
+volumes:
+  bigg_data:
+    driver: local
+
+
+services:
+
+  bigg:
+    restart: always
+    build: ./bigg
+    ports:
+      - "5435:5432"
+    #volumes:
+    #  - bigg_data:/var/lib/postgresql/data
+    environment:
+      - DEBUG=false
+
+      - DB_USER=postgres
+      - DB_PASS=bigg
+      - DB_NAME=
+      - DB_TEMPLATE=
+
+      - DB_EXTENSION=
+
+      - REPLICATION_MODE=
+      - REPLICATION_USER=
+      - REPLICATION_PASS=
+      - REPLICATION_SSLMODE=

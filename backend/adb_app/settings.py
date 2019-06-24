@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -96,9 +97,18 @@ WSGI_APPLICATION = 'adb_app.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'adb.sqlite3'),
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'adb.sqlite3'),
+    #},
+
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ['ADB_DB_NAME'],
+        "USER": os.environ['ADB_DB_USER'],
+        "HOST": os.environ['ADB_DB_SERVICE'],
+        "PASSWORD": os.environ['ADB_DB_PASSWORD'],
+        "PORT": os.environ['ADB_DB_PORT'],
     }
 }
 
@@ -136,6 +146,14 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": (
         "django_filters.rest_framework.DjangoFilterBackend",
     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
 SWAGGER_SETTINGS = {
