@@ -17,13 +17,15 @@ docker-compose -f $ADB_DOCKER_COMPOSE_YAML down --volumes --rmi local
 
 # make sure containers are removed (if not running)
 docker container rm -f annotatedb_backend_1
-docker container rm -f annotatedb_postgres_1
+docker container rm -f annotatedb_frontend_1
+docker container rm -f annotatedb_adb_1
 docker container rm -f annotatedb_elasticsearch_1
 docker container rm -f annotatedb_nginx_1
 
 # make sure images are removed
 docker image rm -f annotatedb_backend:latest
-docker image rm -f annotatedb_postgres:latest
+docker image rm -f annotatedb_frontend:latest
+docker image rm -f annotatedb_adb:latest
 docker image rm -f annotatedb_elasticsearch:latest
 docker image rm -f annotatedb_nginx:latest
 
@@ -31,7 +33,11 @@ docker image rm -f annotatedb_nginx:latest
 docker volume rm -f annotatedb_django_media
 docker volume rm -f annotatedb_django_static
 docker volume rm -f annotatedb_elasticsearch_data
-docker volume rm -f annotatedb_postgres_data
+docker volume rm -f annotatedb_adb_data
+docker volume rm -f annotatedb_vue_dist
+docker volume rm -f annotatedb_node_modules
+
+
 
 # cleanup all dangling images, containers, volumes and networks
 docker system prune --force

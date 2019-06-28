@@ -17,12 +17,8 @@ volumes:
   node_modules:
     driver: local
 
-  bigg_data:
-    driver: local
-
 
 services:
-
   adb:
     restart: always
     image: postgres:11.2
@@ -30,6 +26,10 @@ services:
       - "5434:5432"
     volumes:
       - adb_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${ADB_DB_NAME}
+      - POSTGRES_USER=${ADB_DB_USER}
+      - POSTGRES_PASSWORD=${ADB_DB_PASSWORD}
 
   elasticsearch:
     restart: always
@@ -70,12 +70,3 @@ services:
       - ./frontend:/app
       - node_modules:/app/node_modules/
       - vue_dist:/usr/share/nginx/html
-
-
-  bigg:
-    restart: always
-    image: postgres:11.2
-    ports:
-      - "5435:5432"
-    volumes:
-      - bigg_data:/var/lib/postgresql/data

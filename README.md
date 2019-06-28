@@ -76,17 +76,22 @@ set -a && source .env.local
 # create/rebuild all docker containers
 ./docker-purge.sh
 ```
+
+The frontend is accessible via
+```
+http://localhost:8090/
+```
 The django development server is accessible via
 ```
 http://localhost:9000/
 ```
 The postgres database via
 ```
-localhost:5434/
-
-DB:postgres
-USER:postgres
-PASSWORD: none
+HOST: localhost
+PORT: 5434
+DB: adb
+USER: adb
+PASSWORD: adb
 ```
 
 

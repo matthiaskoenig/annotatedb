@@ -2,7 +2,7 @@ import sqlite3
 import json
 import requests
 
-from adbtools.annotatedb import Collection, Evidence, Annotation
+from backend.adb_app.adb.adbtools.orm import Collection, Evidence, Annotation
 
 
 BIGG_SQLITE3 = '../bigg/bigg-v1.5.sqlite3'

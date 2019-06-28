@@ -1,12 +1,11 @@
 """
 ORM mapping for annotated bee.
 """
-import os
 import json
 import logging
 import requests
 
-from adbtools.data import EVIDENCES, COLLECTIONS, ANNOTATIONS
+from backend.adb_app.adb.adbtools.data import EVIDENCES, COLLECTIONS, ANNOTATIONS
 
 # ------------------------------------------------------------
 # Authentication
