@@ -232,6 +232,6 @@ def bigg_mappings():
 
 
 if __name__ == "__main__":
-    #post_identifiers_collections()
+    post_identifiers_collections()
     post_bigg_evidence()
     # bigg_mappings()

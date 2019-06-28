@@ -20,3 +20,4 @@ backend/adb_app/adb/migrations/00*.py
 
 # bigg database
 bigg/bigg-v1.5.dump
+bigg/bigg-v1.5.sqlite3
