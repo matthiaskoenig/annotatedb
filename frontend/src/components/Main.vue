@@ -24,22 +24,6 @@
         </p>
       </v-flex>
 
-      <v-flex>
-        Icon added
-        <v-icon>{{ icon('admin') }}</v-icon>
-        <font-awesome-icon icon="admin" />
-        {{ icon('admin') }}
-
-        <v-alert
-                :value="true"
-                type="success"
-        >
-          This is a success alert.
-        </v-alert>
-        <v-icon>event</v-icon>
-        <v-icon>info</v-icon>
-      </v-flex>
-
     </v-layout>
   </v-container>
 </template>
