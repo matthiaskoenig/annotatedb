@@ -12,6 +12,10 @@ volumes:
     driver: local
   elasticsearch_data:
     driver: local
+  vue_dist:
+    driver: local
+  node_modules:
+    driver: local
 
   bigg_data:
     driver: local
@@ -54,6 +58,18 @@ services:
      - adb
      - elasticsearch
     command: bash -c "/usr/local/bin/python manage.py runserver 0.0.0.0:9000"
+
+  frontend:
+    restart: always
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile-develop
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./frontend:/app
+      - node_modules:/app/node_modules/
+      - vue_dist:/usr/share/nginx/html
 
 
   bigg:
