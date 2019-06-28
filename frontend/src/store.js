@@ -30,6 +30,7 @@ export default new Vuex.Store({
     state: {
         endpoints: {
             api: backend_domain + '/api/v1',
+            django: backend_domain,
         },
     },
     mutations: {

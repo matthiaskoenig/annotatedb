@@ -3,19 +3,10 @@
     <v-toolbar app flat>
       <v-toolbar-title class="headline" >
 
-        <span class="text-uppercase">AnnoteDB</span>
+        <!--<span class="text-uppercase">AnnoteDB</span>-->
         <!--<span class="font-weight-light">&nbsp; annotations made easy</span>-->
       </v-toolbar-title>
       <v-spacer></v-spacer>
-
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-
-      </v-btn>
 
       <v-btn icon color="blue" :href="api_url" title="REST API"><v-icon>{{ icon('api') }}</v-icon></v-btn>
       <v-btn icon color="blue" :href="admin_url" title="Django admin interface">
@@ -52,10 +43,9 @@ export default {
   computed: {
     // vuex store
     admin_url() {
-      return this.$store.state.django_domain + '/admin/';
+      return this.$store.state.endpoints.django + '/admin/';
     },
     api_url() {
-
       return this.$store.state.endpoints.api;
     }
   },

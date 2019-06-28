@@ -1,10 +1,10 @@
+import '@babel/polyfill'
 import Vue from 'vue'
 import './plugins/vuetify'
+
+import VueResource from 'vue-resource';
 import App from './App.vue'
-
 import store from './store'
-
-Vue.config.productionTip = false
 
 
 /** --------------------------------------------------------------
@@ -30,6 +30,10 @@ Vue.component('font-awesome-layers', FontAwesomeLayers);
 Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 
 
+/** --------------------------------------------------------------
+ *  Vue instance
+ *  -------------------------------------------------------------- */
+Vue.config.productionTip = false
 new Vue({
   store,
   render: h => h(App),
