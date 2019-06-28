@@ -2,8 +2,9 @@ import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
 
-Vue.config.productionTip = false
+import store from './store'
 
+Vue.config.productionTip = false
 
 
 /** --------------------------------------------------------------
@@ -29,8 +30,7 @@ Vue.component('font-awesome-layers', FontAwesomeLayers);
 Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 
 
-
-
 new Vue({
+  store,
   render: h => h(App),
 }).$mount('#app')
