@@ -55,9 +55,11 @@ def _request(method, url, **kwargs):
     if response.status_code in [200, 201]:
         return json.loads(response.content.decode('utf-8'))
     else:
-        logging.error(response.status_code)
-        logging.error(url)
-        logging.error(response.text)
+        err_msg = f"`{response.status_code} {url}`\n{response.text}"
+        if 'json' in kwargs:
+            err_msg += f"\n{kwargs['json']}"
+        logging.error(err_msg)
+        # raise ValueError()
         return None
 
 
@@ -65,7 +67,7 @@ def _request(method, url, **kwargs):
 # ORM mapping
 # ------------------------------------------------------------
 
-class Base(object):
+class OrmBase(object):
     def __getitem__(self, key):
         return getattr(self, key)
 
@@ -95,84 +97,84 @@ class Base(object):
         )
 
 
-class Collection(Base):
+class OrmCollection(OrmBase):
     __slots__ = ('namespace', 'miriam', 'name', 'idpattern', 'urlpattern')
     __infix = 'collections'
 
     @classmethod
     def post(cls, data_dict):
-        return Base.post(infix=cls.__infix, data_dict=data_dict)
+        return OrmBase.post(infix=cls.__infix, data_dict=data_dict)
 
     @classmethod
     def get(cls, key):
-        return Base.get(infix=cls.__infix, key=key)
+        return OrmBase.get(infix=cls.__infix, key=key)
 
     @classmethod
     def get_all(cls):
-        return Base.get_all(infix=cls.__infix)
+        return OrmBase.get_all(infix=cls.__infix)
 
 
-class Evidence(Base):
+class OrmEvidence(OrmBase):
     __slots__ = ('source', 'version', 'evidence')
     __infix = 'evidences'
 
     @classmethod
     def post(cls, data_dict):
-        return Base.post(infix=cls.__infix, data_dict=data_dict)
+        return OrmBase.post(infix=cls.__infix, data_dict=data_dict)
 
     @classmethod
     def get(cls, key):
-        return Base.get(infix=cls.__infix, key=key)
+        return OrmBase.get(infix=cls.__infix, key=key)
 
     @classmethod
     def get_all(cls):
-        return Base.get_all(infix=cls.__infix)
+        return OrmBase.get_all(infix=cls.__infix)
 
 
-class Annotation(Base):
+class OrmAnnotation(OrmBase):
     __slots__ = ('term', 'collection')
     __infix = 'annotations'
 
     @classmethod
     def post(cls, data_dict):
-        return Base.post(infix=cls.__infix, data_dict=data_dict)
+        return OrmBase.post(infix=cls.__infix, data_dict=data_dict)
 
     @classmethod
     def get(cls, key):
-        return Base.get(infix=cls.__infix, key=key)
+        return OrmBase.get(infix=cls.__infix, key=key)
 
     @classmethod
     def get_all(cls):
-        return Base.get_all(infix=cls.__infix)
+        return OrmBase.get_all(infix=cls.__infix)
 
 
 if __name__ == "__main__":
 
     # upload collections
     for collection in COLLECTIONS:
-        Collection.post(data_dict=collection)
+        OrmCollection.post(data_dict=collection)
 
     for evidence in EVIDENCES:
-        Evidence.post(data_dict=evidence)
+        OrmEvidence.post(data_dict=evidence)
 
     for annotation in ANNOTATIONS:
-        Annotation.post(data_dict=annotation)
+        OrmAnnotation.post(data_dict=annotation)
 
 
 
-    c_sbo = Collection.get('sbo')
+    c_sbo = OrmCollection.get('sbo')
     print(c_sbo)
-    c_all = Collection.get_all()
+    c_all = OrmCollection.get_all()
     print(c_all)
 
-    e1 = Evidence.get('1')
+    e1 = OrmEvidence.get('1')
     print(e1)
-    e_all = Evidence.get_all()
+    e_all = OrmEvidence.get_all()
     print(e_all)
 
-    a1 = Annotation.get('1')
+    a1 = OrmAnnotation.get('1')
     print(a1)
-    a_all = Annotation.get_all()
+    a_all = OrmAnnotation.get_all()
     print(a_all)
 
 

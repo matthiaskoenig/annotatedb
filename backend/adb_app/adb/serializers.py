@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Collection, Evidence, Annotation, Mapping
+import re
 
 
 class CollectionSerializer(serializers.ModelSerializer):
@@ -30,6 +31,22 @@ class AnnotationSerializer(serializers.ModelSerializer):
         slug_field="namespace",
         queryset=Collection.objects.all())
 
+    def validate(self, data):
+        """
+        Check that annotion term matches the pattern.
+        """
+        collection = Collection.objects.get(namespace=data['collection'])
+        pattern = collection.idpattern
+        p = re.compile(pattern)
+
+        m = p.match(data['term'])
+        if not m:
+            raise serializers.ValidationError(
+                f"Annotation term `{data['term']}` does not follow pattern "
+                f"`{pattern}`for collection `{collection}.`")
+
+        return data
+
 
     class Meta:
         model = Annotation
@@ -37,6 +54,7 @@ class AnnotationSerializer(serializers.ModelSerializer):
             "term",
             "collection"
         ]
+
 
 
 class MappingSerializer(serializers.ModelSerializer):

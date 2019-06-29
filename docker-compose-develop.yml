@@ -21,7 +21,7 @@ volumes:
 services:
   adb:
     restart: always
-    image: postgres:11.2
+    build: ./adb
     ports:
       - "5434:5432"
     volumes:
