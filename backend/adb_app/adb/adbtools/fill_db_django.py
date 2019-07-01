@@ -3,6 +3,10 @@ Upload data via django interaction layer.
 For now this must be executed interactively in the backend container.
 
 """
+
+# TODO: create logging file (for bigg database for next release)
+# TODO: colored logging
+
 import os
 import sys
 os.environ['DJANGO_SETTINGS_MODULE'] = 'adb_app.settings'
