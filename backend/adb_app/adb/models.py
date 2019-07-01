@@ -75,7 +75,7 @@ class Annotation(models.Model):
 
     @property
     def resource(self):
-        return self.collection.urlpattern + self.term
+        return self.collection.urlpattern.replace("{$id}", self.term)
 
 
 class Mapping(models.Model):
