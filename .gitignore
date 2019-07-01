@@ -1,7 +1,7 @@
 .idea
 
 # TODO: manage via large files
-resources
+backend/resources
 releases
 
 __pycache__

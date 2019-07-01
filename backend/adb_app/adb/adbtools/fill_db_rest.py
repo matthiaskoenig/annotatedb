@@ -2,10 +2,10 @@ import os
 import sqlite3
 import json
 import requests
-from backend.adb_app.adb.adbtools.orm import OrmCollection, OrmEvidence, OrmAnnotation
+from adb_app.adb.adbtools.orm import OrmCollection, OrmEvidence, OrmAnnotation
 
 
-BIGG_SQLITE3 = '../../../../resources/bigg/bigg-v1.5.sqlite3'
+BIGG_SQLITE3 = '../../../resources/bigg/bigg-v1.5.sqlite3'
 if not os.path.exists(BIGG_SQLITE3):
     raise IOError(f"Does not exist: {os.path.abspath(BIGG_SQLITE3)}")
 
@@ -37,8 +37,7 @@ def post_identifiers_collections():
             }
         )
 
-
-def post_bigg_evidence():
+def post_bigg_collections():
     """
     Additional bigg collections
 
@@ -55,15 +54,15 @@ def post_bigg_evidence():
     EnsemblGenomes-Gn
     EnsemblGenomes-Tr
     PSEUDO
+    """
+    pass
+
+
+def post_bigg_evidence():
+    """
 
     :return:
     """
-
-    # post additional collections
-    bigg_collections = [
-
-    ]
-
     # post evidence
     bigg_evidence = {
         "source": "bigg",

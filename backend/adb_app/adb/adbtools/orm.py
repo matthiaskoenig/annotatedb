@@ -5,7 +5,7 @@ import json
 import logging
 import requests
 
-from backend.adb_app.adb.adbtools.data import EVIDENCES, COLLECTIONS, ANNOTATIONS
+from adb_app.adb.adbtools.data import EVIDENCES, COLLECTIONS, ANNOTATIONS
 
 # ------------------------------------------------------------
 # Authentication
