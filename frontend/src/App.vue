@@ -6,17 +6,24 @@
         <!--<span class="text-uppercase">AnnoteDB</span>-->
         <!--<span class="font-weight-light">&nbsp; annotations made easy</span>-->
       </v-toolbar-title>
+
+
+      <v-btn icon color="black" :href="api_url" title="REST API">
+        <v-icon color="white">{{ icon('api') }}</v-icon>
+      </v-btn>
       <v-spacer></v-spacer>
 
-      <v-btn icon color="blue" :href="api_url" title="REST API"><v-icon>{{ icon('api') }}</v-icon> REST</v-btn>
-      <v-btn icon color="blue" :href="admin_url" title="Django admin interface">
-        <v-icon>{{ icon('admin') }}</v-icon> Admin
+      <!--
+      <v-btn icon color="black" href="https://www.github.com/matthiaskoenig/annotatedb" title="More information">
+        <v-icon color="white">{{ icon('about')}}</v-icon>
       </v-btn>
-
-      <v-btn icon color="blue" href="https://www.github.com/matthiaskoenig/annotatedb" title="GitHub code repository">
-        <v-icon>{{ icon('github')}}</v-icon> Github
+      -->
+      <v-btn icon color="black" href="https://www.github.com/matthiaskoenig/annotatedb" title="GitHub code repository">
+        <v-icon color="white">{{ icon('github')}}</v-icon>
       </v-btn>
-
+      <v-btn icon color="black" :href="admin_url" title="Admin interface">
+        <v-icon color="white">{{ icon('admin') }}</v-icon>
+      </v-btn>
     </v-toolbar>
 
     <v-content>
