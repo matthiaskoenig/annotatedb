@@ -85,9 +85,11 @@ class Mapping(models.Model):
     """ Annotation Mapping. """
     IS = 'IS'
     IS_VERSION_OF = 'IS_VERSION_OF'
+    IS_ENCODED_BY = 'IS_ENCODED_BY'
     QUALIFIER_CHOICES = [
         (IS, 'IS'),
         (IS_VERSION_OF, 'IS_VERSION_OF'),
+        (IS_ENCODED_BY, 'IS_ENCODED_BY'),
     ]
     source = models.ForeignKey(Annotation, on_delete=models.CASCADE, related_name="mapping_source")
     qualifier = models.CharField(max_length=20, choices=QUALIFIER_CHOICES)

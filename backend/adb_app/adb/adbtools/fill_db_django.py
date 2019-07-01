@@ -22,10 +22,28 @@ env_path = os.path.abspath("../../../../.env.local")
 print(env_path)
 load_dotenv(dotenv_path=env_path, verbose=True)
 
+import coloredlogs
 import logging
+
+logFormatter = logging.Formatter("[%(levelname)s]  %(message)s")
+rootLogger = logging.getLogger()
+
+fileHandler = logging.FileHandler("{0}/{1}.log".format('.', 'bigg-v1.5-mapping'))
+fileHandler.setFormatter(logFormatter)
+rootLogger.addHandler(fileHandler)
+
+consoleHandler = logging.StreamHandler()
+consoleHandler.setFormatter(logFormatter)
+rootLogger.addHandler(consoleHandler)
+
+coloredlogs.install(fmt='[%(levelname)s] %(message)s')
+logger = logging.getLogger(__name__)
+
+
 import django
 django.setup()
 
+import re
 from pprint import pprint
 
 import sqlite3
@@ -143,78 +161,121 @@ def store_bigg_data_sources():
 def _store_annotation(collection, term):
     """ Store django annotation."""
 
-    annotation = None
     try:
-        annotation = Annotation(
-            collection=collection,
-            term=term
+        annotation = Annotation.objects.get(
+            collection=collection, term=term
         )
-        annotation.save()
-    except ValidationError as err:
-        if err != "{'__all__': ['Annotation with this Term and Collection already exists.']}":
-            logging.error(err)
+    except ObjectDoesNotExist:
+        try:
+            annotation = Annotation(
+                collection=collection,
+                term=term
+            )
+            annotation.save()
+        except ValidationError as err:
+            logging.error(err.message_dict)
+            return None
+
     return annotation
 
 
-def store_bigg_annotations():
+def bigg_reactions():
     db = sqlite3.connect(BIGG_SQLITE3)
     c = db.cursor()
-
-    print("*** reactions ***")
-    collection = Collection.objects.get(namespace='bigg.reaction')
     c.execute('''SELECT id, bigg_id FROM reaction''')
     all_rows = c.fetchall()
-    reactions = {}
+    data = {}
     for row in all_rows:
-        reactions[row[0]] = {
+        data[row[0]] = {
             'id': row[0],
             'bigg_id': row[1],
             'type': 'reaction'
         }
-        _store_annotation(collection, term=row[1])
+    db.close()
+    return data
 
-    print("*** compartments ***")
-    collection = Collection.objects.get(namespace='bigg.compartment')
+def bigg_compartments():
+    db = sqlite3.connect(BIGG_SQLITE3)
+    c = db.cursor()
     c.execute('''SELECT id, bigg_id FROM compartment''')
     all_rows = c.fetchall()
-    compartments = {}
+    data = {}
     for row in all_rows:
-        compartments[row[0]] = {
+        data[row[0]] = {
             'id': row[0],
             'bigg_id': row[1],
             'type': 'compartment'
         }
-        _store_annotation(collection, term=row[1])
+    db.close()
+    return data
 
-    print("*** metabolites ***")
-    collection = Collection.objects.get(namespace='bigg.metabolite')
+def bigg_metabolites():
+    db = sqlite3.connect(BIGG_SQLITE3)
+    c = db.cursor()
     c.execute('''SELECT id, bigg_id FROM component''')
     all_rows = c.fetchall()
-    metabolites = {}
+    data = {}
     for row in all_rows:
-        metabolites[row[0]] = {
+        data[row[0]] = {
             'id': row[0],
             'bigg_id': row[1],
             'type': 'component'
         }
-        _store_annotation(collection, term=row[1])
-
     db.close()
+    return data
+
+
+def store_bigg_annotations():
+    print("*** reactions ***")
+    reactions = bigg_reactions()
+    collection = Collection.objects.get(namespace='bigg.reaction')
+    for item in reactions.values():
+        _store_annotation(collection, term=item['bigg_id'])
+
+    print("*** compartments ***")
+    compartments = bigg_compartments()
+    collection = Collection.objects.get(namespace='bigg.compartment')
+    for item in compartments.values():
+        _store_annotation(collection, term=item['bigg_id'])
+
+    print("*** metabolites ***")
+    metabolites = bigg_metabolites()
+    collection = Collection.objects.get(namespace='bigg.metabolite')
+    for item in metabolites.values():
+        _store_annotation(collection, term=item['bigg_id'])
+
     return reactions, compartments, metabolites
 
 
 def store_bigg_mappings():
     """ Upload all bigg annotations in database. """
 
+    # data for lookup
     data_sources = bigg_data_sources()
+    reactions = bigg_reactions()
+    compartments = bigg_compartments()
+    metabolites = bigg_metabolites()
 
-    db = sqlite3.connect(BIGG_SQLITE3)
-    c = db.cursor()
+    bigg_collections = {
+        "bigg.reaction": Collection.objects.get(namespace="bigg.reaction"),
+        "bigg.metabolite": Collection.objects.get(namespace="bigg.metabolite"),
+        "bigg.compartment": Collection.objects.get(namespace="bigg.compartment"),
+    }
+
+    bigg_db_evidence = Evidence.objects.get(
+        source="bigg",
+        version="1.5",
+        evidence="database"
+    )
 
     # get mappings
-    c.execute('''SELECT id, ome_id, synonym, type, data_source_id FROM synonym''')
-
+    db = sqlite3.connect(BIGG_SQLITE3)
+    c = db.cursor()
+    c.execute(
+        '''SELECT id, ome_id, synonym, type, data_source_id FROM synonym'''
+    )
     all_rows = c.fetchall()
+
     for row in all_rows:
 
         term_target = row[2]
@@ -223,6 +284,7 @@ def store_bigg_mappings():
 
         if synonym_type in ["reaction", "component", "compartment"]:
 
+            # resolve data source
             data_source = data_sources[data_source_id]
             bigg_ns = data_source["namespace"]
 
@@ -230,28 +292,100 @@ def store_bigg_mappings():
             if bigg_ns in ['old_bigg_id', 'deprecated']:
                 continue
 
-            # writing synonyms and mappings
+            # get source bigg annotation
+            if synonym_type == "reaction":
+                collection_str = "bigg.reaction"
+                term_source = reactions[row[1]]['bigg_id']
+            elif synonym_type == "component":
+                collection_str = "bigg.metabolite"
+                term_source = metabolites[row[1]]['bigg_id']
+            elif synonym_type == "compartment":
+                collection_str == "bigg.metabolite"
+                term_source = compartments[row[1]]['bigg_id']
+            collection_source = bigg_collections[collection_str]
+            annotation_source = Annotation.objects.get(
+                term=term_source, collection=collection_source
+            )
 
+            # perform identifier fixes
+            term_target_fix = term_target
+            if bigg_ns == "reactome":
+                # missing R-ALL- prefixes
+                p = re.compile('\d+')
+                m = p.match(term_target)
+                if m:
+                    term_target_fix = f"R-ALL-{term_target}"
+                    logging.warning(f"Fixing reactome prefix: {term_target} -> {term_target_fix}")
+
+
+                # incorrect REACT_R prefixes
+                elif term_target.startswith("REACT_R-"):
+                    term_target_fix = term_target[6:]
+                    logging.warning(f"Fixing reactome prefix: {term_target} -> {term_target_fix}")
+
+            elif bigg_ns == "kegg.compound":
+                # glycans incorrect as kegg.compounds
+                p = re.compile('^G\d+$')
+                m = p.match(term_target)
+                if m:
+                    logging.warning(f"Fixing collection kegg.compound -> kegg.glycan: {term_target}")
+                    bigg_ns = "kegg.glycan"
+
+            elif bigg_ns in ["kegg.reaction", "rhea", "sabiork.reaction"]:
+                # incorrect #1 or #2 endings
+                if term_target.endswith("#1") or term_target.endswith("#2"):
+                    term_target_fix = term_target[:-2]
+                    logging.warning(
+                        f"Fixing incorrect ending ({bigg_ns}): {term_target} -> {term_target_fix}")
+
+            elif bigg_ns == "ec-code":
+                # ec-code to short, e.g. 1.2.1 -> 1.2.1.-
+                p = re.compile(r"^\d+\.\d+\.\d+$")
+                m = p.match(term_target)
+                if m:
+                    term_target_fix = f"{term_target}.-"
+                    logging.warning(
+                        f"Fixing ec-code: {term_target} -> {term_target_fix}"
+                    )
+                # ec-code to short, e.g. 1.2 -> 1.2.-.-
+                p = re.compile(r"^\d+\.\d+$")
+                m = p.match(term_target)
+                if m:
+                    term_target_fix = f"{term_target}.-.-"
+                    logging.warning(
+                        f"Fixing ec-code: {term_target} -> {term_target_fix}"
+                    )
+
+            # writing synonyms and mappings
             try:
-                collection = Collection.objects.get(namespace=bigg_ns)
+                collection_target = Collection.objects.get(namespace=bigg_ns)
 
                 # create target annotation
-                annotation_target = _store_annotation(collection, term_target)
-                if annotation_target is None:
-                    logging.error('{0} : {1}, {2}'.format(row[0], row[1], row[2]))
+                annotation_target = _store_annotation(
+                    collection_target, term_target_fix
+                )
+
+                if annotation_target is not None:
+                    mapping = Mapping(
+                        source=annotation_source,
+                        qualifier=Mapping.IS,
+                        target=annotation_target,
+                        evidence=bigg_db_evidence
+                    )
+                    mapping.save()
+
+                # logging.error('{0} : {1}, {2}'.format(row[0], row[1], row[2]))
 
             except ObjectDoesNotExist:
                 logging.error(f"Target collection does not exist: {bigg_ns}")
-
-            # TODO: create mapping between annotations
 
     db.close()
 
 
 if __name__ == "__main__":
-    # store_identifiers_collections()
-    # store_bigg_evidence()
-    # store_bigg_data_sources()
-    # store_bigg_annotations()
+    #store_identifiers_collections()
+    #store_bigg_evidence()
+    #store_bigg_data_sources()
+    #store_bigg_annotations()
     store_bigg_mappings()
 

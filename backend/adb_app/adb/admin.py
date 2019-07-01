@@ -27,6 +27,7 @@ class AnnotationAdmin(admin.ModelAdmin):
 
 @admin.register(Mapping)
 class MappingAdmin(admin.ModelAdmin):
-    pass
+    fields = ('pk', 'source', 'qualifier', 'target', 'evidence')
+    list_display = ('pk', 'source', 'qualifier', 'target', 'evidence')
 
 
