@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # -----------------------------------------------------------------------------
 # PK-DB backup
 # -----------------------------------------------------------------------------
@@ -6,8 +7,11 @@
 #	./adb_dump.sh
 # -----------------------------------------------------------------------------
 
+
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-BACKUP_DIR=$DIR/resources/adb
+: "${ADB_DOCKER_COMPOSE_YAML:?The ADB environment variable must be exported: set -a && source .env.local}"
+
+BACKUP_DIR=$DIR
 VERSION=0.1
 DB_DUMP=${BACKUP_DIR}/adb-v${VERSION}.dump
 
