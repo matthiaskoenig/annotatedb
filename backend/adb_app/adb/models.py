@@ -37,6 +37,9 @@ class Evidence(models.Model):
     class Meta:
         unique_together = [['source', 'version']]
 
+    def __str__(self):
+        return f"{self.source} {self.version} ({self.evidence})"
+
 
 class Annotation(models.Model):
     """ Annotation.

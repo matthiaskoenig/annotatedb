@@ -5,6 +5,7 @@ from adb_app.adb.models import Annotation, Mapping, Evidence, Collection
 
 @admin.register(Collection)
 class CollectionAdmin(admin.ModelAdmin):
+    search_fields = ('namespace',)
     fields = ('pk', 'namespace', 'miriam', 'name', 'idpattern', 'urlpattern')
     list_display = ('pk', 'namespace', 'miriam', 'name', 'idpattern', 'urlpattern')
 
@@ -20,7 +21,7 @@ class EvidenceAdmin(admin.ModelAdmin):
 class AnnotationAdmin(admin.ModelAdmin):
     fields = ('pk', 'term', 'collection')
     list_display = ('pk', 'term', 'collection', 'resource')
-    search_fields = ('term',)
+    search_fields = ('term', 'collection')
     list_filter = ('collection',)
 
 
