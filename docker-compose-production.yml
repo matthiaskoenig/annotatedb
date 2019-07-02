@@ -93,3 +93,5 @@ services:
       - frontend
     links:
       - backend:backend
+    networks:
+      - adbnet
