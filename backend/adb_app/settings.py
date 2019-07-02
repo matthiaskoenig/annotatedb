@@ -62,7 +62,9 @@ INSTALLED_APPS = [
     'django_elasticsearch_dsl_drf',
 
     # adb
-    "adb_app.adb",
+    'adb_app.adb',
+    'adb_app.search_indexes',  # Elasticsearch integration with the Django
+                       # REST framework
 ]
 
 MIDDLEWARE = [
@@ -138,8 +140,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    "PAGE_SIZE": int(os.getenv("DJANGO_PAGINATION_LIMIT", 20)),
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+    "PAGE_SIZE": int(os.getenv("DJANGO_PAGINATION_LIMIT", 100)),
     'PAGINATE_BY': 10,  # Default to 10
     'PAGINATE_BY_PARAM': 'page_size',  # Allow client to override, using `?page_size=xxx`.
     'MAX_PAGINATE_BY': 100,
@@ -175,6 +178,11 @@ ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'elasticsearch:9200'
     },
+}
+
+# Name of the Elasticsearch index
+ELASTICSEARCH_INDEX_NAMES = {
+    'adb_app.search_indexes.documents': 'mapping',
 }
 
 # Internationalization

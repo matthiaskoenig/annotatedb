@@ -12,9 +12,10 @@ djangorestframework_simplejwt>=4.3.0
 
 
 # elasticsearch
+# >=6.0<7.0 see https://github.com/sabricot/django-elasticsearch-dsl/issues/115
 elasticsearch-dsl==6.1.0
 django-elasticsearch-dsl>=0.5.1
-django-elasticsearch-dsl-drf>=0.17.7
+django-elasticsearch-dsl-drf>=0.18
 
 # Developer Tools
 ipdb>=0.11
