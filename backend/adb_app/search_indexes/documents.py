@@ -19,11 +19,6 @@ html_strip = analyzer(
     filter=["standard", "lowercase", "stop", "snowball"],
     char_filter=["html_strip"]
 )
-autocomplete_search = analyzer(
-    'autocomplete_search',
-    tokenizer="standard",
-    filter=["lowercase"],
-)
 
 ngram_filter = token_filter(
     'ngram_filter',
@@ -31,12 +26,20 @@ ngram_filter = token_filter(
     min_gram=1, max_gram=20
 )
 
-autocomplete = analyzer('autocomplete',
+autocomplete = analyzer(
+    'autocomplete',
     tokenizer="standard",
     filter=["lowercase", ngram_filter],
     char_filter=["html_strip"],
     chars=["letter"],
-    token_chars=["letter"])
+    token_chars=["letter"]
+)
+
+autocomplete_search = analyzer(
+    'autocomplete_search',
+    tokenizer="standard",
+    filter=["lowercase"],
+)
 
 
 def string_field(attr, **kwargs):
@@ -50,25 +53,16 @@ def string_field(attr, **kwargs):
         )
 
 
-def text_field(attr):
-    return fields.TextField(
-        attr=attr,
-        fielddata=True,
-        analyzer=autocomplete,
-        search_analyzer=autocomplete_search,
-        fields={'raw': fields.KeywordField()}
-        )
-
 
 @INDEX.doc_type
 class MappingDocument(DocType):
     """Mapping Elasticsearch document."""
 
-    id = fields.IntegerField(attr='id')
+    pk = fields.IntegerField(attr='pk')
+
     source = fields.ObjectField(
         properties={
             'pk': fields.IntegerField(),
-            'collection': string_field("collection"),
             'term': string_field("term"),
         }
     )
@@ -76,7 +70,40 @@ class MappingDocument(DocType):
     target = fields.ObjectField(
         properties={
             'pk': fields.IntegerField(),
-            'collection': string_field("collection"),
+            'term': string_field("term"),
+        }
+    )
+
+    class Meta(object):
+        """Meta options."""
+        model = Mapping  # The model associate with this DocType
+
+
+'''    
+    source = fields.ObjectField(
+        properties={
+            'pk': fields.IntegerField(),
+            'collection': fields.ObjectField(
+                properties={
+                    'pk': string_field("pk"),
+                    'namespace': string_field("namespace"),
+                    'miriam': fields.BooleanField("miriam"),
+                }
+            ),
+            'term': string_field("term"),
+        }
+    )
+    qualifier = string_field(attr="qualifier")
+    target = fields.ObjectField(
+        properties={
+            'pk': fields.IntegerField(),
+            'collection': fields.ObjectField(
+                properties={
+                    'pk': string_field("pk"),
+                    'namespace': string_field("namespace"),
+                    'miriam': fields.BooleanField("miriam"),
+                }
+            ),
             'term': string_field("term"),
         }
     )
@@ -92,5 +119,5 @@ class MappingDocument(DocType):
 
     class Meta(object):
         """Meta options."""
-
         model = Mapping  # The model associate with this DocType
+'''

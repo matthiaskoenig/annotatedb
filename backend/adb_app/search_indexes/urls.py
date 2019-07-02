@@ -4,9 +4,9 @@ from rest_framework.routers import DefaultRouter
 from .views import MappingDocumentView
 
 router = DefaultRouter()
-books = router.register(r'books',
+books = router.register(r'mappings',
                         MappingDocumentView,
-                        basename='bookdocument')
+                        basename='mappingdocument')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

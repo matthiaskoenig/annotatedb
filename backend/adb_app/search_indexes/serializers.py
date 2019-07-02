@@ -5,6 +5,7 @@ from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
 
 from .documents import MappingDocument
 
+
 class MappingDocumentSerializer(DocumentSerializer):
     """Serializer for the Mapping document."""
 
@@ -17,9 +18,20 @@ class MappingDocumentSerializer(DocumentSerializer):
         # List the serializer fields. Note, that the order of the fields
         # is preserved in the ViewSet.
         fields = (
-            'id',
-            'source',
+            'pk',
+            'source.pk',
+            'source.term',
+            # 'source.collection.pk',
+            # 'source.collection.namespace',
+            # 'source.collection.miriam',
+
             'qualifier',
-            'target',
-            'evidence',
+
+            'target.pk',
+            'target.term',
+            # 'target.collection.pk',
+            # 'target.collection.namespace',
+            # 'target.collection.miriam',
+
+            # 'evidence',
         )

@@ -29,7 +29,6 @@ API_URL = API_BASE + "/api/v1"
 # LOCAL
 # ------------------------------
 DJANGO_CONFIGURATION = os.environ['ADB_DJANGO_CONFIGURATION']
-print("DJANGO_CONFIGURATION: ", DJANGO_CONFIGURATION)
 if DJANGO_CONFIGURATION == 'local':
     DEBUG = True
 # ------------------------------
