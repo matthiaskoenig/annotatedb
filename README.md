@@ -47,18 +47,18 @@ Please see the [issue tracker](https://github.com/matthiaskoenig/annotatedb) for
 
 ## Data sources
 
+### Miriam collections
+Information on database collections is based on [identifiers.org](http://identifiers.org/collection) with 
+an overview of the collections available at https://www.ebi.ac.uk/miriam/main/collections.
+Collections were parsed with [`sbmlutils`](https://github.com/matthiaskoenig/sbmlutils).
+
+
 ### BiGG
 A major source of annotation mappings is the [BiGG Database](http://bigg.ucsd.edu/)
 with information used from the latest database release available from
 https://github.com/SBRG/bigg_models_data/releases 
 
 `AnnotateDB` currently includes `BiGG-v1.5`.
-
-
-### Miriam collections
-Information on database collections is based on [identifiers.org](http://identifiers.org/collection) with 
-an overview of the collections available at https://www.ebi.ac.uk/miriam/main/collections.
-Collections were parsed with [`sbmlutils`](https://github.com/matthiaskoenig/sbmlutils).
 
 ## Installation
 AnnotateDB is distributed as `docker` containers and can be installed locally via 
@@ -67,8 +67,17 @@ AnnotateDB is distributed as `docker` containers and can be installed locally vi
 # clone or pull the latest source code
 git clone https://github.com/matthiaskoenig/annotatedb.git
 cd annotatedb
-./setup.sh
+
+# set environment variables
+set -a && source .env.local 
+
+# create/rebuild all docker containers
+./docker-purge.sh
+
+# restore database
+./adb_restore.sh
 ```
+
 The postgres database is accessible via
 ```
 HOST: localhost
@@ -84,17 +93,6 @@ http://localhost:8090/
 The django backend is accessible via
 ```
 http://localhost:9000/
-```
-
-For more control the individual steps `setup.sh` can be executed individually, e.g.,
-to change the environment variables or not restore the database (start with empty database) 
-```
-# set environment variables
-set -a && source .env.local 
-# create/rebuild all docker containers
-./docker-purge.sh
-# restore database
-./adb_restore.sh
 ```
 
 ## Release notes
