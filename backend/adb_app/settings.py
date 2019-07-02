@@ -42,6 +42,7 @@ if DJANGO_CONFIGURATION == 'local':
 # ------------------------------
 elif DJANGO_CONFIGURATION == 'production':
     DEBUG = False
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 ALLOWED_HOSTS = []
