@@ -98,6 +98,11 @@ set -a && source .env.local
 ```
 
 ## Release notes
+### 0.1.0
+* vue frontend
+* bigg mappings import
+* database release files
+
 ### 0.0.1
 * django development server
 * first database schema
