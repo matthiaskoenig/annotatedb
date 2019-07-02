@@ -25,13 +25,6 @@ API_URL = API_BASE + "/api/v1"
 # -------------------------------------------------------------------------------------------------
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9fr5(9b^_3!p^_@92@ycy%s=#2db==7_!8wseb@y7l*ie2l6c='
-
-
 # ------------------------------
 # LOCAL
 # ------------------------------

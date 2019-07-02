@@ -53,7 +53,7 @@ services:
       - ./backend:/code
       - django_static:/static
       - django_media:/media
-    env_file: .env.local
+    env_file: .env.production
     expose:
       - "9000"
     ports:
