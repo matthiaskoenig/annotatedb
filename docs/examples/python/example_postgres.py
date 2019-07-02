@@ -6,45 +6,90 @@ import psycopg2
 from collections import OrderedDict
 from pprint import pprint
 
-try:
-    connection = psycopg2.connect(
-        user="adb",
-        password="adb",
-        host="localhost",
-        port="5434",
-        database="adb"
-    )
-    cursor = connection.cursor()
 
-    # get all the mappings
-    select_query = "select * from adb_mapping"
+def example1():
+    try:
+        connection = psycopg2.connect(
+            user="adb",
+            password="adb",
+            host="localhost",
+            port="5434",
+            database="adb"
+        )
+        cursor = connection.cursor()
 
-    cursor.execute(select_query)
-    mapping_records = cursor.fetchall()
+        # get all the mappings
+        select_query = "select * from adb_mapping"
 
-    print("-" * 80)
-    print("Mappings in AnnotateDB")
-    print("-" * 80)
-    for k, row in enumerate(mapping_records):
-        entry = OrderedDict([
-            ('id', row[0]),
-            ('qualifier', row[1]),
-            ('evidence_id', row[2]),
-            ('source_id', row[3]),
-            ('target_id', row[4]),
-        ])
-        pprint(entry)
-        if k == 10:
-            break
-    print('...')
-    print("-" * 80)
+        cursor.execute(select_query)
+        mapping_records = cursor.fetchall()
 
-except (Exception, psycopg2.Error) as error:
-    print("Error while fetching data from PostgreSQL", error)
+        print("-" * 80)
+        print("Mappings in AnnotateDB")
+        print("-" * 80)
+        for k, row in enumerate(mapping_records):
+            entry = OrderedDict([
+                ('id', row[0]),
+                ('qualifier', row[1]),
+                ('evidence_id', row[2]),
+                ('source_id', row[3]),
+                ('target_id', row[4]),
+            ])
+            pprint(entry)
+            if k == 10:
+                break
+        print('...')
+        print("-" * 80)
 
-finally:
-    # closing database connection.
-    if connection:
-        cursor.close()
-        connection.close()
-        print("PostgreSQL connection is closed")
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
+
+    finally:
+        # closing database connection.
+        if connection:
+            cursor.close()
+            connection.close()
+            print("PostgreSQL connection is closed")
+
+
+def example2():
+    try:
+        connection = psycopg2.connect(
+            user="adb",
+            password="adb",
+            host="localhost",
+            port="5434",
+            database="adb"
+        )
+        cursor = connection.cursor()
+
+        # get all the mappings
+        select_query = "select * from mapping_view"
+
+        cursor.execute(select_query)
+        mapping_records = cursor.fetchall()
+
+        print("-" * 80)
+        print("Mappings in AnnotateDB")
+        print("-" * 80)
+        for k, row in enumerate(mapping_records):
+            print(row)
+
+            if k == 10:
+                break
+        print('...')
+        print("-" * 80)
+
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
+
+    finally:
+        # closing database connection.
+        if connection:
+            cursor.close()
+            connection.close()
+            print("PostgreSQL connection is closed")
+
+
+if __name__ == "__main__":
+    example2()
