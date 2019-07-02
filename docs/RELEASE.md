@@ -3,7 +3,7 @@ Steps for release are
 
 ## github release
 * github: close and update issues/milestone
-* update version number in develop branch
+* update version number in develop branch (`.env.local` and `_version.py`)
 * make sure all tests run
 * add changes to README changelog section
 * github: merge all develop changes to master via pull request
