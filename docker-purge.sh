@@ -8,22 +8,24 @@
 #     ./docker-purge.sh
 # -----------------------------------------------------------------------------
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-: "${ADB_DOCKER_COMPOSE_YAML:?The PKDB environment variable must be exported: set -a && source .env.local}"
+: "${ADB_DOCKER_COMPOSE_YAML:?The ADB environment variable must be exported: set -a && source .env.local}"
 
-sudo echo "Purging database and all docker containers, volumes, images ($ADB_DOCKER_COMPOSE_YAML)?"
+sudo echo "Purging database and all docker containers, volumes, images ($ADB_DOCKER_COMPOSE_YAML)"
 
 # shut down all containers (remove images and volumes)
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML down --volumes --rmi local
 
 # make sure containers are removed (if not running)
 docker container rm -f annotatedb_backend_1
-docker container rm -f annotatedb_postgres_1
+docker container rm -f annotatedb_frontend_1
+docker container rm -f annotatedb_adb_1
 docker container rm -f annotatedb_elasticsearch_1
 docker container rm -f annotatedb_nginx_1
 
 # make sure images are removed
 docker image rm -f annotatedb_backend:latest
-docker image rm -f annotatedb_postgres:latest
+docker image rm -f annotatedb_frontend:latest
+docker image rm -f annotatedb_adb:latest
 docker image rm -f annotatedb_elasticsearch:latest
 docker image rm -f annotatedb_nginx:latest
 
@@ -31,7 +33,10 @@ docker image rm -f annotatedb_nginx:latest
 docker volume rm -f annotatedb_django_media
 docker volume rm -f annotatedb_django_static
 docker volume rm -f annotatedb_elasticsearch_data
-docker volume rm -f annotatedb_postgres_data
+docker volume rm -f annotatedb_adb_data
+docker volume rm -f annotatedb_vue_dist
+docker volume rm -f annotatedb_node_modules
+
 
 # cleanup all dangling images, containers, volumes and networks
 docker system prune --force
@@ -52,7 +57,7 @@ echo "***Make migrations & collect static ***"
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend bash -c "/usr/local/bin/python manage.py makemigrations && /usr/local/bin/python manage.py migrate && /usr/local/bin/python manage.py collectstatic --noinput "
 
 #echo "*** Setup admin user ***"
-#docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend bash -c "/usr/local/bin/python manage.py createsuperuser2 --username admin --password ${PKDB_ADMIN_PASSWORD} --email koenigmx@hu-berlin.de --noinput"
+docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend bash -c "/usr/local/bin/python manage.py createsuperuser2 --username admin --password ${ADB_ADMIN_PASSWORD} --email koenigmx@hu-berlin.de --noinput"
 
 echo "*** Build elasticsearch index ***"
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend ./manage.py search_index --rebuild -f
@@ -60,3 +65,4 @@ docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend ./manage.py search_i
 echo "*** Running containers ***"
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML up --detach
 docker container ls
+

@@ -9,8 +9,5 @@ Steps for release are
 * github: merge all develop changes to master via pull request
 * github: create release from master branch
 
-## server deployment
-TODO
-
 ## version bump
 * switch to develop branch and increase version number

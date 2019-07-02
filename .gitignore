@@ -1,9 +1,8 @@
 .idea
 
-# TODO: manage via large files
-resources
-releases
+backend/resources
 
+__pycache__
 
 # ----------------------------
 # environments
@@ -15,4 +14,10 @@ releases
 # migrations
 # ----------------------------
 */migrations/
-backend/adb_app/annotations/migrations/00*.py
+backend/adb_app/adb/migrations/00*.py
+
+# bigg database
+bigg/bigg-v1.5.dump
+bigg/bigg-v1.5.sqlite3
+
+*.log

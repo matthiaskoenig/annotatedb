@@ -8,20 +8,33 @@ volumes:
     driver: local
   django_media:
     driver: local
-  postgres_data:
+  adb_data:
     driver: local
   elasticsearch_data:
     driver: local
-    
-services:
+  vue_dist:
+    driver: local
+  node_modules:
+    driver: local
 
-  postgres:
+networks:
+  adbnet:
+
+
+services:
+  adb:
     restart: always
-    image: postgres:11.2
+    build: ./adb
     ports:
       - "5434:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - adb_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${ADB_DB_NAME}
+      - POSTGRES_USER=${ADB_DB_USER}
+      - POSTGRES_PASSWORD=${ADB_DB_PASSWORD}
+    networks:
+      - adbnet
 
   elasticsearch:
     restart: always
@@ -30,6 +43,8 @@ services:
       - "9124:9200"
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - adbnet
 
   backend:
     restart: always
@@ -44,9 +59,25 @@ services:
     ports:
       - "9000:9000"
     links:
-      - postgres:postgres
+      - adb:adb
       - elasticsearch:elasticsearch
     depends_on:
-     - postgres
+     - adb
      - elasticsearch
     command: bash -c "/usr/local/bin/python manage.py runserver 0.0.0.0:9000"
+    networks:
+      - adbnet
+
+  frontend:
+    restart: always
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile-develop
+    ports:
+      - "8090:8080"
+    volumes:
+      - ./frontend:/app
+      - node_modules:/app/node_modules/
+      - vue_dist:/usr/share/nginx/html
+    networks:
+      - adbnet

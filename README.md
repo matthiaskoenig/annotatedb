@@ -61,31 +61,48 @@ an overview of the collections available at https://www.ebi.ac.uk/miriam/main/co
 Collections were parsed with [`sbmlutils`](https://github.com/matthiaskoenig/sbmlutils).
 
 ## Installation
-### Setup the development server
-AnnotateDB is distributed as `docker` containers and `docker-compose` files. 
+AnnotateDB is distributed as `docker` containers and can be installed locally via 
 
-To setup the development server for local development (backend & frontend):
 ```bash
 # clone or pull the latest source code
 git clone https://github.com/matthiaskoenig/annotatedb.git
 cd annotatedb
-
-# set environment variables
-set -a && source .env.local
- 
-# create/rebuild all docker containers
-./docker-purge.sh
+./setup.sh
 ```
-The django development server is accessible via
+The postgres database is accessible via
+```
+HOST: localhost
+PORT: 5434
+DB: adb
+USER: adb
+PASSWORD: adb
+```
+The vue.js frontend is accessible via
+```
+http://localhost:8090/
+```
+The django backend is accessible via
 ```
 http://localhost:9000/
 ```
 
-### Setup the database
-Information to come. Soon we will provide the docker scripts to work with the database locally.
-
+For more control the individual steps `setup.sh` can be executed individually, e.g.,
+to change the environment variables or not restore the database (start with empty database) 
+```
+# set environment variables
+set -a && source .env.local 
+# create/rebuild all docker containers
+./docker-purge.sh
+# restore database
+./adb_restore.sh
+```
 
 ## Release notes
+### 0.1.0
+* vue frontend
+* bigg mappings import
+* database release files
+
 ### 0.0.1
 * django development server
 * first database schema

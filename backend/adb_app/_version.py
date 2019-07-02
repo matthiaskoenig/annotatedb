@@ -1,4 +1,5 @@
 """
 Definition of version string.
 """
-__version__ = "0.0.2"
+import os
+__version__ = os.environ['ADB_VERSION']
