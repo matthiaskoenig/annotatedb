@@ -30,4 +30,8 @@ coverage>=4.5.1
 
 # reading environment variables
 python-dotenv
+
+# logging
+json-logging>=0.1.1
 coloredlogs>=10.0
+
