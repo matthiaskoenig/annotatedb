@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 # -----------------------------------------------------------------------------
-# AnnotateDB database dump
+# AnnotateDB restore database dump
 # -----------------------------------------------------------------------------
 # usage:
-#	./adb_dump.sh
+#	./adb_restore.sh
 # -----------------------------------------------------------------------------
-
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 : "${ADB_DOCKER_COMPOSE_YAML:?The ADB environment variable must be exported: set -a && source .env.local}"
@@ -13,26 +12,12 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 BACKUP_DIR=$DIR/releases
 DB_DUMP=${BACKUP_DIR}/adb-v${ADB_VERSION}.dump
 
-if [ -e $DB_DUMP ]
-then
-    read -p "Overwrite existing database dump $DB_DUMP [y/N]? " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]
-    then
-        exit 1
-    fi
-fi
-
-
 echo "-------------------------------"
-echo "Create postgres dump"
+echo "Restore postgres dump          "
 echo "-------------------------------"
-mkdir -p $BACKUP_DIR
-echo "Backup to" $BACKUP_DIR
-docker exec -u $ADB_DB_USER annotatedb_adb_1 pg_dump -v -Fc $ADB_DB_NAME > $DB_DUMP
-if [ -e $DB_DUMP ]
-then
-    echo "SUCCESS $DB_DUMP"
-else
-    echo "! FAILURE $DB_DUMP !"
-fi
+
+echo "Restore" $DB_DUMP
+
+docker exec annotatedb_adb_1 mkdir /backups
+docker cp ${DB_DUMP} annotatedb_adb_1:/backups/
+docker exec -u $ADB_DB_USER annotatedb_adb_1 pg_restore -d ${ADB_DB_NAME} -v -c -U ${ADB_DB_USER} /backups/adb-v${ADB_VERSION}.dump

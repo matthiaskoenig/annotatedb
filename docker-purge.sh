@@ -10,7 +10,7 @@
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 : "${ADB_DOCKER_COMPOSE_YAML:?The ADB environment variable must be exported: set -a && source .env.local}"
 
-sudo echo "Purging database and all docker containers, volumes, images ($ADB_DOCKER_COMPOSE_YAML)?"
+sudo echo "Purging database and all docker containers, volumes, images ($ADB_DOCKER_COMPOSE_YAML)"
 
 # shut down all containers (remove images and volumes)
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML down --volumes --rmi local
@@ -36,7 +36,6 @@ docker volume rm -f annotatedb_elasticsearch_data
 docker volume rm -f annotatedb_adb_data
 docker volume rm -f annotatedb_vue_dist
 docker volume rm -f annotatedb_node_modules
-
 
 
 # cleanup all dangling images, containers, volumes and networks
@@ -66,3 +65,4 @@ docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend ./manage.py search_i
 echo "*** Running containers ***"
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML up --detach
 docker container ls
+
