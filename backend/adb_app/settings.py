@@ -23,7 +23,7 @@ SECRET_KEY = os.environ['ADB_SECRET_KEY']
 API_BASE = os.environ['ADB_API_BASE']
 API_URL = API_BASE + "/api/v1"
 # -------------------------------------------------------------------------------------------------
-DJANGO_CONFIGURATION = os.environ['ADB_DJANGO_CONFIGURATION']
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -35,6 +35,8 @@ SECRET_KEY = '9fr5(9b^_3!p^_@92@ycy%s=#2db==7_!8wseb@y7l*ie2l6c='
 # ------------------------------
 # LOCAL
 # ------------------------------
+DJANGO_CONFIGURATION = os.environ['ADB_DJANGO_CONFIGURATION']
+print("DJANGO_CONFIGURATION: ", DJANGO_CONFIGURATION)
 if DJANGO_CONFIGURATION == 'local':
     DEBUG = True
 # ------------------------------
