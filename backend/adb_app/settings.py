@@ -31,8 +31,18 @@ DJANGO_CONFIGURATION = os.environ['ADB_DJANGO_CONFIGURATION']
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '9fr5(9b^_3!p^_@92@ycy%s=#2db==7_!8wseb@y7l*ie2l6c='
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+# ------------------------------
+# LOCAL
+# ------------------------------
+if DJANGO_CONFIGURATION == 'local':
+    DEBUG = True
+# ------------------------------
+# Production
+# ------------------------------
+elif DJANGO_CONFIGURATION == 'production':
+    DEBUG = False
+
 
 ALLOWED_HOSTS = []
 
