@@ -64,7 +64,7 @@ services:
     depends_on:
      - adb
      - elasticsearch
-    command: bash -c "/usr/local/bin/gunicorn pkdb_app.wsgi:application --log-config gunicorn_logging.conf -w 4 --bind 0.0.0.0:9000"
+    command: bash -c "/usr/local/bin/gunicorn adb_app.wsgi:application --log-config gunicorn_logging.conf -w 4 --bind 0.0.0.0:9000"
     networks:
       - adbnet
 
