@@ -2,11 +2,11 @@
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 [![GitHub version](https://badge.fury.io/gh/matthiaskoenig%2Fannotatedb.svg)](https://badge.fury.io/gh/matthiaskoenig%2Fannotatedb)
 
+
+<h1><img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="75" /> AnnotateDB</h1>
 <b><a href="https://orcid.org/0000-0003-1725-179X" title="https://orcid.org/0000-0003-1725-179X"><img src="./docs/images/orcid.png" height="15" width="15"/></a> Matthias König</b>
 and
 <b><a href="https://orcid.org/0000-0002-4588-4925" title="0000-0002-4588-4925"><img src="./docs/images/orcid.png" height="15"/></a> Jan Grzegorzewski</b>
-
-<h1><img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="100" /> AnnotateDB</h1>
 
 `AnnotateDB` (pronounced `annotated bee`, https://annotatedb.com) is a database with web frontend for mapping of annotations found in computational models in biology.
 **Our mission** is to provide mapped annotation resources which simplify annotation of computational models and mapping of entities in such models.
@@ -25,12 +25,12 @@ mapping was inferred
 - `REST` based web interface
 - `elastisearch` based indexing and search
 
-The `elasticsearch` are still in development but will be released soon.
+The `elasticsearch` are still in development.
 
 ### REST webservice
 `AnnotateDB` provides `REST` endpoints for querying the database at https://annotatedb.com/api/v1.
 
-<img alt="AnnotateDB logo" src="./docs/images/rest.png" width="400" />
+<a href="https://annotatedb.com/api/v1"><img alt="AnnotateDB logo" src="./docs/images/rest.png" width="400" /></a>
 
 With the introduction of the `elasticsearch` endpoints the REST base search will largely improve.
 For now users should directly interact with the postgres database (see information below).
@@ -72,19 +72,22 @@ set -a && source .env.local
 # restore database
 ./adb_restore.sh
 ```
-The vue.js frontend is running on
+The services are running on the following ports
+
 ```
-http://localhost:8090/
-```
-The django backend is running on
-```
-http://localhost:9000/
-```
-The postgres database is running on
-```
+# postgres database
 http://localhost:5434/
+
+# vue.js frontend
+http://localhost:8090/
+
+# django backend
+http://localhost:9000/
+
+# elasticsearch
+http://localhost:9124/
 ```
-As soon as a more stable state of `AnnotateDB` is reached this will be further simplified.
+As soon as a more stable state of `AnnotateDB` is reached the installation will be further simplified.
 
 ## Working with the postgres database
 The postgres database is accessible via
