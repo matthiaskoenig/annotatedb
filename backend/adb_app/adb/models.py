@@ -98,4 +98,5 @@ class Mapping(models.Model):
     evidence = models.ForeignKey(Evidence, on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ["id"]
+        ordering = ["id"],
+        unique_together = [['source', 'qualifier', 'target', 'evidence']]

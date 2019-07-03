@@ -1,3 +1,7 @@
+/*
+Materialized view for common database queris
+
+ */
 CREATE VIEW mapping_view AS
     SELECT m.id,
 
