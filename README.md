@@ -124,7 +124,7 @@ Which results in
 ('10fthf',)
 ```
 A more comprehensive list of SQL queries and use cases is provided [here](./docs/examples/python/example_postgres.py)
-with output [here](./docs/examples/python/example_postgres.log).
+with output [here](./docs/examples/python/example_postgres.out).
 
 
 ## Release notes

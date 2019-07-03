@@ -1,0 +1,389 @@
+*** AnnotateDB SQL queries ***
+--------------------------------------------------------------------------------
+
+        SELECT * FROM adb_mapping LIMIT 10
+        
+select first 10 mappings
+--------------------------------------------------------------------------------
+(1, 'IS', 1, 24331, 31670)
+OrderedDict([('id', 1),
+             ('qualifier', 'IS'),
+             ('evidence_id', 1),
+             ('source_id', 24331),
+             ('target_id', 31670)])
+(2, 'IS', 1, 24331, 31671)
+OrderedDict([('id', 2),
+             ('qualifier', 'IS'),
+             ('evidence_id', 1),
+             ('source_id', 24331),
+             ('target_id', 31671)])
+(3, 'IS', 1, 24331, 31672)
+OrderedDict([('id', 3),
+             ('qualifier', 'IS'),
+             ('evidence_id', 1),
+             ('source_id', 24331),
+             ('target_id', 31672)])
+(4, 'IS', 1, 24331, 31673)
+OrderedDict([('id', 4),
+             ('qualifier', 'IS'),
+             ('evidence_id', 1),
+             ('source_id', 24331),
+             ('target_id', 31673)])
+(5, 'IS', 1, 24331, 31674)
+OrderedDict([('id', 5),
+             ('qualifier', 'IS'),
+             ('evidence_id', 1),
+             ('source_id', 24331),
+             ('target_id', 31674)])
+(6, 'IS', 1, 24331, 31675)
+OrderedDict([('id', 6),
+             ('qualifier', 'IS'),
+             ('evidence_id', 1),
+             ('source_id', 24331),
+             ('target_id', 31675)])
+(7, 'IS', 1, 24331, 31676)
+OrderedDict([('id', 7),
+             ('qualifier', 'IS'),
+             ('evidence_id', 1),
+             ('source_id', 24331),
+             ('target_id', 31676)])
+(8, 'IS', 1, 24331, 31677)
+OrderedDict([('id', 8),
+             ('qualifier', 'IS'),
+             ('evidence_id', 1),
+             ('source_id', 24331),
+             ('target_id', 31677)])
+(9, 'IS', 1, 24331, 31678)
+OrderedDict([('id', 9),
+             ('qualifier', 'IS'),
+             ('evidence_id', 1),
+             ('source_id', 24331),
+             ('target_id', 31678)])
+(10, 'IS', 1, 24331, 31679)
+OrderedDict([('id', 10),
+             ('qualifier', 'IS'),
+             ('evidence_id', 1),
+             ('source_id', 24331),
+             ('target_id', 31679)])
+--------------------------------------------------------------------------------
+
+        SELECT * FROM mapping_view LIMIT 10
+        
+Select first 10 mappings in dedicated mapping_view
+--------------------------------------------------------------------------------
+(1, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:15637', 'bigg', '1.5', 'database')
+OrderedDict([('id', 1),
+             ('source_collection', 'bigg.metabolite'),
+             ('source_miriam', True),
+             ('source_term', '10fthf'),
+             ('qualifier', 'IS'),
+             ('target_collection', 'chebi'),
+             ('target_miriam', True),
+             ('target_term', 'CHEBI:15637'),
+             ('evidence_source', 'bigg'),
+             ('evidence_version', '1.5'),
+             ('evidence', 'database')])
+(98206, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:15637', 'bigg', '1.5', 'database')
+OrderedDict([('id', 98206),
+             ('source_collection', 'bigg.metabolite'),
+             ('source_miriam', True),
+             ('source_term', '10fthf'),
+             ('qualifier', 'IS'),
+             ('target_collection', 'chebi'),
+             ('target_miriam', True),
+             ('target_term', 'CHEBI:15637'),
+             ('evidence_source', 'bigg'),
+             ('evidence_version', '1.5'),
+             ('evidence', 'database')])
+(159559, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:15637', 'bigg', '1.5', 'database')
+OrderedDict([('id', 159559),
+             ('source_collection', 'bigg.metabolite'),
+             ('source_miriam', True),
+             ('source_term', '10fthf'),
+             ('qualifier', 'IS'),
+             ('target_collection', 'chebi'),
+             ('target_miriam', True),
+             ('target_term', 'CHEBI:15637'),
+             ('evidence_source', 'bigg'),
+             ('evidence_version', '1.5'),
+             ('evidence', 'database')])
+(2, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:11304', 'bigg', '1.5', 'database')
+OrderedDict([('id', 2),
+             ('source_collection', 'bigg.metabolite'),
+             ('source_miriam', True),
+             ('source_term', '10fthf'),
+             ('qualifier', 'IS'),
+             ('target_collection', 'chebi'),
+             ('target_miriam', True),
+             ('target_term', 'CHEBI:11304'),
+             ('evidence_source', 'bigg'),
+             ('evidence_version', '1.5'),
+             ('evidence', 'database')])
+(98207, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:11304', 'bigg', '1.5', 'database')
+OrderedDict([('id', 98207),
+             ('source_collection', 'bigg.metabolite'),
+             ('source_miriam', True),
+             ('source_term', '10fthf'),
+             ('qualifier', 'IS'),
+             ('target_collection', 'chebi'),
+             ('target_miriam', True),
+             ('target_term', 'CHEBI:11304'),
+             ('evidence_source', 'bigg'),
+             ('evidence_version', '1.5'),
+             ('evidence', 'database')])
+(159560, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:11304', 'bigg', '1.5', 'database')
+OrderedDict([('id', 159560),
+             ('source_collection', 'bigg.metabolite'),
+             ('source_miriam', True),
+             ('source_term', '10fthf'),
+             ('qualifier', 'IS'),
+             ('target_collection', 'chebi'),
+             ('target_miriam', True),
+             ('target_term', 'CHEBI:11304'),
+             ('evidence_source', 'bigg'),
+             ('evidence_version', '1.5'),
+             ('evidence', 'database')])
+(3, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:19108', 'bigg', '1.5', 'database')
+OrderedDict([('id', 3),
+             ('source_collection', 'bigg.metabolite'),
+             ('source_miriam', True),
+             ('source_term', '10fthf'),
+             ('qualifier', 'IS'),
+             ('target_collection', 'chebi'),
+             ('target_miriam', True),
+             ('target_term', 'CHEBI:19108'),
+             ('evidence_source', 'bigg'),
+             ('evidence_version', '1.5'),
+             ('evidence', 'database')])
+(98208, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:19108', 'bigg', '1.5', 'database')
+OrderedDict([('id', 98208),
+             ('source_collection', 'bigg.metabolite'),
+             ('source_miriam', True),
+             ('source_term', '10fthf'),
+             ('qualifier', 'IS'),
+             ('target_collection', 'chebi'),
+             ('target_miriam', True),
+             ('target_term', 'CHEBI:19108'),
+             ('evidence_source', 'bigg'),
+             ('evidence_version', '1.5'),
+             ('evidence', 'database')])
+(159561, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:19108', 'bigg', '1.5', 'database')
+OrderedDict([('id', 159561),
+             ('source_collection', 'bigg.metabolite'),
+             ('source_miriam', True),
+             ('source_term', '10fthf'),
+             ('qualifier', 'IS'),
+             ('target_collection', 'chebi'),
+             ('target_miriam', True),
+             ('target_term', 'CHEBI:19108'),
+             ('evidence_source', 'bigg'),
+             ('evidence_version', '1.5'),
+             ('evidence', 'database')])
+(4, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:19109', 'bigg', '1.5', 'database')
+OrderedDict([('id', 4),
+             ('source_collection', 'bigg.metabolite'),
+             ('source_miriam', True),
+             ('source_term', '10fthf'),
+             ('qualifier', 'IS'),
+             ('target_collection', 'chebi'),
+             ('target_miriam', True),
+             ('target_term', 'CHEBI:19109'),
+             ('evidence_source', 'bigg'),
+             ('evidence_version', '1.5'),
+             ('evidence', 'database')])
+--------------------------------------------------------------------------------
+
+        SELECT * FROM adb_collection LIMIT 10
+        
+Select first 10 collection.
+--------------------------------------------------------------------------------
+(1, 'chebi', True, 'ChEBI', '^CHEBI:\\d+$', 'https://identifiers.org/chebi/{$id}')
+OrderedDict([('id', 1),
+             ('namespace', 'chebi'),
+             ('miriam', True),
+             ('name', 'ChEBI'),
+             ('idpattern', '^CHEBI:\\d+$'),
+             ('urlpattern', 'https://identifiers.org/chebi/{$id}')])
+(2, 'ensembl', True, 'Ensembl', '^((ENS[FPTG]\\\\d{11}(\\\\.\\\\d+)?)|(FB\\\\w{2}\\\\d{7})|(Y[A-Z]{2}\\\\d{3}[a-zA-Z](\\\\-[A-Z])?)|([A-Z_a-z0-9]+(\\\\.)?(t)?(\\\\d+)?([a-z])?))$', 'https://identifiers.org/ensembl/{$id}')
+OrderedDict([('id', 2),
+             ('namespace', 'ensembl'),
+             ('miriam', True),
+             ('name', 'Ensembl'),
+             ('idpattern',
+              '^((ENS[FPTG]\\\\d{11}(\\\\.\\\\d+)?)|(FB\\\\w{2}\\\\d{7})|(Y[A-Z]{2}\\\\d{3}[a-zA-Z](\\\\-[A-Z])?)|([A-Z_a-z0-9]+(\\\\.)?(t)?(\\\\d+)?([a-z])?))$'),
+             ('urlpattern', 'https://identifiers.org/ensembl/{$id}')])
+(3, 'ec-code', True, 'Enzyme Nomenclature', '^\\d+\\.-\\.-\\.-|\\d+\\.\\d+\\.-\\.-|\\d+\\.\\d+\\.\\d+\\.-|\\d+\\.\\d+\\.\\d+\\.(n)?\\d+$', 'https://identifiers.org/ec-code/{$id}')
+OrderedDict([('id', 3),
+             ('namespace', 'ec-code'),
+             ('miriam', True),
+             ('name', 'Enzyme Nomenclature'),
+             ('idpattern',
+              '^\\d+\\.-\\.-\\.-|\\d+\\.\\d+\\.-\\.-|\\d+\\.\\d+\\.\\d+\\.-|\\d+\\.\\d+\\.\\d+\\.(n)?\\d+$'),
+             ('urlpattern', 'https://identifiers.org/ec-code/{$id}')])
+(4, 'uniprot', True, 'UniProt Knowledgebase', '^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, 0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, 0-9][0-9])(\\.\\d+)?$', 'https://identifiers.org/uniprot/{$id}')
+OrderedDict([('id', 4),
+             ('namespace', 'uniprot'),
+             ('miriam', True),
+             ('name', 'UniProt Knowledgebase'),
+             ('idpattern',
+              '^([A-N,R-Z][0-9]([A-Z][A-Z, 0-9][A-Z, '
+              '0-9][0-9]){1,2})|([O,P,Q][0-9][A-Z, 0-9][A-Z, 0-9][A-Z, '
+              '0-9][0-9])(\\.\\d+)?$'),
+             ('urlpattern', 'https://identifiers.org/uniprot/{$id}')])
+(5, 'taxonomy', True, 'Taxonomy', '^\\d+$', 'https://identifiers.org/taxonomy/{$id}')
+OrderedDict([('id', 5),
+             ('namespace', 'taxonomy'),
+             ('miriam', True),
+             ('name', 'Taxonomy'),
+             ('idpattern', '^\\d+$'),
+             ('urlpattern', 'https://identifiers.org/taxonomy/{$id}')])
+(6, 'biomodels.db', True, 'BioModels Database', '^((BIOMD|MODEL)\\d{10})|(BMID\\d{12})$', 'https://identifiers.org/biomodels.db/{$id}')
+OrderedDict([('id', 6),
+             ('namespace', 'biomodels.db'),
+             ('miriam', True),
+             ('name', 'BioModels Database'),
+             ('idpattern', '^((BIOMD|MODEL)\\d{10})|(BMID\\d{12})$'),
+             ('urlpattern', 'https://identifiers.org/biomodels.db/{$id}')])
+(7, 'miriam.collection', True, 'MIRIAM Registry collection', '^MIR:000\\d{5}$', 'https://identifiers.org/miriam.collection/{$id}')
+OrderedDict([('id', 7),
+             ('namespace', 'miriam.collection'),
+             ('miriam', True),
+             ('name', 'MIRIAM Registry collection'),
+             ('idpattern', '^MIR:000\\d{5}$'),
+             ('urlpattern', 'https://identifiers.org/miriam.collection/{$id}')])
+(8, 'icd', True, 'ICD', '^[A-Z]\\d+(\\.[-\\d+])?$', 'https://identifiers.org/icd/{$id}')
+OrderedDict([('id', 8),
+             ('namespace', 'icd'),
+             ('miriam', True),
+             ('name', 'ICD'),
+             ('idpattern', '^[A-Z]\\d+(\\.[-\\d+])?$'),
+             ('urlpattern', 'https://identifiers.org/icd/{$id}')])
+(9, 'intact', True, 'IntAct', '^EBI\\-[0-9]+$', 'https://identifiers.org/intact/{$id}')
+OrderedDict([('id', 9),
+             ('namespace', 'intact'),
+             ('miriam', True),
+             ('name', 'IntAct'),
+             ('idpattern', '^EBI\\-[0-9]+$'),
+             ('urlpattern', 'https://identifiers.org/intact/{$id}')])
+(10, 'interpro', True, 'InterPro', '^IPR\\d{6}$', 'https://identifiers.org/interpro/{$id}')
+OrderedDict([('id', 10),
+             ('namespace', 'interpro'),
+             ('miriam', True),
+             ('name', 'InterPro'),
+             ('idpattern', '^IPR\\d{6}$'),
+             ('urlpattern', 'https://identifiers.org/interpro/{$id}')])
+--------------------------------------------------------------------------------
+
+            SELECT * FROM mapping_view 
+                WHERE (source_term = 'ACKr')
+                ORDER BY target_namespace, target_term;
+            
+Query all mappings for 'ACKr'.
+--------------------------------------------------------------------------------
+(130866, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
+(192236, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
+(32661, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
+(32670, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
+(192245, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
+(130875, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
+(130874, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
+(192244, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
+(32669, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
+(32660, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
+(130865, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
+(192235, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
+(130873, 'bigg.reaction', True, 'ACKr', 'IS', 'metanetx.equation', False, 'MNXR95269', 'bigg', '1.5', 'database')
+(32668, 'bigg.reaction', True, 'ACKr', 'IS', 'metanetx.equation', False, 'MNXR95269', 'bigg', '1.5', 'database')
+(192243, 'bigg.reaction', True, 'ACKr', 'IS', 'metanetx.equation', False, 'MNXR95269', 'bigg', '1.5', 'database')
+(32662, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
+(130867, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
+(192237, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
+(32663, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
+(130868, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
+(192238, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
+(192239, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(130869, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(32664, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(32665, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
+(192240, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
+(130870, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
+(192241, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
+(32666, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
+(130871, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
+(130872, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
+(192242, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
+(32667, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
+--------------------------------------------------------------------------------
+
+            SELECT * FROM mapping_view 
+                WHERE (source_term = 'ACKr' AND 
+                       source_namespace = 'bigg.reaction' AND
+                       qualifier = 'IS' AND
+                       target_miriam = TRUE)
+                ORDER BY target_namespace, target_term;
+            
+Query all MIRIAM mappings for the bigg.reaction 'ACKr'
+--------------------------------------------------------------------------------
+(130866, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
+(192236, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
+(32661, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
+(32670, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
+(192245, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
+(130875, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
+(130874, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
+(192244, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
+(32669, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
+(32660, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
+(130865, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
+(192235, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
+(130867, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
+(32662, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
+(192237, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
+(130868, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
+(32663, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
+(192238, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
+(32664, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(130869, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(192239, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(32665, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
+(192240, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
+(130870, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
+(32666, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
+(192241, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
+(130871, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
+(32667, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
+(192242, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
+(130872, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
+--------------------------------------------------------------------------------
+
+            SELECT source_term FROM mapping_view 
+                WHERE (target_term = 'CHEBI:698' AND
+                       target_namespace = 'chebi' AND 
+                       source_namespace = 'bigg.metabolite' AND
+                       qualifier = 'IS')
+                ORDER BY target_namespace, target_term;
+            
+Query bigg metabolite for the CHEBI id 'CHEBI:698'
+--------------------------------------------------------------------------------
+('10fthf',)
+('10fthf',)
+('10fthf',)
+--------------------------------------------------------------------------------
+
+            SELECT source_term FROM mapping_view 
+                WHERE (target_term = 'CHEBI:17634' AND
+                       target_namespace = 'chebi' AND 
+                       source_namespace = 'bigg.metabolite' AND
+                       qualifier = 'IS' AND
+                       evidence_source = 'bigg' AND evidence_version = '1.5' and evidence = 'database'
+                       )
+                ORDER BY target_namespace, target_term;
+            
+Restrict information to bigg evidence, multiple bigg metabolites for chebi.'
+--------------------------------------------------------------------------------
+('glc__D',)
+('glc__bD',)
+('glc__D',)
+('glc__bD',)
+('glc__D',)
+('glc__bD',)

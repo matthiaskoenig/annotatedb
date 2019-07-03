@@ -1,6 +1,5 @@
 /*
-Materialized view for common database queris
-
+Materialized view for common database queries
  */
 CREATE VIEW mapping_view AS
     SELECT m.id,

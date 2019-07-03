@@ -1,6 +1,11 @@
 """
-Could be helpful to define a database view
-http://www.postgresqltutorial.com/managing-postgresql-views/
+Example queries for AnnotateDB in python3.
+
+For output see `example_postgres.log`.
+To run the examples install
+    pip install -r requirementes.txt
+    python example_postgres.py
+
 """
 import sys
 import logging
@@ -84,6 +89,7 @@ def example_mappings_view():
                  ]
     )
 
+
 def example_collections():
     execute_query(
         query="""
@@ -92,7 +98,6 @@ def example_collections():
         description="Select first 10 collection.",
         fields=['id', 'namespace', 'miriam', 'name', 'idpattern', 'urlpattern']
     )
-
 
 
 QUERIES = [
@@ -144,8 +149,10 @@ QUERIES = [
 
 if __name__ == "__main__":
     old_stdout = sys.stdout
-    log_file = open("example_postgres.log", "w")
+    log_file = open("./example_postgres.out", "w")
     sys.stdout = log_file
+
+    print('*** AnnotateDB SQL queries ***')
 
     # examples with creating hashmaps
     example_mappings_table()
