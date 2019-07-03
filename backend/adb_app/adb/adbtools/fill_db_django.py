@@ -14,30 +14,20 @@ set -a && source .env.local
 echo $ADB_VERSION
 ./docker-purge.sh
 
-[3] execute this script in docker container
+[3] execute this script in docker container (check log file)
 docker exec -it annotatedb_backend_1 bash
 root@76d113208c20:/# cd adb_app/adb/adbtools/
 root@76d113208c20:/# python fill_db_django.py
 
+[4] create materialized views
+./adb_views.sh
+
+[5] store database
+./adb_dump.sh
+
 """
-
-# TODO: create logging file (for bigg database for next release)
-# TODO: colored logging
-
 import os
-import sys
 os.environ['DJANGO_SETTINGS_MODULE'] = 'adb_app.settings'
-
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#sys.path.append(BASE_DIR)
-#print(BASE_DIR)
-
-
-from dotenv import load_dotenv
-# OR, the same with increased verbosity:
-env_path = os.path.abspath("../../../../.env.local")
-print(env_path)
-load_dotenv(dotenv_path=env_path, verbose=True)
 
 import coloredlogs
 import logging
@@ -45,25 +35,22 @@ import logging
 logFormatter = logging.Formatter("[%(levelname)s]  %(message)s")
 rootLogger = logging.getLogger()
 
-fileHandler = logging.FileHandler("{0}/{1}.log".format('.', 'bigg-v1.5-mapping'))
+fileHandler = logging.FileHandler("{0}/{1}.log".format('.', 'bigg-v1.5-mapping'), 'w+')
 fileHandler.setFormatter(logFormatter)
 rootLogger.addHandler(fileHandler)
 
 consoleHandler = logging.StreamHandler()
 consoleHandler.setFormatter(logFormatter)
 rootLogger.addHandler(consoleHandler)
+rootLogger.setLevel(logging.WARNING)
 
 coloredlogs.install(fmt='[%(levelname)s] %(message)s')
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.WARNING)
-
 
 import django
 django.setup()
 
 import re
-from pprint import pprint
-
 import sqlite3
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db.utils import IntegrityError
@@ -213,6 +200,7 @@ def bigg_reactions():
     db.close()
     return data
 
+
 def bigg_compartments():
     db = sqlite3.connect(BIGG_SQLITE3)
     c = db.cursor()
@@ -227,6 +215,7 @@ def bigg_compartments():
         }
     db.close()
     return data
+
 
 def bigg_metabolites():
     db = sqlite3.connect(BIGG_SQLITE3)

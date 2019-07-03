@@ -3,7 +3,6 @@
 # Complete purge of all containers and images !
 #
 # Execute via setting environment variables
-#     set -a && source .env
 #     set -a && source .env.local (develop)
 #     ./docker-purge.sh
 # -----------------------------------------------------------------------------
@@ -53,14 +52,14 @@ sudo rm -rf static
 # build and start containers
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML build --no-cache
 
-echo "***Make migrations & collect static ***"
+echo "*** Make migrations & collect static ***"
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend bash -c "/usr/local/bin/python manage.py makemigrations && /usr/local/bin/python manage.py migrate && /usr/local/bin/python manage.py collectstatic --noinput "
 
-#echo "*** Setup admin user ***"
+echo "*** Setup admin user ***"
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend bash -c "/usr/local/bin/python manage.py createsuperuser2 --username admin --password ${ADB_ADMIN_PASSWORD} --email koenigmx@hu-berlin.de --noinput"
 
-echo "*** Build elasticsearch index ***"
-docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend ./manage.py search_index --rebuild -f
+# echo "*** Build elasticsearch index ***"
+# docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend ./manage.py search_index --rebuild -f
 
 echo "*** Running containers ***"
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML up --detach
