@@ -15,18 +15,19 @@ sudo echo "Purging database and all docker containers, volumes, images ($ADB_DOC
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML down --volumes --rmi local
 
 # make sure containers are removed (if not running)
-docker container rm -f annotatedb_backend_1
-docker container rm -f annotatedb_frontend_1
-docker container rm -f annotatedb_adb_1
-docker container rm -f annotatedb_elasticsearch_1
-docker container rm -f annotatedb_nginx_1
+docker container rm -f adb_backend
+docker container rm -f adb_frontend
+docker container rm -f adb_postgres
+docker container rm -f adb_elasticsearch
+docker container rm -f adb_nginx
+docker container rm -f adb_kibana
 
 # make sure images are removed
-docker image rm -f annotatedb_backend:latest
-docker image rm -f annotatedb_frontend:latest
-docker image rm -f annotatedb_adb:latest
-docker image rm -f annotatedb_elasticsearch:latest
-docker image rm -f annotatedb_nginx:latest
+docker image rm -f adb_backend:latest
+docker image rm -f adb_frontend:latest
+docker image rm -f adb_adb:latest
+docker image rm -f adb_elasticsearch:latest
+docker image rm -f adb_nginx:latest
 
 # make sure volumes are removed
 docker volume rm -f annotatedb_django_media
@@ -35,7 +36,6 @@ docker volume rm -f annotatedb_elasticsearch_data
 docker volume rm -f annotatedb_adb_data
 docker volume rm -f annotatedb_vue_dist
 docker volume rm -f annotatedb_node_modules
-
 
 # cleanup all dangling images, containers, volumes and networks
 docker system prune --force

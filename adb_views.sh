@@ -15,7 +15,7 @@ echo "Create materialized views      "
 echo "-------------------------------"
 docker exec annotatedb_adb_1 mkdir /sql
 docker cp ${DIR}/adb/create_views.sql annotatedb_adb_1:/sql/
-docker exec -u $ADB_DB_USER annotatedb_adb_1 psql -d ${ADB_DB_NAME} -v -U ${ADB_DB_USER} -a -f /sql/create_views.sql
+docker exec -u $ADB_DB_USER adb_postgres psql -d ${ADB_DB_NAME} -v -U ${ADB_DB_USER} -a -f /sql/create_views.sql
 
 
 

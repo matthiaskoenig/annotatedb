@@ -24,6 +24,7 @@ networks:
 services:
   adb:
     restart: always
+    container_name: adb_postgres
     build: ./adb
     ports:
       - "5434:5432"
@@ -38,6 +39,7 @@ services:
 
   elasticsearch:
     restart: always
+    container_name: adb_elasticsearch
     image: elasticsearch:6.7.1
     ports:
       - "9124:9200"
@@ -48,6 +50,7 @@ services:
 
   backend:
     restart: always
+    container_name: adb_backend
     build: ./backend
     volumes:
       - ./backend:/code
@@ -69,6 +72,7 @@ services:
       - adbnet
 
   frontend:
+    container_name: adb_frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile-production
@@ -79,6 +83,7 @@ services:
       - vue_dist:/vue
 
   nginx:
+    container_name: adb_nginx
     restart: always
     image: nginx:1.16.0
     ports:

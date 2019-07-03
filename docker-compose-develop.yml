@@ -24,6 +24,7 @@ networks:
 services:
   adb:
     restart: always
+    container_name: adb_postgres
     build: ./adb
     ports:
       - "5434:5432"
@@ -38,7 +39,8 @@ services:
 
   elasticsearch:
     restart: always
-    image: elasticsearch:6.7.2
+    container_name: adb_elasticsearch
+    image: elasticsearch:6.8.1
     ports:
       - "9124:9200"
     volumes:
@@ -46,9 +48,21 @@ services:
     networks:
       - adbnet
 
+  kibana:
+    image: kibana:6.8.1
+    container_name: adb_kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - "ELASTICSEARCH_URL=http://elasticsearch:9200"
+    networks:
+      - adbnet
+    depends_on:
+      - elasticsearch
 
   backend:
     restart: always
+    container_name: adb_backend
     build: ./backend
     volumes:
       - ./backend:/code
@@ -71,6 +85,7 @@ services:
 
   frontend:
     restart: always
+    container_name: adb_frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile-develop
