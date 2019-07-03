@@ -25,6 +25,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+from .search_indexes import urls as search_index_urls
 
 from rest_framework_swagger.views import get_swagger_view
 schema_view = get_swagger_view(title="ADB API")
@@ -37,4 +38,5 @@ urlpatterns = [
     url(r'^api/token/refresh/$', TokenRefreshView.as_view(), name='token_refresh'),
     path(r"api/v1/", include(router.urls)),
     url(r"api/", schema_view, name="api"),
+    url(r'^search/', include(search_index_urls)),
 ]
