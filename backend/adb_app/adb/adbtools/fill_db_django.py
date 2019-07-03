@@ -1,6 +1,23 @@
 """
+Scripts for recreating the database.
+
 Upload data via django interaction layer.
 For now this must be executed interactively in the backend container.
+
+Steps:
+[1] update version numbers
+- .env.local
+- backend/adb_app/_version.py
+
+[2] purge database
+set -a && source .env.local
+echo $ADB_VERSION
+./docker-purge.sh
+
+[3] execute this script in docker container
+docker exec -it annotatedb_backend_1 bash
+root@76d113208c20:/# cd adb_app/adb/adbtools/
+root@76d113208c20:/# python fill_db_django.py
 
 """
 
@@ -38,6 +55,7 @@ rootLogger.addHandler(consoleHandler)
 
 coloredlogs.install(fmt='[%(levelname)s] %(message)s')
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.WARNING)
 
 
 import django
@@ -48,6 +66,7 @@ from pprint import pprint
 
 import sqlite3
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.db.utils import IntegrityError
 
 from adb_app.adb.models import Collection, Evidence, Annotation, Mapping
 from adb_app.adb.adbtools.fill_db_rest import get_identifiers_collections, BIGG_SQLITE3
@@ -366,15 +385,16 @@ def store_bigg_mappings():
                 )
 
                 if annotation_target is not None:
-                    mapping = Mapping(
-                        source=annotation_source,
-                        qualifier=Mapping.IS,
-                        target=annotation_target,
-                        evidence=bigg_db_evidence
-                    )
-                    mapping.save()
-
-                # logging.error('{0} : {1}, {2}'.format(row[0], row[1], row[2]))
+                    try:
+                        mapping = Mapping(
+                            source=annotation_source,
+                            qualifier=Mapping.IS,
+                            target=annotation_target,
+                            evidence=bigg_db_evidence
+                        )
+                        mapping.save()
+                    except IntegrityError as err:
+                        logging.error(err)
 
             except ObjectDoesNotExist:
                 logging.error(f"Target collection does not exist: {bigg_ns}")
@@ -383,9 +403,9 @@ def store_bigg_mappings():
 
 
 if __name__ == "__main__":
-    #store_identifiers_collections()
-    #store_bigg_evidence()
-    #store_bigg_data_sources()
-    #store_bigg_annotations()
+    store_identifiers_collections()
+    store_bigg_evidence()
+    store_bigg_data_sources()
+    store_bigg_annotations()
     store_bigg_mappings()
 

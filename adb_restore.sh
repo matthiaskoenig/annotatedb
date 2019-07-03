@@ -21,3 +21,11 @@ echo "Restore" $DB_DUMP
 docker exec annotatedb_adb_1 mkdir /backups
 docker cp ${DB_DUMP} annotatedb_adb_1:/backups/
 docker exec -u $ADB_DB_USER annotatedb_adb_1 pg_restore -d ${ADB_DB_NAME} -v -c -U ${ADB_DB_USER} /backups/adb-v${ADB_VERSION}.dump
+
+echo "-------------------------------"
+echo "Create materialized views      "
+echo "-------------------------------"
+docker exec -u $ADB_DB_USER annotatedb_adb_1 pg_restore -d ${ADB_DB_NAME} -v -c -U ${ADB_DB_USER} /backups/adb-v${ADB_VERSION}.dump
+
+
+

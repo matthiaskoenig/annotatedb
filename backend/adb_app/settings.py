@@ -62,7 +62,7 @@ INSTALLED_APPS = [
 
     # adb
     'adb_app.adb',
-    'adb_app.search_indexes',  # Elasticsearch integration with the Django
+    # 'adb_app.search_indexes',  # Elasticsearch integration with the Django
                        # REST framework
 ]
 

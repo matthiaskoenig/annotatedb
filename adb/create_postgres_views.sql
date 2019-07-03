@@ -1,7 +1,7 @@
 /*
-Materialized view for common database queries
+    Materialized view for common database queries
  */
-CREATE VIEW mapping_view AS
+CREATE MATERIALIZED VIEW mapping_view AS
     SELECT m.id,
 
        sc.namespace as source_namespace,
@@ -20,4 +20,13 @@ CREATE VIEW mapping_view AS
             INNER JOIN adb_annotation target ON (m.target_id = target.id)
             INNER JOIN adb_evidence evidence ON (m.evidence_id = evidence.id)
             INNER JOIN adb_collection sc ON (source.collection_id = sc.id)
-            INNER JOIN adb_collection tc ON (target.collection_id = tc.id);
+            INNER JOIN adb_collection tc ON (target.collection_id = tc.id)
+    WITH DATA;
+
+
+/*
+    Create indices on the mapping_view
+ */
+REFRESH MATERIALIZED VIEW mapping_view;
+CREATE INDEX source_index ON mapping_view (source_namespace, source_term);
+CREATE INDEX target_index ON mapping_view (target_namespace, target_term);

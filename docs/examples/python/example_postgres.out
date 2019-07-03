@@ -71,123 +71,123 @@ OrderedDict([('id', 10),
         
 Select first 10 mappings in dedicated mapping_view
 --------------------------------------------------------------------------------
-(1, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:15637', 'bigg', '1.5', 'database')
-OrderedDict([('id', 1),
+(18, 'bigg.metabolite', True, '10fthfglu__L', 'IS', 'chebi', True, 'CHEBI:27862', 'bigg', '1.5', 'database')
+OrderedDict([('id', 18),
              ('source_collection', 'bigg.metabolite'),
              ('source_miriam', True),
-             ('source_term', '10fthf'),
+             ('source_term', '10fthfglu__L'),
              ('qualifier', 'IS'),
              ('target_collection', 'chebi'),
              ('target_miriam', True),
-             ('target_term', 'CHEBI:15637'),
+             ('target_term', 'CHEBI:27862'),
              ('evidence_source', 'bigg'),
              ('evidence_version', '1.5'),
              ('evidence', 'database')])
-(98206, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:15637', 'bigg', '1.5', 'database')
-OrderedDict([('id', 98206),
+(19, 'bigg.metabolite', True, '10fthfglu__L', 'IS', 'chebi', True, 'CHEBI:19110', 'bigg', '1.5', 'database')
+OrderedDict([('id', 19),
              ('source_collection', 'bigg.metabolite'),
              ('source_miriam', True),
-             ('source_term', '10fthf'),
+             ('source_term', '10fthfglu__L'),
              ('qualifier', 'IS'),
              ('target_collection', 'chebi'),
              ('target_miriam', True),
-             ('target_term', 'CHEBI:15637'),
+             ('target_term', 'CHEBI:19110'),
              ('evidence_source', 'bigg'),
              ('evidence_version', '1.5'),
              ('evidence', 'database')])
-(159559, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:15637', 'bigg', '1.5', 'database')
-OrderedDict([('id', 159559),
+(20, 'bigg.metabolite', True, '10fthfglu__L', 'IS', 'chebi', True, 'CHEBI:699', 'bigg', '1.5', 'database')
+OrderedDict([('id', 20),
              ('source_collection', 'bigg.metabolite'),
              ('source_miriam', True),
-             ('source_term', '10fthf'),
+             ('source_term', '10fthfglu__L'),
              ('qualifier', 'IS'),
              ('target_collection', 'chebi'),
              ('target_miriam', True),
-             ('target_term', 'CHEBI:15637'),
+             ('target_term', 'CHEBI:699'),
              ('evidence_source', 'bigg'),
              ('evidence_version', '1.5'),
              ('evidence', 'database')])
-(2, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:11304', 'bigg', '1.5', 'database')
-OrderedDict([('id', 2),
+(30, 'bigg.metabolite', True, '12dgr140', 'IS', 'metanetx.chemical', True, 'MNXM146479', 'bigg', '1.5', 'database')
+OrderedDict([('id', 30),
              ('source_collection', 'bigg.metabolite'),
              ('source_miriam', True),
-             ('source_term', '10fthf'),
+             ('source_term', '12dgr140'),
              ('qualifier', 'IS'),
-             ('target_collection', 'chebi'),
+             ('target_collection', 'metanetx.chemical'),
              ('target_miriam', True),
-             ('target_term', 'CHEBI:11304'),
+             ('target_term', 'MNXM146479'),
              ('evidence_source', 'bigg'),
              ('evidence_version', '1.5'),
              ('evidence', 'database')])
-(98207, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:11304', 'bigg', '1.5', 'database')
-OrderedDict([('id', 98207),
+(33, 'bigg.metabolite', True, '12dgr16018111Z', 'IS', 'seed.compound', True, 'cpd30061', 'bigg', '1.5', 'database')
+OrderedDict([('id', 33),
              ('source_collection', 'bigg.metabolite'),
              ('source_miriam', True),
-             ('source_term', '10fthf'),
+             ('source_term', '12dgr16018111Z'),
              ('qualifier', 'IS'),
-             ('target_collection', 'chebi'),
+             ('target_collection', 'seed.compound'),
              ('target_miriam', True),
-             ('target_term', 'CHEBI:11304'),
+             ('target_term', 'cpd30061'),
              ('evidence_source', 'bigg'),
              ('evidence_version', '1.5'),
              ('evidence', 'database')])
-(159560, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:11304', 'bigg', '1.5', 'database')
-OrderedDict([('id', 159560),
+(39, 'bigg.metabolite', True, '12dgr1801819Z', 'IS', 'seed.compound', True, 'cpd30064', 'bigg', '1.5', 'database')
+OrderedDict([('id', 39),
              ('source_collection', 'bigg.metabolite'),
              ('source_miriam', True),
-             ('source_term', '10fthf'),
+             ('source_term', '12dgr1801819Z'),
              ('qualifier', 'IS'),
-             ('target_collection', 'chebi'),
+             ('target_collection', 'seed.compound'),
              ('target_miriam', True),
-             ('target_term', 'CHEBI:11304'),
+             ('target_term', 'cpd30064'),
              ('evidence_source', 'bigg'),
              ('evidence_version', '1.5'),
              ('evidence', 'database')])
-(3, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:19108', 'bigg', '1.5', 'database')
-OrderedDict([('id', 3),
+(40, 'bigg.metabolite', True, '12dgr1801819Z', 'IS', 'metanetx.chemical', True, 'MNXM145575', 'bigg', '1.5', 'database')
+OrderedDict([('id', 40),
              ('source_collection', 'bigg.metabolite'),
              ('source_miriam', True),
-             ('source_term', '10fthf'),
+             ('source_term', '12dgr1801819Z'),
              ('qualifier', 'IS'),
-             ('target_collection', 'chebi'),
+             ('target_collection', 'metanetx.chemical'),
              ('target_miriam', True),
-             ('target_term', 'CHEBI:19108'),
+             ('target_term', 'MNXM145575'),
              ('evidence_source', 'bigg'),
              ('evidence_version', '1.5'),
              ('evidence', 'database')])
-(98208, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:19108', 'bigg', '1.5', 'database')
-OrderedDict([('id', 98208),
+(54, 'bigg.metabolite', True, '12dgr1819Z1819Z', 'IS', 'seed.compound', True, 'cpd30074', 'bigg', '1.5', 'database')
+OrderedDict([('id', 54),
              ('source_collection', 'bigg.metabolite'),
              ('source_miriam', True),
-             ('source_term', '10fthf'),
+             ('source_term', '12dgr1819Z1819Z'),
              ('qualifier', 'IS'),
-             ('target_collection', 'chebi'),
+             ('target_collection', 'seed.compound'),
              ('target_miriam', True),
-             ('target_term', 'CHEBI:19108'),
+             ('target_term', 'cpd30074'),
              ('evidence_source', 'bigg'),
              ('evidence_version', '1.5'),
              ('evidence', 'database')])
-(159561, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:19108', 'bigg', '1.5', 'database')
-OrderedDict([('id', 159561),
+(55, 'bigg.metabolite', True, '12dgr1819Z1819Z', 'IS', 'metanetx.chemical', True, 'MNXM145565', 'bigg', '1.5', 'database')
+OrderedDict([('id', 55),
              ('source_collection', 'bigg.metabolite'),
              ('source_miriam', True),
-             ('source_term', '10fthf'),
+             ('source_term', '12dgr1819Z1819Z'),
              ('qualifier', 'IS'),
-             ('target_collection', 'chebi'),
+             ('target_collection', 'metanetx.chemical'),
              ('target_miriam', True),
-             ('target_term', 'CHEBI:19108'),
+             ('target_term', 'MNXM145565'),
              ('evidence_source', 'bigg'),
              ('evidence_version', '1.5'),
              ('evidence', 'database')])
-(4, 'bigg.metabolite', True, '10fthf', 'IS', 'chebi', True, 'CHEBI:19109', 'bigg', '1.5', 'database')
-OrderedDict([('id', 4),
+(56, 'bigg.metabolite', True, '12dgr181_9', 'IS', 'metanetx.chemical', True, 'MNXM147348', 'bigg', '1.5', 'database')
+OrderedDict([('id', 56),
              ('source_collection', 'bigg.metabolite'),
              ('source_miriam', True),
-             ('source_term', '10fthf'),
+             ('source_term', '12dgr181_9'),
              ('qualifier', 'IS'),
-             ('target_collection', 'chebi'),
+             ('target_collection', 'metanetx.chemical'),
              ('target_miriam', True),
-             ('target_term', 'CHEBI:19109'),
+             ('target_term', 'MNXM147348'),
              ('evidence_source', 'bigg'),
              ('evidence_version', '1.5'),
              ('evidence', 'database')])
@@ -280,39 +280,39 @@ OrderedDict([('id', 10),
             
 Query all mappings for 'ACKr'.
 --------------------------------------------------------------------------------
-(130866, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
 (192236, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
+(130866, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
 (32661, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
+(130875, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
 (32670, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
 (192245, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
-(130875, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
 (130874, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
 (192244, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
 (32669, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
 (32660, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
 (130865, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
 (192235, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
+(192243, 'bigg.reaction', True, 'ACKr', 'IS', 'metanetx.equation', False, 'MNXR95269', 'bigg', '1.5', 'database')
 (130873, 'bigg.reaction', True, 'ACKr', 'IS', 'metanetx.equation', False, 'MNXR95269', 'bigg', '1.5', 'database')
 (32668, 'bigg.reaction', True, 'ACKr', 'IS', 'metanetx.equation', False, 'MNXR95269', 'bigg', '1.5', 'database')
-(192243, 'bigg.reaction', True, 'ACKr', 'IS', 'metanetx.equation', False, 'MNXR95269', 'bigg', '1.5', 'database')
 (32662, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
-(130867, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
 (192237, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
-(32663, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
+(130867, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
 (130868, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
 (192238, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
-(192239, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
-(130869, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(32663, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
 (32664, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
-(32665, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
+(130869, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(192239, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
 (192240, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
 (130870, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
-(192241, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
+(32665, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
 (32666, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
+(192241, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
 (130871, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
-(130872, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
 (192242, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
 (32667, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
+(130872, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
 --------------------------------------------------------------------------------
 
             SELECT * FROM mapping_view 
@@ -327,27 +327,27 @@ Query all MIRIAM mappings for the bigg.reaction 'ACKr'
 (130866, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
 (192236, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
 (32661, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
+(130875, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
 (32670, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
 (192245, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
-(130875, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
-(130874, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
 (192244, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
 (32669, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
+(130874, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
 (32660, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
 (130865, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
 (192235, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
 (130867, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
 (32662, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
 (192237, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
-(130868, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
-(32663, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
 (192238, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
-(32664, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
-(130869, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(32663, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
+(130868, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
 (192239, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(130869, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(32664, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
+(130870, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
 (32665, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
 (192240, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
-(130870, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
 (32666, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
 (192241, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
 (130871, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
