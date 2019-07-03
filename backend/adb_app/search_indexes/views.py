@@ -26,7 +26,7 @@ from .serializers import MappingDocumentSerializer
 
 
 class MappingDocumentView(BaseDocumentViewSet):
-    """The BookDocument view."""
+    """The MappingDocument view."""
 
     document = MappingDocument
     serializer_class = MappingDocumentSerializer

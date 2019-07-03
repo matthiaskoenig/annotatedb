@@ -71,7 +71,7 @@ class Annotation(models.Model):
 
         indexes = [
             models.Index(fields=['term', 'collection']),
-            models.Index(fields=['term'], name='collection'),
+            models.Index(fields=['term']),
         ]
 
     def __str__(self):
@@ -98,5 +98,5 @@ class Mapping(models.Model):
     evidence = models.ForeignKey(Evidence, on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ["id"],
+        ordering = ["id"]
         unique_together = [['source', 'qualifier', 'target', 'evidence']]

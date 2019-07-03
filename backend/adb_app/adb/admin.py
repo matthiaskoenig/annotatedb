@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from adb_app.adb.models import Annotation, Mapping, Evidence, Collection
+from .models import Annotation, Mapping, Evidence, Collection
 
 
 @admin.register(Collection)
@@ -21,14 +21,12 @@ class EvidenceAdmin(admin.ModelAdmin):
 class AnnotationAdmin(admin.ModelAdmin):
     fields = ('pk', 'term', 'collection')
     list_display = ('pk', 'term', 'collection', 'resource')
-    search_fields = ('term', 'collection')
-    list_filter = ('collection',)
+    search_fields = ('term', )
 
 
 @admin.register(Mapping)
 class MappingAdmin(admin.ModelAdmin):
-    pass
-    # fields = ('pk', 'source', 'qualifier', 'target', 'evidence')
-    # list_display = ('pk', 'source', 'qualifier', 'target', 'evidence')
+    fields = ('pk', 'source', 'qualifier', 'target', 'evidence')
+    list_display = ('pk', 'source', 'qualifier', 'target', 'evidence')
 
 

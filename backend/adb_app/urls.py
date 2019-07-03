@@ -40,5 +40,5 @@ urlpatterns = [
     url(r'^api/token/refresh/$', TokenRefreshView.as_view(), name='token_refresh'),
     path(r"api/v1/", include(router.urls)),
     url(r"api/", schema_view, name="api"),
-    # url(r'^search/', include(search_index_urls)),
+    url(r'^search/', include(search_index_urls)),
 ]
