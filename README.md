@@ -16,7 +16,7 @@ and
 * [Release notes](https://github.com/matthiaskoenig/annotatedb#release-notes)
 
 ## Overview
-<img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="35" /> `AnnotateDB` (pronounced `annotated bee`) is a database with web frontend for mapping of annotations found in computational models in biology.
+<img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="20" /> `AnnotateDB` (pronounced `annotated bee`) is a database with web frontend for mapping of annotations found in computational models in biology.
 `AnnotateDB` is accessible via https://annotatedb.com.
 
 * **Our mission** is to provide mapped annotation resources which simplify annotation of computational models and mapping of entities in such models.
@@ -35,18 +35,16 @@ mapping was inferred
 - `REST` based web interface
 - `elastisearch` based indexing and search (The `elasticsearch` end points are still in development and will be part of `v0.2.0`)
 
-To cite the project use [![DOI](https://zenodo.org/badge/191741174.svg)](https://zenodo.org/badge/latestdoi/191741174)
-
-`AnnotateDB` is realised under the following licenses
+`AnnotateDB` is accessible under the following licenses
 * Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
 * Documentation: [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
 
+To cite the project use [![DOI](https://zenodo.org/badge/191741174.svg)](https://zenodo.org/badge/latestdoi/191741174)
 
 ## Installation
 
-AnnotateDB is distributed as containers. 
-This requires a working [`docker`](https://docs.docker.com/install/) and [`docker-compose`](https://docs.docker.com/compose/install/)
-installation on your system. 
+AnnotateDB is distributed as `docker` containers, requiring a working [`docker`](https://docs.docker.com/install/) and [`docker-compose`](https://docs.docker.com/compose/install/)
+installation. 
 
 To install `AnnotateDB` locally use 
 ```bash
@@ -66,15 +64,14 @@ set -a && source .env.local
 # elasticsearch indexing
 ./elasticsearch.sh
 ```
+The docker services can be accessed via
+* `adb_postgres` http://localhost:5434/ - postgres database
+* `adb_backend` http://localhost:5434/ - django backend
+* `adb_frontend` http://localhost:8090/ - vue.js frontend
+* `adb_elasticsearch` http://localhost:9124/ - elasticsearch instance
+* `adb kibana` http://localhost:5610/ - elasticsearch visualization
 
-The services are then available on
-* `adb_postgres`: http://localhost:5434/ (postgres database)
-* `adb_backend`: http://localhost:5434/ (django backend)
-* `adb_frontend`: http://localhost:8090/ (vue.js frontend)
-* `adb_elasticsearch`: http://localhost:9124/ (elasticsearch instance)
-* `adb kibana`: http://localhost:5610/ (elasticsearch visualization)
-
-As soon as a more stable state of `AnnotateDB` is reached the installation will be further simplified, 
+In later releases the installation will be simplified, 
 i.e., prebuild docker containers will be available from dockerhub.
 
 ## REST webservice
@@ -82,20 +79,13 @@ i.e., prebuild docker containers will be available from dockerhub.
 
 <a href="https://annotatedb.com/api/v1"><img alt="AnnotateDB logo" src="./docs/images/rest.png" width="400" /></a>
 
-To query the `collections` and `mappings` use:
-```
-# query collections
-https://annotatedb.com/api/v1/collections/?format=json
+To query the existing `collections`use: https://annotatedb.com/api/v1/collections/?format=json.
 
-# query mappings
-https://annotatedb.com/api/v1/mappings/?format=json
-```
+To query the existing `mappings`use: https://annotatedb.com/api/v1/mappings/?format=json.
 
-To query a single collection use
-```
-# information for single collection
-https://annotatedb.com/api/v1/collections/sbo/?format=json
-```
+To query a single `collection` use https://annotatedb.com/api/v1/collections/sbo/?format=json. This will return
+the information on the `collection`.
+
 ```json
 {
   "namespace":"sbo",
@@ -105,8 +95,8 @@ https://annotatedb.com/api/v1/collections/sbo/?format=json
   "urlpattern":"https://identifiers.org/sbo/{$id}",
 }
 ```
-Currently only basic `REST` endpoints are available.
-With the introduction of the `elasticsearch` endpoints the REST base search will largely improve.
+Currently only basic `REST` endpoints are available. With the introduction of the `elasticsearch` 
+endpoints the REST base search will largely improve.
 For now users should directly interact with the postgres database to interact
 with the mappings (see information below).
 
@@ -119,14 +109,15 @@ DB: adb
 USER: adb
 PASSWORD: adb
 ```
-The database contains the following main tables:
+The database contains the following main tables (see schema below):
 - `adb_collection`: A data source or miriam collection for annotation or xref information
 - `adb_annotation`: The combination of a term from a collection and the given collection
 - `adb_mapping`: Mapping between annotations, from source annotation to target annotation. The kind of mapping is defined by the qualifier. E.g. the qualifier `BQM_IS` encodes that the source annotation `is` the target annotation.
 - `adb_evidence`: Evidence for the given mapping between annotations.
 
-In addition a materialized view for the mapping is provided which allows very easy filtering of 
-mapped annotations: `mapping_view`. For most use cases the `mapping_view` is the table to work with.
+In addition a materialized view for the mapping is provided which allows easy filtering and search of 
+mapped annotations and annotation synonyms: `mapping_view`. 
+For most use cases the `mapping_view` is the table to work with.
 
 <img alt="Database schema" src="./docs/images/schema_v0.1.0.png" width="400"/>
 
@@ -151,12 +142,12 @@ with output [here](./docs/examples/python/example_postgres.out).
 ## Data sources
 
 ### Collections
-<h4><img alt="identifiers.org" src="./docs/images/identifiers.png" height="35" /> identifiers.org</h4>
+<h4><img alt="identifiers.org" src="./docs/images/identifiers.png" height="20" /> identifiers.org</h4>
 Information on collections is based mainly on [identifiers.org](http://identifiers.org/collection).
 Collections were parsed with [`sbmlutils`](https://github.com/matthiaskoenig/sbmlutils).
 
 ### Mappings
-<h4><img alt="BiGG databae" src="./docs/images/bigg.png" height="35" /> BiGG</h4>
+<h4><img alt="BiGG databae" src="./docs/images/bigg.png" height="20" /> BiGG</h4>
 A major source of annotation mappings is the [BiGG Database](http://bigg.ucsd.edu/)
 with information used from the latest database release available from
 https://github.com/SBRG/bigg_models_data/releases. `AnnotateDB` currently includes `BiGG-v1.5`.
