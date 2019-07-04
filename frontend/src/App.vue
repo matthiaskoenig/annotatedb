@@ -13,11 +13,10 @@
       </v-btn>
       <v-spacer></v-spacer>
 
-      <!--
-      <v-btn icon color="black" href="https://www.github.com/matthiaskoenig/annotatedb" title="More information">
+
+      <v-btn icon color="black" href="https://www.github.com/matthiaskoenig/annotatedb" title="Documentation and additional information">
         <v-icon color="white">{{ icon('about')}}</v-icon>
       </v-btn>
-      -->
       <v-btn icon color="black" href="https://www.github.com/matthiaskoenig/annotatedb" title="GitHub code repository">
         <v-icon color="white">{{ icon('github')}}</v-icon>
       </v-btn>

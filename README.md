@@ -42,6 +42,7 @@ mapping was inferred
 To cite the project use [![DOI](https://zenodo.org/badge/191741174.svg)](https://zenodo.org/badge/latestdoi/191741174)
 
 ## Installation
+[Top](https://github.com/matthiaskoenig/annotatedb#-annotatedb)
 
 AnnotateDB is distributed as `docker` containers, requiring a working [`docker`](https://docs.docker.com/install/) and [`docker-compose`](https://docs.docker.com/compose/install/)
 installation. 
@@ -75,6 +76,8 @@ In later releases the installation will be simplified,
 i.e., prebuild docker containers will be available from dockerhub.
 
 ## REST webservice
+[Top](https://github.com/matthiaskoenig/annotatedb#-annotatedb)
+
 `AnnotateDB` provides `REST` endpoints for querying the database at https://annotatedb.com/api/v1.
 
 <a href="https://annotatedb.com/api/v1"><img alt="AnnotateDB logo" src="./docs/images/rest.png" width="800" /></a>
@@ -101,6 +104,8 @@ For now users should directly interact with the postgres database to interact
 with the mappings (see information below).
 
 ## Postgres database
+[Top](https://github.com/matthiaskoenig/annotatedb#-annotatedb)
+
 The postgres database is accessible via
 ```
 HOST: localhost
@@ -115,9 +120,8 @@ The database contains the following main tables (see schema below):
 - `adb_mapping`: Mapping between annotations, from source annotation to target annotation. The kind of mapping is defined by the qualifier. E.g. the qualifier `BQM_IS` encodes that the source annotation `is` the target annotation.
 - `adb_evidence`: Evidence for the given mapping between annotations.
 
-In addition a materialized view for the mapping is provided which allows easy filtering and search of 
-mapped annotations and annotation synonyms: `mapping_view`. 
-For most use cases the `mapping_view` is the table to work with.
+In addition the materialized view `mapping_view` is provided which allows easy filtering and search of 
+mapped annotations and annotation synonyms. For most use cases the `mapping_view` is the table to work with.
 
 <img alt="Database schema" src="./docs/images/schema_v0.1.0.png" width="400"/>
 
@@ -128,8 +132,7 @@ SELECT source_term FROM mapping_view
     WHERE (target_term = 'CHEBI:698' AND
            target_namespace = 'chebi' AND 
            source_namespace = 'bigg.metabolite' AND
-           qualifier = 'IS')
-    ORDER BY target_namespace, target_term;
+           qualifier = 'IS');
 ```
 Which results in 
 ```
@@ -140,6 +143,7 @@ with output [here](./docs/examples/python/example_postgres.out).
 
 
 ## Data sources
+[Top](https://github.com/matthiaskoenig/annotatedb#-annotatedb)
 
 ### Collections
 <h4><img alt="identifiers.org" src="./docs/images/identifiers.png" height="20" /> identifiers.org</h4>
@@ -151,11 +155,12 @@ Collections were parsed with [`sbmlutils`](https://github.com/matthiaskoenig/sbm
 <h4><img alt="BiGG databae" src="./docs/images/bigg.png" height="20" /> BiGG</h4>
 
 A major source of annotation mappings is the [BiGG Database](http://bigg.ucsd.edu/)
-with information used from the latest database release available from
-https://github.com/SBRG/bigg_models_data/releases. `AnnotateDB` currently includes `BiGG-v1.5`.
+with information used from the latest [database release](https://github.com/SBRG/bigg_models_data/releases). `AnnotateDB` currently includes `BiGG-v1.5`.
 
 
 ## Release notes
+[Top](https://github.com/matthiaskoenig/annotatedb#-annotatedb)
+
 ### 0.1.1
 * bug fixes admin interface 
 * bug fixes frontend server
