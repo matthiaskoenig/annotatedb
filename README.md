@@ -115,6 +115,9 @@ http://localhost:9000/
 
 # elasticsearch
 http://localhost:9124/
+
+# kibana
+http://localhost:5610/
 ```
 As soon as a more stable state of `AnnotateDB` is reached the installation will be further simplified.
 
