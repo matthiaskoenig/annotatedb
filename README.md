@@ -6,7 +6,7 @@
 and
 <b><a href="https://orcid.org/0000-0002-4588-4925" title="0000-0002-4588-4925"><img src="./docs/images/orcid.png" height="15"/></a> Jan Grzegorzewski</b>
 
-<h1><img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="75" /> AnnotateDB</h1>
+<h1><img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="45" /> AnnotateDB</h1>
 
 * [Overview](https://github.com/matthiaskoenig/annotatedb#overview)
 * [Installation](https://github.com/matthiaskoenig/annotatedb#installation)
@@ -14,9 +14,10 @@ and
 * [Postgres database](https://github.com/matthiaskoenig/annotatedb#postgres-database)
 * [Data sources](https://github.com/matthiaskoenig/annotatedb#data-sources)
 * [Release notes](https://github.com/matthiaskoenig/annotatedb#release-notes)
+* [Acknowledgements](https://github.com/matthiaskoenig/annotatedb#acknowledgements)
 
 ## Overview
-<img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="20" /> `AnnotateDB` (pronounced `annotated bee`) is a database with web frontend for mapping of annotations found in computational models in biology.
+[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) `AnnotateDB` (pronounced `annotated bee`) is a database with web frontend for mapping of annotations found in computational models in biology.
 `AnnotateDB` is accessible via https://annotatedb.com.
 
 * **Our mission** is to provide mapped annotation resources which simplify annotation of computational models and mapping of entities in such models.
@@ -42,7 +43,7 @@ mapping was inferred
 To cite the project use [![DOI](https://zenodo.org/badge/191741174.svg)](https://zenodo.org/badge/latestdoi/191741174)
 
 ## Installation
-[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) AnnotateDB is distributed as `docker` containers, requiring a working [`docker`](https://docs.docker.com/install/) and [`docker-compose`](https://docs.docker.com/compose/install/)
+[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) `AnnotateDB` is distributed as `docker` containers, requiring a working [`docker`](https://docs.docker.com/install/) and [`docker-compose`](https://docs.docker.com/compose/install/)
 installation. 
 
 To install `AnnotateDB` locally use 
@@ -83,7 +84,7 @@ Some examples
 * to query the `mappings`use: [`https://annotatedb.com/api/v1/mappings/?format=json`](https://annotatedb.com/api/v1/mappings/?format=json).
 * to query a single `collection` use [`https://annotatedb.com/api/v1/collections/sbo/?format=json`](https://annotatedb.com/api/v1/collections/sbo/?format=json). 
 
-This will return the information on the `collection`.
+This will return the information on the `collection`, in this example for `sbo`
 
 ```json
 {
@@ -95,7 +96,7 @@ This will return the information on the `collection`.
 }
 ```
 Currently only basic `REST` endpoints are available. With the introduction of the `elasticsearch` 
-endpoints the REST base search will largely improve.
+endpoints in [`v0.2.0`](https://github.com/matthiaskoenig/annotatedb/milestone/3) the REST based search will largely improve.
 For now users should directly interact with the postgres database to interact
 with the mappings (see information below).
 
@@ -128,7 +129,7 @@ SELECT source_term FROM mapping_view
            source_namespace = 'bigg.metabolite' AND
            qualifier = 'IS');
 ```
-Which results in 
+which results in 
 ```
 ('10fthf',)
 ```
@@ -173,5 +174,9 @@ with information used from the latest [database release](https://github.com/SBRG
 * first database schema
 * docker-compose files for backend, database and elasticsearch
 
----
-&copy; Matthias König and Jan Grzegorzewski
+## Acknowledgements
+[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) We acknowledge 
+* [Dr. Andreas Dräger](http://draeger-lab.org) 
+* Thomas Zajac
+
+for their input and discussions.
