@@ -32,8 +32,33 @@ The `elasticsearch` are still in development.
 
 <a href="https://annotatedb.com/api/v1"><img alt="AnnotateDB logo" src="./docs/images/rest.png" width="400" /></a>
 
+To query the `collections` and `mappings` use:
+```
+# query collections
+https://annotatedb.com/api/v1/collections/?format=json
+
+# query mappings
+https://annotatedb.com/api/v1/mappings/?format=json
+```
+
+To query a single collection use
+```
+# information for single collection
+https://annotatedb.com/api/v1/collections/sbo/?format=json
+```
+```json
+{
+  "namespace":"sbo",
+  "miriam":true,
+  "name":"Systems Biology Ontology",
+  "idpattern":"^SBO:\\d{7}$",
+  "urlpattern":"https://identifiers.org/sbo/{$id}",
+}
+```
+Currently only basic `REST` endpoints are available.
 With the introduction of the `elasticsearch` endpoints the REST base search will largely improve.
-For now users should directly interact with the postgres database (see information below).
+For now users should directly interact with the postgres database to interact
+with the mappings (see information below).
 
 ### License
 * Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
