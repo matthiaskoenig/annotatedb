@@ -9,12 +9,12 @@ and
 <b><a href="https://orcid.org/0000-0002-4588-4925" title="0000-0002-4588-4925"><img src="./docs/images/orcid.png" height="15"/></a> Jan Grzegorzewski</b>
 
 `AnnotateDB` (pronounced `annotated bee`, https://annotatedb.com) is a database with web frontend for mapping of annotations found in computational models in biology.
-**Our mission** is to provide mapped annotation resources which simplify annotation of computational models and mapping of entities in such models.
-**Our vision** is to provide a single integrated knowledge resource which simplifies mapping between commonly occurring 
+* **Our mission** is to provide mapped annotation resources which simplify annotation of computational models and mapping of entities in such models.
+* **Our vision** is to provide a single integrated knowledge resource which simplifies mapping between commonly occurring 
 annotations in biological models and data.
 
 `AnnotateDB` provides a high quality mapping of annotations on each other based on existing resources. 
-Key features are
+Features are
 - annotation mappings from multiple sources
 - support for custom annotation mappings
 - support for `qualifiers`, i.e., more detailed relationships between annotations
@@ -25,9 +25,57 @@ mapping was inferred
 - `REST` based web interface
 - `elastisearch` based indexing and search
 
-The `elasticsearch` are still in development.
+The `elasticsearch` end points are still in development and will be part of `v0.2.0`.
 
-### REST webservice
+`AnnotateDB` is realised under the following license
+* Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
+* Documentation: [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+
+To cite the project use [![DOI](https://zenodo.org/badge/191741174.svg)](https://zenodo.org/badge/latestdoi/191741174)
+
+## Table of contents
+* [Installation](https://github.com/matthiaskoenig/annotatedb#installation)
+* [REST webservice](https://github.com/matthiaskoenig/annotatedb#rest-webservice)
+* [Postgres database](https://github.com/matthiaskoenig/annotatedb#postgres-database)
+* [Data sources](https://github.com/matthiaskoenig/annotatedb#data-sources)
+* [Release notes](https://github.com/matthiaskoenig/annotatedb#release-notes)
+
+## Installation
+
+AnnotateDB is distributed as containers. 
+This requires a working [`docker`](https://docs.docker.com/install/) and [`docker-compose`](https://docs.docker.com/compose/install/)
+installation on your system. 
+
+To install `AnnotateDB` locally use 
+```bash
+# clone or pull the latest source code
+git clone https://github.com/matthiaskoenig/annotatedb.git
+cd annotatedb
+
+# set environment variables
+set -a && source .env.local 
+
+# create/rebuild all docker containers
+./docker-purge.sh
+
+# restore database
+./adb_restore.sh
+
+# elasticsearch indexing
+./elasticsearch.sh
+```
+
+The services are then available on
+* `adb_postgres`: http://localhost:5434/ (postgres database)
+* `adb_backend`: http://localhost:5434/ (django backend)
+* `adb_frontend`: http://localhost:8090/ (vue.js frontend)
+* `adb_elasticsearch`: http://localhost:9124/ (elasticsearch instance)
+* `adb kibana`: http://localhost:5610/ (elasticsearch visualization)
+
+As soon as a more stable state of `AnnotateDB` is reached the installation will be further simplified, 
+i.e., prebuild docker containers will be available from dockerhub.
+
+## REST webservice
 `AnnotateDB` provides `REST` endpoints for querying the database at https://annotatedb.com/api/v1.
 
 <a href="https://annotatedb.com/api/v1"><img alt="AnnotateDB logo" src="./docs/images/rest.png" width="400" /></a>
@@ -60,68 +108,7 @@ With the introduction of the `elasticsearch` endpoints the REST base search will
 For now users should directly interact with the postgres database to interact
 with the mappings (see information below).
 
-### License
-* Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
-* Documentation: [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
-
-## Data sources
-
-### Collections
-#### identifiers.org
-Information on collections is based mainly on [identifiers.org](http://identifiers.org/collection).
-Collections were parsed with [`sbmlutils`](https://github.com/matthiaskoenig/sbmlutils).
-
-### Mappings
-#### BiGG
-A major source of annotation mappings is the [BiGG Database](http://bigg.ucsd.edu/)
-with information used from the latest database release available from
-https://github.com/SBRG/bigg_models_data/releases. `AnnotateDB` currently includes `BiGG-v1.5`.
-
-
-## Installation (docker-compose)
-AnnotateDB is distributed as `docker` containers. This requires a working `docker` and `docker-compose`
-installation on your system. 
-
-The local setup is as simple as 
-```bash
-# clone or pull the latest source code
-git clone https://github.com/matthiaskoenig/annotatedb.git
-cd annotatedb
-
-# set environment variables
-set -a && source .env.local 
-
-# create/rebuild all docker containers
-./docker-purge.sh
-
-# restore database
-./adb_restore.sh
-
-# elasticsearch indexing
-./elasticsearch.sh
-
-```
-The services are running on the following ports
-
-```
-# postgres database
-http://localhost:5434/
-
-# vue.js frontend
-http://localhost:8090/
-
-# django backend
-http://localhost:9000/
-
-# elasticsearch
-http://localhost:9124/
-
-# kibana
-http://localhost:5610/
-```
-As soon as a more stable state of `AnnotateDB` is reached the installation will be further simplified.
-
-## Working with the postgres database
+## Postgres database
 The postgres database is accessible via
 ```
 HOST: localhost
@@ -159,6 +146,20 @@ A more comprehensive list of SQL queries and use cases is provided [here](./docs
 with output [here](./docs/examples/python/example_postgres.out).
 
 
+## Data sources
+
+### Collections
+<h4><img alt="identifiers.org" src="./docs/images/identifiers.png" height="35" /> identifiers.org</h4>
+Information on collections is based mainly on [identifiers.org](http://identifiers.org/collection).
+Collections were parsed with [`sbmlutils`](https://github.com/matthiaskoenig/sbmlutils).
+
+### Mappings
+<h4><img alt="BiGG databae" src="./docs/images/bigg.png" height="35" /> BiGG</h4>
+A major source of annotation mappings is the [BiGG Database](http://bigg.ucsd.edu/)
+with information used from the latest database release available from
+https://github.com/SBRG/bigg_models_data/releases. `AnnotateDB` currently includes `BiGG-v1.5`.
+
+
 ## Release notes
 ### 0.1.1
 * bug fixes admin interface 
@@ -177,7 +178,6 @@ with output [here](./docs/examples/python/example_postgres.out).
 * django development server
 * first database schema
 * docker-compose files for backend, database and elasticsearch
-
 
 ---
 &copy; Matthias König and Jan Grzegorzewski
