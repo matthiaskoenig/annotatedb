@@ -3,7 +3,6 @@
 # Complete purge of all containers and images !
 #
 # Execute via setting environment variables
-#     set -a && source .env
 #     set -a && source .env.local (develop)
 #     ./docker-purge.sh
 # -----------------------------------------------------------------------------
@@ -16,18 +15,19 @@ sudo echo "Purging database and all docker containers, volumes, images ($ADB_DOC
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML down --volumes --rmi local
 
 # make sure containers are removed (if not running)
-docker container rm -f annotatedb_backend_1
-docker container rm -f annotatedb_frontend_1
-docker container rm -f annotatedb_adb_1
-docker container rm -f annotatedb_elasticsearch_1
-docker container rm -f annotatedb_nginx_1
+docker container rm -f adb_backend
+docker container rm -f adb_frontend
+docker container rm -f adb_postgres
+docker container rm -f adb_elasticsearch
+docker container rm -f adb_nginx
+docker container rm -f adb_kibana
 
 # make sure images are removed
-docker image rm -f annotatedb_backend:latest
-docker image rm -f annotatedb_frontend:latest
-docker image rm -f annotatedb_adb:latest
-docker image rm -f annotatedb_elasticsearch:latest
-docker image rm -f annotatedb_nginx:latest
+docker image rm -f adb_backend:latest
+docker image rm -f adb_frontend:latest
+docker image rm -f adb_adb:latest
+docker image rm -f adb_elasticsearch:latest
+docker image rm -f adb_nginx:latest
 
 # make sure volumes are removed
 docker volume rm -f annotatedb_django_media
@@ -36,7 +36,6 @@ docker volume rm -f annotatedb_elasticsearch_data
 docker volume rm -f annotatedb_adb_data
 docker volume rm -f annotatedb_vue_dist
 docker volume rm -f annotatedb_node_modules
-
 
 # cleanup all dangling images, containers, volumes and networks
 docker system prune --force
@@ -53,14 +52,14 @@ sudo rm -rf static
 # build and start containers
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML build --no-cache
 
-echo "***Make migrations & collect static ***"
+echo "*** Make migrations & collect static ***"
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend bash -c "/usr/local/bin/python manage.py makemigrations && /usr/local/bin/python manage.py migrate && /usr/local/bin/python manage.py collectstatic --noinput "
 
-#echo "*** Setup admin user ***"
+echo "*** Setup admin user ***"
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend bash -c "/usr/local/bin/python manage.py createsuperuser2 --username admin --password ${ADB_ADMIN_PASSWORD} --email koenigmx@hu-berlin.de --noinput"
 
-echo "*** Build elasticsearch index ***"
-docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend ./manage.py search_index --rebuild -f
+# echo "*** Build elasticsearch index ***"
+# docker-compose -f $ADB_DOCKER_COMPOSE_YAML run --rm backend ./manage.py search_index --rebuild -f
 
 echo "*** Running containers ***"
 docker-compose -f $ADB_DOCKER_COMPOSE_YAML up --detach

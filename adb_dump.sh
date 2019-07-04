@@ -29,7 +29,7 @@ echo "Create postgres dump"
 echo "-------------------------------"
 mkdir -p $BACKUP_DIR
 echo "Backup to" $BACKUP_DIR
-docker exec -u $ADB_DB_USER annotatedb_adb_1 pg_dump -v -Fc $ADB_DB_NAME > $DB_DUMP
+docker exec -u $ADB_DB_USER adb_postgres pg_dump -v -Fc $ADB_DB_NAME > $DB_DUMP
 if [ -e $DB_DUMP ]
 then
     echo "SUCCESS $DB_DUMP"

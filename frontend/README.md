@@ -1,5 +1,11 @@
 # frontend
 
+rebuild container
+```
+docker-compose -f $ADB_DOCKER_COMPOSE_YAML up -d --no-deps --build frontend
+```
+
+
 ## Project setup
 ```
 npm install

@@ -23,16 +23,21 @@ SECRET_KEY = os.environ['ADB_SECRET_KEY']
 API_BASE = os.environ['ADB_API_BASE']
 API_URL = API_BASE + "/api/v1"
 # -------------------------------------------------------------------------------------------------
+
+
+# ------------------------------
+# LOCAL
+# ------------------------------
 DJANGO_CONFIGURATION = os.environ['ADB_DJANGO_CONFIGURATION']
+if DJANGO_CONFIGURATION == 'local':
+    DEBUG = True
+# ------------------------------
+# Production
+# ------------------------------
+elif DJANGO_CONFIGURATION == 'production':
+    DEBUG = False
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9fr5(9b^_3!p^_@92@ycy%s=#2db==7_!8wseb@y7l*ie2l6c='
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -56,7 +61,9 @@ INSTALLED_APPS = [
     'django_elasticsearch_dsl_drf',
 
     # adb
-    "adb_app.adb",
+    'adb_app.adb',
+    'adb_app.search_indexes',  # Elasticsearch integration with the Django
+                               # REST framework
 ]
 
 MIDDLEWARE = [
@@ -132,8 +139,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    "PAGE_SIZE": int(os.getenv("DJANGO_PAGINATION_LIMIT", 20)),
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+    "PAGE_SIZE": int(os.getenv("DJANGO_PAGINATION_LIMIT", 100)),
     'PAGINATE_BY': 10,  # Default to 10
     'PAGINATE_BY_PARAM': 'page_size',  # Allow client to override, using `?page_size=xxx`.
     'MAX_PAGINATE_BY': 100,
@@ -169,6 +177,11 @@ ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'elasticsearch:9200'
     },
+}
+
+# Name of the Elasticsearch index
+ELASTICSEARCH_INDEX_NAMES = {
+    'adb_app.search_indexes.documents': 'mapping',
 }
 
 # Internationalization

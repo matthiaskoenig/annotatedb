@@ -15,7 +15,7 @@ class Collection(models.Model):
     urlpattern = models.CharField(max_length=300)
 
     class Meta:
-        pass
+        ordering = ["id"]
 
     def __str__(self):
         return self.namespace
@@ -35,6 +35,7 @@ class Evidence(models.Model):
     evidence = models.CharField(max_length=40, choices=EVIDENCE_CHOICES)
 
     class Meta:
+        ordering = ["id"]
         unique_together = [['source', 'version']]
 
     def __str__(self):
@@ -65,12 +66,12 @@ class Annotation(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
-        # db_table = "annotation"
+        ordering = ["term"]
         unique_together = [['term', 'collection']]
 
         indexes = [
             models.Index(fields=['term', 'collection']),
-            models.Index(fields=['term'], name='collection'),
+            models.Index(fields=['term']),
         ]
 
     def __str__(self):
@@ -97,4 +98,5 @@ class Mapping(models.Model):
     evidence = models.ForeignKey(Evidence, on_delete=models.CASCADE)
 
     class Meta:
-        pass
+        ordering = ["id"]
+        unique_together = [['source', 'qualifier', 'target', 'evidence']]

@@ -11,10 +11,11 @@ django-cors-headers>=2.4.0
 djangorestframework_simplejwt>=4.3.0
 
 
-# elasticsearch
+# elasticsearch (https://github.com/sabricot/django-elasticsearch-dsl/issues/177)
+# >=6.0<7.0
 elasticsearch-dsl==6.1.0
 django-elasticsearch-dsl>=0.5.1
-django-elasticsearch-dsl-drf>=0.17.7
+django-elasticsearch-dsl-drf>=0.18
 
 # Developer Tools
 ipdb>=0.11
@@ -30,4 +31,10 @@ coverage>=4.5.1
 
 # reading environment variables
 python-dotenv
+
+# logging
+json-logging>=0.1.1
 coloredlogs>=10.0
+
+requests
+
