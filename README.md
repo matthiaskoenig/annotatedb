@@ -33,7 +33,7 @@ mapping was inferred
 - direct access to the `postgres` database
 - `docker` and `docker-compose` scripts for easy local setup and deployment
 - `REST` based web interface
-- `elastisearch` based indexing and search (The `elasticsearch` end points are still in development and will be part of `v0.2.0`)
+- `elastisearch` based indexing and search (The `elasticsearch` end points are still in development and will be part of [`v0.2.0`](https://github.com/matthiaskoenig/annotatedb/milestone/3))
 
 `AnnotateDB` is accessible under the following licenses
 * Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
@@ -63,7 +63,7 @@ set -a && source .env.local
 # elasticsearch indexing
 ./elasticsearch.sh
 ```
-The docker services can be accessed via
+This creates the following services
 * `adb_postgres` http://localhost:5434/ - postgres database
 * `adb_backend` http://localhost:5434/ - django backend
 * `adb_frontend` http://localhost:8090/ - vue.js frontend
@@ -71,7 +71,7 @@ The docker services can be accessed via
 * `adb kibana` http://localhost:5610/ - elasticsearch visualization
 
 In later releases the installation will be simplified, 
-i.e., prebuild docker containers will be available from dockerhub.
+i.e., prebuild docker containers will be available from dockerhub (see [#32](https://github.com/matthiaskoenig/annotatedb/issues/32)).
 
 ## REST webservice
 [[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) `AnnotateDB` provides `REST` endpoints for querying the database at https://annotatedb.com/api/v1.
@@ -100,7 +100,7 @@ For now users should directly interact with the postgres database to interact
 with the mappings (see information below).
 
 ## Postgres database
-[[^]] (https://github.com/matthiaskoenig/annotatedb#-annotatedb) The postgres database is accessible via
+[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) The postgres database is accessible via
 ```
 HOST: localhost
 PORT: 5434
@@ -137,7 +137,7 @@ with output [here](./docs/examples/python/example_postgres.out).
 
 
 ## Data sources
-[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) `AnnotateDB` is currently build on the following data sources:
+[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) `AnnotateDB` uses the following data sources:
 
 ### Collections
 <h4><img alt="identifiers.org" src="./docs/images/identifiers.png" height="20" /> identifiers.org</h4>
@@ -153,7 +153,7 @@ with information used from the latest [database release](https://github.com/SBRG
 
 
 ## Release notes
-[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb)
+[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) This section provides an overview of major changes and releases
 
 ### 0.1.1
 * bug fixes admin interface 
