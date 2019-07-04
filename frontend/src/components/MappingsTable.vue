@@ -51,7 +51,7 @@
         },
         computed: {
             resource_url() {
-                return this.$store.state.endpoints.api  + '/search/mappings/?format=json'
+                return this.$store.state.endpoints.django  + '/search/mappings/?format=json'
             },
             /**
              * Create query url.
@@ -59,12 +59,12 @@
              */
             url() {
                 var url = this.resource_url
-                    + '&page='+ this.pagination.page
-                    + '&page_size='+ this.pagination.rowsPerPage
-                    + '&ordering='+ this.descending+ this.pagination.sortBy;
-                if (this.search){
-                    url += '&search_multi_match='+ this.search
-                }
+                    // + '&page='+ this.pagination.page
+                    // + '&page_size='+ this.pagination.rowsPerPage
+                // + '&ordering='+ this.descending+ this.pagination.sortBy;
+                // if (this.search){
+                //     url += '&search_multi_match='+ this.search
+                // }
 
                 return url
             },
@@ -85,6 +85,7 @@
 
             getData() {
                 var headers = {};
+                console.log(this.url)
                 if (localStorage.getItem('token')) {
                     var headers = {
                         Authorization :  'Token ' + localStorage.getItem('token')
