@@ -1,14 +1,24 @@
 [![DOI](https://zenodo.org/badge/191741174.svg)](https://zenodo.org/badge/latestdoi/191741174)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 [![GitHub version](https://badge.fury.io/gh/matthiaskoenig%2Fannotatedb.svg)](https://badge.fury.io/gh/matthiaskoenig%2Fannotatedb)
-
-
-<h1><img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="75" /> AnnotateDB</h1>
 <b><a href="https://orcid.org/0000-0003-1725-179X" title="https://orcid.org/0000-0003-1725-179X"><img src="./docs/images/orcid.png" height="15" width="15"/></a> Matthias König</b>
 and
 <b><a href="https://orcid.org/0000-0002-4588-4925" title="0000-0002-4588-4925"><img src="./docs/images/orcid.png" height="15"/></a> Jan Grzegorzewski</b>
 
-`AnnotateDB` (pronounced `annotated bee`, https://annotatedb.com) is a database with web frontend for mapping of annotations found in computational models in biology.
+<h1><img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="75" /> AnnotateDB</h1>
+
+## Table of contents
+* [Overview](https://github.com/matthiaskoenig/annotatedb#overview)
+* [Installation](https://github.com/matthiaskoenig/annotatedb#installation)
+* [REST webservice](https://github.com/matthiaskoenig/annotatedb#rest-webservice)
+* [Postgres database](https://github.com/matthiaskoenig/annotatedb#postgres-database)
+* [Data sources](https://github.com/matthiaskoenig/annotatedb#data-sources)
+* [Release notes](https://github.com/matthiaskoenig/annotatedb#release-notes)
+
+## Overview
+<img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="35" /> `AnnotateDB` (pronounced `annotated bee`) is a database with web frontend for mapping of annotations found in computational models in biology.
+`AnnotateDB` is accessible via https://annotatedb.com.
+
 * **Our mission** is to provide mapped annotation resources which simplify annotation of computational models and mapping of entities in such models.
 * **Our vision** is to provide a single integrated knowledge resource which simplifies mapping between commonly occurring 
 annotations in biological models and data.
@@ -23,22 +33,14 @@ mapping was inferred
 - direct access to the `postgres` database
 - `docker` and `docker-compose` scripts for easy local setup and deployment
 - `REST` based web interface
-- `elastisearch` based indexing and search
-
-The `elasticsearch` end points are still in development and will be part of `v0.2.0`.
-
-`AnnotateDB` is realised under the following license
-* Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
-* Documentation: [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+- `elastisearch` based indexing and search (The `elasticsearch` end points are still in development and will be part of `v0.2.0`)
 
 To cite the project use [![DOI](https://zenodo.org/badge/191741174.svg)](https://zenodo.org/badge/latestdoi/191741174)
 
-## Table of contents
-* [Installation](https://github.com/matthiaskoenig/annotatedb#installation)
-* [REST webservice](https://github.com/matthiaskoenig/annotatedb#rest-webservice)
-* [Postgres database](https://github.com/matthiaskoenig/annotatedb#postgres-database)
-* [Data sources](https://github.com/matthiaskoenig/annotatedb#data-sources)
-* [Release notes](https://github.com/matthiaskoenig/annotatedb#release-notes)
+`AnnotateDB` is realised under the following licenses
+* Source Code: [LGPLv3](http://opensource.org/licenses/LGPL-3.0)
+* Documentation: [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
+
 
 ## Installation
 
