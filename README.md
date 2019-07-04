@@ -71,6 +71,10 @@ set -a && source .env.local
 
 # restore database
 ./adb_restore.sh
+
+# elasticsearch indexing
+./elasticsearch.sh
+
 ```
 The services are running on the following ports
 
@@ -128,6 +132,14 @@ with output [here](./docs/examples/python/example_postgres.out).
 
 
 ## Release notes
+### 0.1.1
+* bug fixes admin interface 
+* bug fixes frontend server
+* enforcing uniqueness of mappings & removing duplicates
+* materialized views
+* detailed postgres examples 
+* updated documentation
+
 ### 0.1.0
 * vue frontend
 * bigg mappings import
