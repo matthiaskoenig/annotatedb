@@ -42,7 +42,7 @@ mapping was inferred
 To cite the project use [![DOI](https://zenodo.org/badge/191741174.svg)](https://zenodo.org/badge/latestdoi/191741174)
 
 ## Installation
-[^](https://github.com/matthiaskoenig/annotatedb#-annotatedb) AnnotateDB is distributed as `docker` containers, requiring a working [`docker`](https://docs.docker.com/install/) and [`docker-compose`](https://docs.docker.com/compose/install/)
+[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) AnnotateDB is distributed as `docker` containers, requiring a working [`docker`](https://docs.docker.com/install/) and [`docker-compose`](https://docs.docker.com/compose/install/)
 installation. 
 
 To install `AnnotateDB` locally use 
@@ -74,7 +74,7 @@ In later releases the installation will be simplified,
 i.e., prebuild docker containers will be available from dockerhub.
 
 ## REST webservice
-[^](https://github.com/matthiaskoenig/annotatedb#-annotatedb) `AnnotateDB` provides `REST` endpoints for querying the database at https://annotatedb.com/api/v1.
+[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) `AnnotateDB` provides `REST` endpoints for querying the database at https://annotatedb.com/api/v1.
 
 <a href="https://annotatedb.com/api/v1"><img alt="AnnotateDB logo" src="./docs/images/rest.png" width="800" /></a>
 
@@ -100,7 +100,7 @@ For now users should directly interact with the postgres database to interact
 with the mappings (see information below).
 
 ## Postgres database
-[^] (https://github.com/matthiaskoenig/annotatedb#-annotatedb) The postgres database is accessible via
+[[^]] (https://github.com/matthiaskoenig/annotatedb#-annotatedb) The postgres database is accessible via
 ```
 HOST: localhost
 PORT: 5434
@@ -137,7 +137,7 @@ with output [here](./docs/examples/python/example_postgres.out).
 
 
 ## Data sources
-[^](https://github.com/matthiaskoenig/annotatedb#-annotatedb) `AnnotateDB` is currently build on the following data sources:
+[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) `AnnotateDB` is currently build on the following data sources:
 
 ### Collections
 <h4><img alt="identifiers.org" src="./docs/images/identifiers.png" height="20" /> identifiers.org</h4>
@@ -153,7 +153,7 @@ with information used from the latest [database release](https://github.com/SBRG
 
 
 ## Release notes
-[^](https://github.com/matthiaskoenig/annotatedb#-annotatedb)
+[[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb)
 
 ### 0.1.1
 * bug fixes admin interface 
