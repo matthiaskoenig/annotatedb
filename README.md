@@ -1,6 +1,7 @@
 [![DOI](https://zenodo.org/badge/191741174.svg)](https://zenodo.org/badge/latestdoi/191741174)
 [![License (LGPL version 3)](https://img.shields.io/badge/license-LGPLv3.0-blue.svg?style=flat-square)](http://opensource.org/licenses/LGPL-3.0)
 [![GitHub version](https://badge.fury.io/gh/matthiaskoenig%2Fannotatedb.svg)](https://badge.fury.io/gh/matthiaskoenig%2Fannotatedb)
+
 <b><a href="https://orcid.org/0000-0003-1725-179X" title="https://orcid.org/0000-0003-1725-179X"><img src="./docs/images/orcid.png" height="15" width="15"/></a> Matthias König</b>
 and
 <b><a href="https://orcid.org/0000-0002-4588-4925" title="0000-0002-4588-4925"><img src="./docs/images/orcid.png" height="15"/></a> Jan Grzegorzewski</b>
@@ -77,14 +78,14 @@ i.e., prebuild docker containers will be available from dockerhub.
 ## REST webservice
 `AnnotateDB` provides `REST` endpoints for querying the database at https://annotatedb.com/api/v1.
 
-<a href="https://annotatedb.com/api/v1"><img alt="AnnotateDB logo" src="./docs/images/rest.png" width="400" /></a>
+<a href="https://annotatedb.com/api/v1"><img alt="AnnotateDB logo" src="./docs/images/rest.png" width="800" /></a>
 
-To query the existing `collections`use: https://annotatedb.com/api/v1/collections/?format=json.
+Some examples
+* to query the `collections`use: [`https://annotatedb.com/api/v1/collections/?format=json`](https://annotatedb.com/api/v1/collections/?format=json).
+* to query the `mappings`use: [`https://annotatedb.com/api/v1/mappings/?format=json`](https://annotatedb.com/api/v1/mappings/?format=json).
+* to query a single `collection` use [`https://annotatedb.com/api/v1/collections/sbo/?format=json`](https://annotatedb.com/api/v1/collections/sbo/?format=json). 
 
-To query the existing `mappings`use: https://annotatedb.com/api/v1/mappings/?format=json.
-
-To query a single `collection` use https://annotatedb.com/api/v1/collections/sbo/?format=json. This will return
-the information on the `collection`.
+This will return the information on the `collection`.
 
 ```json
 {
@@ -143,11 +144,13 @@ with output [here](./docs/examples/python/example_postgres.out).
 
 ### Collections
 <h4><img alt="identifiers.org" src="./docs/images/identifiers.png" height="20" /> identifiers.org</h4>
+
 Information on collections is based mainly on [identifiers.org](http://identifiers.org/collection).
 Collections were parsed with [`sbmlutils`](https://github.com/matthiaskoenig/sbmlutils).
 
 ### Mappings
 <h4><img alt="BiGG databae" src="./docs/images/bigg.png" height="20" /> BiGG</h4>
+
 A major source of annotation mappings is the [BiGG Database](http://bigg.ucsd.edu/)
 with information used from the latest database release available from
 https://github.com/SBRG/bigg_models_data/releases. `AnnotateDB` currently includes `BiGG-v1.5`.
