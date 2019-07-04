@@ -8,7 +8,6 @@ and
 
 <h1><img alt="AnnotateDB logo" src="./docs/images/annotatedb_logo.png" height="75" /> AnnotateDB</h1>
 
-## Table of contents
 * [Overview](https://github.com/matthiaskoenig/annotatedb#overview)
 * [Installation](https://github.com/matthiaskoenig/annotatedb#installation)
 * [REST webservice](https://github.com/matthiaskoenig/annotatedb#rest-webservice)
