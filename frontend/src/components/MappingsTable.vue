@@ -84,17 +84,17 @@
             },
 
             getData() {
-                var headers = {};
+                let headers = {};
                 console.log(this.url)
                 if (localStorage.getItem('token')) {
-                    var headers = {
+                    headers = {
                         Authorization :  'Token ' + localStorage.getItem('token')
                     }
                 }
                 axios.get(this.url, {headers: headers})
                     .then(res => {
-                        this.entries = res.results;
-                        this.count = res.count;
+                        this.entries = res.data.results;
+                        this.count = res.data.count;
                     })
                     .catch(err => {
                         console.log(err);
