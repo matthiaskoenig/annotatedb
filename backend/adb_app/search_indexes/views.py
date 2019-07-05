@@ -41,14 +41,25 @@ class MappingDocumentView(BaseDocumentViewSet):
     ]
     # Define search fields
     search_fields = (
-        'pk',
         'source.term',
-        'target.term'
+        'source.collection.namespace',
+        'source.collection.miriam',
+
+        'qualifier',
+
+        'target.namespace',
+        'target.collection.namespace',
+        'target.collection.miriam',
+
+        'evidence.id',
+        'evidence.source',
+        'evidence.version',
+        'evidence.evidence',
     )
     # Define filter fields
     filter_fields = {
-        'pk': 'pk.raw'
+        'id': 'id.raw'
     }
     ordering_fields = {
-        'pk': 'pk',
+        'id': None,
     }

@@ -1,17 +1,9 @@
 from django.conf import settings
-from django_elasticsearch_dsl import DocType, Index, fields
+from django_elasticsearch_dsl import DocType, Index, fields, DEDField, Object, collections
 from elasticsearch_dsl import analyzer, token_filter
 
 from adb_app.adb.models import Mapping
 
-# Name of the Elasticsearch index
-INDEX = Index(settings.ELASTICSEARCH_INDEX_NAMES[__name__])
-
-# See Elasticsearch Indices API reference for available settings
-INDEX.settings(
-    number_of_shards=1,
-    number_of_replicas=1
-)
 
 html_strip = analyzer(
     'html_strip',
@@ -53,63 +45,105 @@ def string_field(attr, **kwargs):
         )
 
 
+class ObjectField(DEDField, Object):
+    """ Custom ObjectField to work with nested object data.
+        What is this needed for exactly.
+    """
 
-@INDEX.doc_type
+    def _get_inner_field_data(self, obj, field_value_to_ignore=None):
+        data = {}
+        if hasattr(self, 'properties'):
+            for name, field in self.properties.to_dict().items():
+                if not isinstance(field, DEDField):
+                    continue
+
+                if not field._path:
+                    field._path = [name]
+
+                data[name] = field.get_value_from_instance(
+                    obj, field_value_to_ignore
+                )
+        else:
+            for name, field in self._doc_class._doc_type.mapping.properties._params.get('properties', {}).items():  # noqa
+                if not isinstance(field, DEDField):
+                    continue
+
+                if not field._path:
+                    field._path = [name]
+
+                data[name] = field.get_value_from_instance(
+                    obj, field_value_to_ignore
+                )
+
+        return data
+
+    def get_value_from_instance(self, instance, field_value_to_ignore=None):
+        objs = super(ObjectField, self).get_value_from_instance(
+            instance, field_value_to_ignore
+        )
+
+        if objs is None:
+            return None
+        if isinstance(objs, collections.Iterable):
+            return [
+                self._get_inner_field_data(obj, field_value_to_ignore)
+                for obj in objs if obj != field_value_to_ignore
+            ]
+
+        return self._get_inner_field_data(objs, field_value_to_ignore)
+
+
+# Name of the Elasticsearch index
+mapping_index = Index(settings.ELASTICSEARCH_INDEX_NAMES[__name__])
+
+# See Elasticsearch Indices API reference for available settings
+mapping_index.settings(
+    number_of_shards=1,
+    number_of_replicas=1
+)
+
+
+@mapping_index.doc_type
 class MappingDocument(DocType):
-    """Mapping Elasticsearch document."""
+    """ Elasticsearch document for mapping.
 
-    pk = fields.IntegerField(attr='pk')
+    This includes the information of the annotations, collections and evidence
+    via ObjectFields.
+    """
+
+    id = fields.IntegerField(attr='id')
 
     source = fields.ObjectField(
         properties={
-            'pk': fields.IntegerField(),
-            'term': string_field("term"),
+            'id': fields.IntegerField(attr="id"),
+            'term': string_field(attr="term"),
+            'collection': fields.ObjectField(
+                properties={
+                    'id': fields.IntegerField(attr="id"),
+                    'namespace': string_field(attr="namespace"),
+                    'miriam': fields.BooleanField(attr="miriam"),
+                }
+            ),
         }
     )
     qualifier = string_field(attr="qualifier")
     target = fields.ObjectField(
         properties={
-            'pk': fields.IntegerField(),
-            'term': string_field("term"),
-        }
-    )
-
-    class Meta(object):
-        """Meta options."""
-        model = Mapping  # The model associate with this DocType
-
-
-'''    
-    source = fields.ObjectField(
-        properties={
-            'pk': fields.IntegerField(),
+            'id': fields.IntegerField(attr="id"),
+            'term': string_field(attr="term"),
             'collection': fields.ObjectField(
                 properties={
-                    'pk': string_field("pk"),
-                    'namespace': string_field("namespace"),
-                    'miriam': fields.BooleanField("miriam"),
+                    'id': fields.IntegerField(attr="id"),
+                    'namespace': string_field(attr="namespace"),
+                    'miriam': fields.BooleanField(attr="miriam"),
                 }
             ),
-            'term': string_field("term"),
         }
     )
-    qualifier = string_field(attr="qualifier")
-    target = fields.ObjectField(
-        properties={
-            'pk': fields.IntegerField(),
-            'collection': fields.ObjectField(
-                properties={
-                    'pk': string_field("pk"),
-                    'namespace': string_field("namespace"),
-                    'miriam': fields.BooleanField("miriam"),
-                }
-            ),
-            'term': string_field("term"),
-        }
-    )
+
     evidence = fields.ObjectField(
         properties={
-            'pk': fields.IntegerField(),
+            'id': fields.IntegerField("id"),
             'source': string_field("source"),
             'version': string_field("version"),
             'evidence': string_field("evidence")
@@ -120,4 +154,8 @@ class MappingDocument(DocType):
     class Meta(object):
         """Meta options."""
         model = Mapping  # The model associate with this DocType
-'''
+
+        # Ignore auto updating of Elasticsearch when a model is saved or deleted:
+        # ignore_signals = True
+        # Don't perform an index refresh after every update (overrides global setting):
+        # auto_refresh = False

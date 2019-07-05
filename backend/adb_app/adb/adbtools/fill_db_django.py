@@ -15,7 +15,7 @@ echo $ADB_VERSION
 ./docker-purge.sh
 
 [3] execute this script in docker container (check log file)
-docker exec -it annotatedb_backend_1 bash
+docker exec -it adb_backend bash
 root@76d113208c20:/# cd adb_app/adb/adbtools/
 root@76d113208c20:/# python fill_db_django.py
 

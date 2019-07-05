@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from .views import MappingDocumentView
 
 router = DefaultRouter()
-books = router.register(r'mappings',
+books = router.register(r'mapping',
                         MappingDocumentView,
                         basename='mappingdocument')
 

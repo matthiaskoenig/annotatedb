@@ -9,6 +9,10 @@ from .documents import MappingDocument
 class MappingDocumentSerializer(DocumentSerializer):
     """Serializer for the Mapping document."""
 
+    # TODO: write serializer explicitely
+
+
+
     class Meta(object):
         """Meta options."""
 
@@ -18,20 +22,23 @@ class MappingDocumentSerializer(DocumentSerializer):
         # List the serializer fields. Note, that the order of the fields
         # is preserved in the ViewSet.
         fields = (
-            'pk',
-            'source.pk',
+            'id',
+            'source.id',
             'source.term',
-            # 'source.collection.pk',
-            # 'source.collection.namespace',
-            # 'source.collection.miriam',
+            'source.collection.id',
+            'source.collection.namespace',
+            'source.collection.miriam',
 
             'qualifier',
 
-            'target.pk',
-            'target.term',
-            # 'target.collection.pk',
-            # 'target.collection.namespace',
-            # 'target.collection.miriam',
+            'target.id',
+            'target.namespace',
+            'target.collection.id',
+            'target.collection.namespace',
+            'target.collection.miriam',
 
-            # 'evidence',
+            'evidence.id',
+            'evidence.source',
+            'evidence.version',
+            'evidence.evidence',
         )
