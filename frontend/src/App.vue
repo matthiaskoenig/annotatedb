@@ -8,12 +8,18 @@
       </v-toolbar-title>
 
 
+      <v-text-field
+              v-model="search"
+              append-icon="fa-search"
+              label="Search"
+              single-line
+              hide-details
+              :autofocus=true
+      />
+      <v-spacer></v-spacer>
       <v-btn icon color="black" :href="api_url" title="REST API">
         <v-icon color="white">{{ icon('api') }}</v-icon>
       </v-btn>
-      <v-spacer></v-spacer>
-
-
       <v-btn icon color="black" href="https://www.github.com/matthiaskoenig/annotatedb" title="Documentation and additional information">
         <v-icon color="white">{{ icon('about')}}</v-icon>
       </v-btn>

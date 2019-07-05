@@ -1,44 +1,27 @@
 <template>
-    <v-card flat>
-        <v-toolbar id="heading-toolbar" dark>
-            <v-text-field
-                    v-model="search"
-                    append-icon="fa-search"
-                    label="Search"
-                    single-line
-                    hide-details
-                    :autofocus=true
-            />
-        </v-toolbar>
-            <v-data-table dark
-                    :headers="headers"
-                    :items="entries"
-                    :pagination.sync="pagination"
-                    :total-items="count"
-                    :loading="loading"
-                    :class="table_class"
-
-            >
-            <template slot="items" slot-scope="table">
-                <td>{{table.item.pk}}</td>
-                <td>{{table.item.qualifier}}</td>
-            </template>
-        </v-data-table>
-    </v-card>
+    <span>
+        
+        <span v-for="mapping in entries">
+            <mapping :mapping="mapping"></mapping>
+        </span>
+    </span>
 </template>
 
 <script>
     import axios from 'axios'
+    import Mapping from "./Mapping"
+
 
     export default {
         name: "MappingsTable",
-        components: {},
+        components: {
+            Mapping
+        },
         data () {
             return {
                 search: '',
                 headers: [
-                    {text: 'pk', value: 'pk'},
-                    {text: 'qualifier', value: 'qualifier'},
+                    {text: 'data', value: 'data'},
                 ],
                 count: 0,
                 entries: [],
@@ -51,7 +34,7 @@
         },
         computed: {
             resource_url() {
-                return this.$store.state.endpoints.django  + '/search/mappings/?format=json'
+                return this.$store.state.endpoints.django  + '/search/mapping/?format=json'
             },
             /**
              * Create query url.
@@ -86,11 +69,6 @@
             getData() {
                 let headers = {};
                 console.log(this.url)
-                if (localStorage.getItem('token')) {
-                    headers = {
-                        Authorization :  'Token ' + localStorage.getItem('token')
-                    }
-                }
                 axios.get(this.url, {headers: headers})
                     .then(res => {
                         this.entries = res.data.results;
