@@ -71,126 +71,6 @@ OrderedDict([('id', 10),
         
 Select first 10 mappings in dedicated mapping_view
 --------------------------------------------------------------------------------
-(50687, 'bigg.reaction', True, 'EX_3ump_e', 'IS', 'metanetx.equation', False, 'MNXR98057', 'bigg', '1.5', 'database')
-OrderedDict([('id', 50687),
-             ('source_collection', 'bigg.reaction'),
-             ('source_miriam', True),
-             ('source_term', 'EX_3ump_e'),
-             ('qualifier', 'IS'),
-             ('target_collection', 'metanetx.equation'),
-             ('target_miriam', False),
-             ('target_term', 'MNXR98057'),
-             ('evidence_source', 'bigg'),
-             ('evidence_version', '1.5'),
-             ('evidence', 'database')])
-(50835, 'bigg.reaction', True, 'EX_acgal_e', 'IS', 'metanetx.equation', False, 'MNXR98202', 'bigg', '1.5', 'database')
-OrderedDict([('id', 50835),
-             ('source_collection', 'bigg.reaction'),
-             ('source_miriam', True),
-             ('source_term', 'EX_acgal_e'),
-             ('qualifier', 'IS'),
-             ('target_collection', 'metanetx.equation'),
-             ('target_miriam', False),
-             ('target_term', 'MNXR98202'),
-             ('evidence_source', 'bigg'),
-             ('evidence_version', '1.5'),
-             ('evidence', 'database')])
-(50841, 'bigg.reaction', True, 'EX_acgam_e', 'IS', 'metanetx.equation', False, 'MNXR98208', 'bigg', '1.5', 'database')
-OrderedDict([('id', 50841),
-             ('source_collection', 'bigg.reaction'),
-             ('source_miriam', True),
-             ('source_term', 'EX_acgam_e'),
-             ('qualifier', 'IS'),
-             ('target_collection', 'metanetx.equation'),
-             ('target_miriam', False),
-             ('target_term', 'MNXR98208'),
-             ('evidence_source', 'bigg'),
-             ('evidence_version', '1.5'),
-             ('evidence', 'database')])
-(50872, 'bigg.reaction', True, 'EX_agm_e', 'IS', 'metanetx.equation', False, 'MNXR98239', 'bigg', '1.5', 'database')
-OrderedDict([('id', 50872),
-             ('source_collection', 'bigg.reaction'),
-             ('source_miriam', True),
-             ('source_term', 'EX_agm_e'),
-             ('qualifier', 'IS'),
-             ('target_collection', 'metanetx.equation'),
-             ('target_miriam', False),
-             ('target_term', 'MNXR98239'),
-             ('evidence_source', 'bigg'),
-             ('evidence_version', '1.5'),
-             ('evidence', 'database')])
-(50894, 'bigg.reaction', True, 'EX_alltn_e', 'IS', 'metanetx.equation', False, 'MNXR98261', 'bigg', '1.5', 'database')
-OrderedDict([('id', 50894),
-             ('source_collection', 'bigg.reaction'),
-             ('source_miriam', True),
-             ('source_term', 'EX_alltn_e'),
-             ('qualifier', 'IS'),
-             ('target_collection', 'metanetx.equation'),
-             ('target_miriam', False),
-             ('target_term', 'MNXR98261'),
-             ('evidence_source', 'bigg'),
-             ('evidence_version', '1.5'),
-             ('evidence', 'database')])
-(50911, 'bigg.reaction', True, 'EX_arab__L_e', 'IS', 'metanetx.equation', False, 'MNXR98278', 'bigg', '1.5', 'database')
-OrderedDict([('id', 50911),
-             ('source_collection', 'bigg.reaction'),
-             ('source_miriam', True),
-             ('source_term', 'EX_arab__L_e'),
-             ('qualifier', 'IS'),
-             ('target_collection', 'metanetx.equation'),
-             ('target_miriam', False),
-             ('target_term', 'MNXR98278'),
-             ('evidence_source', 'bigg'),
-             ('evidence_version', '1.5'),
-             ('evidence', 'database')])
-(50919, 'bigg.reaction', True, 'EX_arg__L_e', 'IS', 'metanetx.equation', False, 'MNXR98286', 'bigg', '1.5', 'database')
-OrderedDict([('id', 50919),
-             ('source_collection', 'bigg.reaction'),
-             ('source_miriam', True),
-             ('source_term', 'EX_arg__L_e'),
-             ('qualifier', 'IS'),
-             ('target_collection', 'metanetx.equation'),
-             ('target_miriam', False),
-             ('target_term', 'MNXR98286'),
-             ('evidence_source', 'bigg'),
-             ('evidence_version', '1.5'),
-             ('evidence', 'database')])
-(50990, 'bigg.reaction', True, 'EX_cl_e', 'IS', 'metanetx.equation', False, 'MNXR98349', 'bigg', '1.5', 'database')
-OrderedDict([('id', 50990),
-             ('source_collection', 'bigg.reaction'),
-             ('source_miriam', True),
-             ('source_term', 'EX_cl_e'),
-             ('qualifier', 'IS'),
-             ('target_collection', 'metanetx.equation'),
-             ('target_miriam', False),
-             ('target_term', 'MNXR98349'),
-             ('evidence_source', 'bigg'),
-             ('evidence_version', '1.5'),
-             ('evidence', 'database')])
-(51001, 'bigg.reaction', True, 'EX_colipap_e', 'IS', 'metanetx.equation', False, 'MNXR98360', 'bigg', '1.5', 'database')
-OrderedDict([('id', 51001),
-             ('source_collection', 'bigg.reaction'),
-             ('source_miriam', True),
-             ('source_term', 'EX_colipap_e'),
-             ('qualifier', 'IS'),
-             ('target_collection', 'metanetx.equation'),
-             ('target_miriam', False),
-             ('target_term', 'MNXR98360'),
-             ('evidence_source', 'bigg'),
-             ('evidence_version', '1.5'),
-             ('evidence', 'database')])
-(51025, 'bigg.reaction', True, 'EX_cu2_e', 'IS', 'metanetx.equation', False, 'MNXR98384', 'bigg', '1.5', 'database')
-OrderedDict([('id', 51025),
-             ('source_collection', 'bigg.reaction'),
-             ('source_miriam', True),
-             ('source_term', 'EX_cu2_e'),
-             ('qualifier', 'IS'),
-             ('target_collection', 'metanetx.equation'),
-             ('target_miriam', False),
-             ('target_term', 'MNXR98384'),
-             ('evidence_source', 'bigg'),
-             ('evidence_version', '1.5'),
-             ('evidence', 'database')])
 --------------------------------------------------------------------------------
 
         SELECT * FROM adb_collection LIMIT 10
@@ -280,17 +160,6 @@ OrderedDict([('id', 10),
             
 Query all mappings for 'ACKr'.
 --------------------------------------------------------------------------------
-(32678, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
-(32687, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
-(32686, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
-(32677, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
-(32685, 'bigg.reaction', True, 'ACKr', 'IS', 'metanetx.equation', False, 'MNXR95269', 'bigg', '1.5', 'database')
-(32679, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
-(32680, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
-(32681, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
-(32682, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
-(32683, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
-(32684, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
 --------------------------------------------------------------------------------
 
             SELECT * FROM mapping_view 
@@ -302,16 +171,6 @@ Query all mappings for 'ACKr'.
             
 Query all MIRIAM mappings for the bigg.reaction 'ACKr'
 --------------------------------------------------------------------------------
-(32678, 'bigg.reaction', True, 'ACKr', 'IS', 'biocyc', True, 'META:ACETATEKIN-RXN', 'bigg', '1.5', 'database')
-(32687, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.1', 'bigg', '1.5', 'database')
-(32686, 'bigg.reaction', True, 'ACKr', 'IS', 'ec-code', True, '2.7.2.15', 'bigg', '1.5', 'database')
-(32677, 'bigg.reaction', True, 'ACKr', 'IS', 'kegg.reaction', True, 'R00315', 'bigg', '1.5', 'database')
-(32679, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11352', 'bigg', '1.5', 'database')
-(32680, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11353', 'bigg', '1.5', 'database')
-(32681, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11354', 'bigg', '1.5', 'database')
-(32682, 'bigg.reaction', True, 'ACKr', 'IS', 'rhea', True, '11355', 'bigg', '1.5', 'database')
-(32683, 'bigg.reaction', True, 'ACKr', 'IS', 'sabiork.reaction', True, '71', 'bigg', '1.5', 'database')
-(32684, 'bigg.reaction', True, 'ACKr', 'IS', 'seed', True, 'rxn00225', 'bigg', '1.5', 'database')
 --------------------------------------------------------------------------------
 
             SELECT source_term FROM mapping_view 
@@ -323,7 +182,6 @@ Query all MIRIAM mappings for the bigg.reaction 'ACKr'
             
 Query bigg metabolite for the CHEBI id 'CHEBI:698'
 --------------------------------------------------------------------------------
-('10fthf',)
 --------------------------------------------------------------------------------
 
             SELECT source_term FROM mapping_view 
@@ -337,5 +195,3 @@ Query bigg metabolite for the CHEBI id 'CHEBI:698'
             
 Restrict information to bigg evidence, multiple bigg metabolites for chebi.'
 --------------------------------------------------------------------------------
-('glc__D',)
-('glc__bD',)

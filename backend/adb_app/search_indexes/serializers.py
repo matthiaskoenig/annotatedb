@@ -4,41 +4,50 @@ from rest_framework import serializers
 from django_elasticsearch_dsl_drf.serializers import DocumentSerializer
 
 from .documents import MappingDocument
+from ..adb.models import Mapping, Evidence, Annotation, Collection
 
 
-class MappingDocumentSerializer(DocumentSerializer):
+# -----------------------------------------------------------
+# ElasticSerializers
+# -----------------------------------------------------------
+class EvidenceElasticSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Evidence
+        fields = ("id", "source", "version", "evidence")
+
+
+class CollectionElasticSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Collection
+        fields = ("id", "namespace", "miriam")
+
+
+class AnnotationElasticSerializer(serializers.ModelSerializer):
+    collection = CollectionElasticSerializer()
+
+    class Meta:
+        model = Annotation
+        fields = ("id", "term", "collection")
+
+
+class MappingElasticSerializer(serializers.ModelSerializer):
     """Serializer for the Mapping document."""
-
-    # TODO: write serializer explicitely
-
-
+    source = AnnotationElasticSerializer()
+    target = AnnotationElasticSerializer()
+    evidence = EvidenceElasticSerializer()
 
     class Meta(object):
         """Meta options."""
-
-        # Specify the correspondent document class
-        document = MappingDocument
+        model = Mapping
 
         # List the serializer fields. Note, that the order of the fields
         # is preserved in the ViewSet.
         fields = (
             'id',
-            'source.id',
-            'source.term',
-            'source.collection.id',
-            'source.collection.namespace',
-            'source.collection.miriam',
-
+            'source',
             'qualifier',
-
-            'target.id',
-            'target.namespace',
-            'target.collection.id',
-            'target.collection.namespace',
-            'target.collection.miriam',
-
-            'evidence.id',
-            'evidence.source',
-            'evidence.version',
-            'evidence.evidence',
+            'target',
+            'evidence'
         )

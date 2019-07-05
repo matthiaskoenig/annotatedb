@@ -22,14 +22,14 @@ from django_elasticsearch_dsl_drf.viewsets import BaseDocumentViewSet
 from django_elasticsearch_dsl_drf.pagination import PageNumberPagination
 
 from .documents import MappingDocument
-from .serializers import MappingDocumentSerializer
+from .serializers import MappingElasticSerializer
 
 
 class MappingDocumentView(BaseDocumentViewSet):
     """The MappingDocument view."""
 
     document = MappingDocument
-    serializer_class = MappingDocumentSerializer
+    serializer_class = MappingElasticSerializer
     pagination_class = PageNumberPagination
     lookup_field = 'id'
     filter_backends = [

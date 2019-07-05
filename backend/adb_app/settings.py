@@ -142,7 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
-    "PAGE_SIZE": int(os.getenv("DJANGO_PAGINATION_LIMIT", 100)),
+    "PAGE_SIZE": int(os.getenv("DJANGO_PAGINATION_LIMIT", 10)),
     'PAGINATE_BY': 10,  # Default to 10
     'PAGINATE_BY_PARAM': 'page_size',  # Allow client to override, using `?page_size=xxx`.
     'MAX_PAGINATE_BY': 100,
