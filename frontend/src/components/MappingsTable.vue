@@ -1,6 +1,6 @@
 <template>
     <span>
-        
+
         <span v-for="mapping in entries">
             <mapping :mapping="mapping"></mapping>
         </span>
