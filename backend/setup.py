@@ -19,9 +19,16 @@ def read(*names, **kwargs):
 
 
 # parse requirements.txt
+required = []
 with open('requirements.txt') as f:
-    required = f.read().splitlines()
-    required = [item for item in required if item and not item.startswith("#")]
+    lines = f.read().splitlines()
+    for item in lines:
+        if item.startswith('#'):
+            continue
+        elif item.startswith('-e'):
+            continue
+        else:
+            required.append(item)
 
 # version from file
 verstrline = read('adb_app/_version.py')

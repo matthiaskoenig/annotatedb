@@ -1,5 +1,6 @@
 from django.conf import settings
-from django_elasticsearch_dsl import DocType, Index, fields, DEDField, Object, collections
+from django_elasticsearch_dsl import Document, fields, DEDField, Object, collections
+from django_elasticsearch_dsl.registries import registry
 from elasticsearch_dsl import analyzer, token_filter
 
 from adb_app.adb.models import Mapping
@@ -93,18 +94,12 @@ class ObjectField(DEDField, Object):
         return self._get_inner_field_data(objs, field_value_to_ignore)
 
 
-# Name of the Elasticsearch index
-mapping_index = Index(settings.ELASTICSEARCH_INDEX_NAMES[__name__])
+# ------------------------------------
+# Elastic Mapping Document
+# ------------------------------------
 
-# See Elasticsearch Indices API reference for available settings
-mapping_index.settings(
-    number_of_shards=1,
-    number_of_replicas=1
-)
-
-
-@mapping_index.doc_type
-class MappingDocument(DocType):
+@registry.register_document
+class MappingDocument(Document):
     """ Elasticsearch document for mapping.
 
     This includes the information of the annotations, collections and evidence
@@ -151,7 +146,7 @@ class MappingDocument(DocType):
 
     )
 
-    class Meta(object):
+    class Django(object):
         """Meta options."""
         model = Mapping  # The model associate with this DocType
 
@@ -159,3 +154,10 @@ class MappingDocument(DocType):
         # ignore_signals = True
         # Don't perform an index refresh after every update (overrides global setting):
         # auto_refresh = False
+
+    class Index:
+        name = settings.ELASTICSEARCH_INDEX_NAMES[__name__]
+        settings = {
+            'number_of_shards': 1,
+            'number_of_replicas': 1
+        }

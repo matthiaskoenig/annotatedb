@@ -10,12 +10,17 @@ django-rest-swagger>=2.2.0
 django-cors-headers>=2.4.0
 djangorestframework_simplejwt>=4.3.0
 
+# ---------------------------------
+# Elastic Search (>=6.0 and <7.0)
+# ---------------------------------
+# django-elasticsearch-dsl only supports elasticsearch 6 (https://github.com/sabricot/django-elasticsearch-dsl/issues/170)
 
-# elasticsearch (https://github.com/sabricot/django-elasticsearch-dsl/issues/177)
-# >=6.0<7.0
-elasticsearch-dsl==6.1.0
-django-elasticsearch-dsl>=0.5.1
-django-elasticsearch-dsl-drf>=0.18
+elasticsearch-dsl<7.0
+django-elasticsearch-dsl>=6.4.2
+# see https://github.com/barseghyanartur/django-elasticsearch-dsl-drf/pull/141
+# django-elasticsearch-dsl-drf>=0.18
+-e git+https://github.com/barseghyanartur/django-elasticsearch-dsl-drf.git#egg=django-elasticsearch-dsl-drf
+
 
 # Developer Tools
 ipdb>=0.11
