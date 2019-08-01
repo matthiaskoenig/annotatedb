@@ -142,17 +142,18 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
-    "PAGE_SIZE": int(os.getenv("DJANGO_PAGINATION_LIMIT", 10)),
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'PAGE_SIZE': int(os.getenv("DJANGO_PAGINATION_LIMIT", 10)),
     'PAGINATE_BY': 10,  # Default to 10
     'PAGINATE_BY_PARAM': 'page_size',  # Allow client to override, using `?page_size=xxx`.
     'MAX_PAGINATE_BY': 100,
-    "DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%S%z",
-    "DEFAULT_RENDERER_CLASSES": (
+    'DATETIME_FORMAT': "%Y-%m-%dT%H:%M:%S%z",
+    'DEFAULT_RENDERER_CLASSES': (
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
     ),
-    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
-    "DEFAULT_FILTER_BACKENDS": (
+    'DEFAULT_PERMISSION_CLASSES': ["rest_framework.permissions.AllowAny"],
+    'DEFAULT_FILTER_BACKENDS': (
         "django_filters.rest_framework.DjangoFilterBackend",
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
