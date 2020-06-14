@@ -161,7 +161,6 @@ if __name__ == "__main__":
         OrmAnnotation.post(data_dict=annotation)
 
 
-
     c_sbo = OrmCollection.get('sbo')
     print(c_sbo)
     c_all = OrmCollection.get_all()
