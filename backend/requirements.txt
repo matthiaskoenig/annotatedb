@@ -1,25 +1,18 @@
-Django==2.2.3
-psycopg2-binary>=2.8.3
-gunicorn>=19.9.0
+pip>=20.1.1
 
+Django>=3.0.7
+psycopg2-binary>=2.8.5
+gunicorn>=20.0.4
 
-# rest endpoints
-djangorestframework>=3.9.4
-django-filter>=2.0
-django-rest-swagger>=2.2.0
+django-filter>=2.2.0
 django-cors-headers>=2.4.0
+djangorestframework>=3.11.0
 djangorestframework_simplejwt>=4.3.0
 
-# ---------------------------------
-# Elastic Search (>=6.0 and <7.0)
-# ---------------------------------
-# django-elasticsearch-dsl only supports elasticsearch 6 (https://github.com/sabricot/django-elasticsearch-dsl/issues/170)
-
-elasticsearch-dsl<7.0
-django-elasticsearch-dsl>=6.4.2
-# see https://github.com/barseghyanartur/django-elasticsearch-dsl-drf/pull/141
-# django-elasticsearch-dsl-drf>=0.18
--e git+https://github.com/barseghyanartur/django-elasticsearch-dsl-drf.git#egg=django-elasticsearch-dsl-drf
+elasticsearch-dsl==7.1.0
+django-elasticsearch-dsl==7.1.1.
+django-elasticsearch-dsl-drf>=0.20.5
+drf-yasg
 
 
 # Developer Tools

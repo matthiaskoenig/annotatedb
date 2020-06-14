@@ -39,26 +39,25 @@ services:
 
   elasticsearch:
     restart: always
+    environment:
+      - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - cluster.name=adb_elasticsearch
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      - xpack.license.self_generated.type=trial
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     container_name: adb_elasticsearch
-    image: elasticsearch:6.8.1
+    image: elasticsearch:7.7.1
     ports:
       - "9124:9200"
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
     networks:
       - adbnet
-
-  kibana:
-    image: kibana:6.8.1
-    container_name: adb_kibana
-    ports:
-      - "5610:5601"
-    environment:
-      - "ELASTICSEARCH_URL=http://elasticsearch:9200"
-    networks:
-      - adbnet
-    depends_on:
-      - elasticsearch
 
   backend:
     restart: always

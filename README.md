@@ -69,7 +69,6 @@ This creates the following services
 * `adb_backend` http://localhost:5434/ - django backend
 * `adb_frontend` http://localhost:8090/ - vue.js frontend
 * `adb_elasticsearch` http://localhost:9124/ - elasticsearch instance
-* `adb kibana` http://localhost:5610/ - elasticsearch visualization
 
 In later releases the installation will be simplified, 
 i.e., prebuild docker containers will be available from dockerhub (see [#32](https://github.com/matthiaskoenig/annotatedb/issues/32)).
@@ -77,7 +76,7 @@ i.e., prebuild docker containers will be available from dockerhub (see [#32](htt
 ## REST webservice
 [[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) `AnnotateDB` provides `REST` endpoints for querying the database at https://annotatedb.com/api/v1.
 
-<a href="https://annotatedb.com/api/v1"><img alt="AnnotateDB logo" src="./docs/images/rest.png" width="800" /></a>
+<a href="https://annotatedb.com/api/v1"><img alt="AnnotateDB API" src="./docs/images/rest.png" width="800" /></a>
 
 Some examples
 * to query the `collections`use: [`https://annotatedb.com/api/v1/collections/?format=json`](https://annotatedb.com/api/v1/collections/?format=json).
@@ -92,11 +91,11 @@ This will return the information on the `collection`, in this example for `sbo`
   "miriam":true,
   "name":"Systems Biology Ontology",
   "idpattern":"^SBO:\\d{7}$",
-  "urlpattern":"https://identifiers.org/sbo/{$id}",
+  "urlpattern":"https://identifiers.org/sbo/{$id}"
 }
 ```
 Currently only basic `REST` endpoints are available. With the introduction of the `elasticsearch` 
-endpoints in [`v0.2.0`](https://github.com/matthiaskoenig/annotatedb/milestone/3) the REST based search will largely improve.
+endpoints in [`v0.3.0`](https://github.com/matthiaskoenig/annotatedb/milestone/3) the REST based search will largely improve.
 For now users should directly interact with the postgres database to interact
 with the mappings (see information below).
 
@@ -156,6 +155,11 @@ with information used from the latest [database release](https://github.com/SBRG
 ## Release notes
 [[^]](https://github.com/matthiaskoenig/annotatedb#-annotatedb) This section provides an overview of major changes and releases
 
+### 0.2.0
+* security fixes 
+* django update (>3.0), elasticsearch update (7.7.1), postgres update (12.3), 
+* replacing deprecated `django-rest-swagger` with `drf-yasg`
+
 ### 0.1.1
 * bug fixes admin interface 
 * bug fixes frontend server
@@ -180,3 +184,5 @@ with information used from the latest [database release](https://github.com/SBRG
 * Thomas Zajac
 
 for their input and discussions.
+
+&copy; 2019-2020 Matthias König & Jan Grzegorzewski

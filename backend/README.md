@@ -1,3 +1,3 @@
-# AnnotateDB Backend (`django`)
- 
-&copy; 2019 Matthias König & Jan Grzegorzewski
+# AnnotateDB django backend
+
+&copy; 2019-2020 Matthias König & Jan Grzegorzewski

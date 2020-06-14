@@ -6,7 +6,6 @@
 #	./adb_dump.sh
 # -----------------------------------------------------------------------------
 
-
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 : "${ADB_DOCKER_COMPOSE_YAML:?The ADB environment variable must be exported: set -a && source .env.local}"
 

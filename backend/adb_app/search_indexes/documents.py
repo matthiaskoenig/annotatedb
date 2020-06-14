@@ -36,14 +36,14 @@ autocomplete_search = analyzer(
 
 
 def string_field(attr, **kwargs):
-    return fields.StringField(
+    return fields.TextField(
         attr=attr,
         fielddata=True,
         analyzer=autocomplete,
         search_analyzer=autocomplete_search,
         fields={'raw': fields.KeywordField()},
         **kwargs
-        )
+    )
 
 
 class ObjectField(DEDField, Object):

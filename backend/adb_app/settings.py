@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     # rest endpoints and elasticsearch
     "rest_framework",  # utilities for rest apis
     "django_filters",  # for filtering rest endpoints
-    "rest_framework_swagger",
+    "drf_yasg",
     "corsheaders",
     'django_elasticsearch_dsl',
     'django_elasticsearch_dsl_drf',

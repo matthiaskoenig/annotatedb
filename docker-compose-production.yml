@@ -39,8 +39,19 @@ services:
 
   elasticsearch:
     restart: always
+    environment:
+      - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - cluster.name=adb_elasticsearch
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      - xpack.license.self_generated.type=trial
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     container_name: adb_elasticsearch
-    image: elasticsearch:6.7.1
+    image: elasticsearch:7.7.1
     ports:
       - "9124:9200"
     volumes:
@@ -85,7 +96,7 @@ services:
   nginx:
     container_name: adb_nginx
     restart: always
-    image: nginx:1.16.0
+    image: nginx:1.18.0
     ports:
       - 8889:80
     volumes:

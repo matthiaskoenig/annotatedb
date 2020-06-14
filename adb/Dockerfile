@@ -1,2 +1,2 @@
-FROM postgres:11.4
+FROM postgres:12.3
 RUN adduser --disabled-password --gecos '' adb
